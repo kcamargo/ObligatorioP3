@@ -1,0 +1,9 @@
+C:\Users\Owner\Desktop\Programacion_3\ObligatorioP3\Repositorios\bin\Debug\Repositorios.dll
+C:\Users\Owner\Desktop\Programacion_3\ObligatorioP3\Repositorios\bin\Debug\Repositorios.pdb
+C:\Users\Owner\Desktop\Programacion_3\ObligatorioP3\Repositorios\bin\Debug\BienvenidosUyBLL.dll
+C:\Users\Owner\Desktop\Programacion_3\ObligatorioP3\Repositorios\bin\Debug\UtilidadesBD.dll
+C:\Users\Owner\Desktop\Programacion_3\ObligatorioP3\Repositorios\bin\Debug\BienvenidosUyBLL.pdb
+C:\Users\Owner\Desktop\Programacion_3\ObligatorioP3\Repositorios\bin\Debug\UtilidadesBD.pdb
+C:\Users\Owner\Desktop\Programacion_3\ObligatorioP3\Repositorios\obj\Debug\Repositorios.csprojResolveAssemblyReference.cache
+C:\Users\Owner\Desktop\Programacion_3\ObligatorioP3\Repositorios\obj\Debug\Repositorios.dll
+C:\Users\Owner\Desktop\Programacion_3\ObligatorioP3\Repositorios\obj\Debug\Repositorios.pdb

@@ -1,0 +1,62 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BienvenidosUyBLL", "ObligatorioP3\BienvenidosUyBLL.csproj", "{EA383BA3-2114-418D-B6B4-46C7A505D54F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{96A1D38A-B36B-4340-AEA4-3E54BD740480} = {96A1D38A-B36B-4340-AEA4-3E54BD740480}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BienvenidosUyInicial", "BienvenidosUyInicial\BienvenidosUyInicial.csproj", "{F5A3130B-A4A5-467C-A06B-15C3DDAC9FA9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{EA383BA3-2114-418D-B6B4-46C7A505D54F} = {EA383BA3-2114-418D-B6B4-46C7A505D54F}
+		{3CF5CFCE-8C6F-4120-AEC8-393996930CCB} = {3CF5CFCE-8C6F-4120-AEC8-393996930CCB}
+		{4F05B3E8-5045-4DDC-81D0-9D8AAD341F95} = {4F05B3E8-5045-4DDC-81D0-9D8AAD341F95}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FabricaRepositorios", "FabricaRepositorios\FabricaRepositorios.csproj", "{3CF5CFCE-8C6F-4120-AEC8-393996930CCB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{EA383BA3-2114-418D-B6B4-46C7A505D54F} = {EA383BA3-2114-418D-B6B4-46C7A505D54F}
+		{4F05B3E8-5045-4DDC-81D0-9D8AAD341F95} = {4F05B3E8-5045-4DDC-81D0-9D8AAD341F95}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repositorios", "Repositorios\Repositorios.csproj", "{4F05B3E8-5045-4DDC-81D0-9D8AAD341F95}"
+	ProjectSection(ProjectDependencies) = postProject
+		{96A1D38A-B36B-4340-AEA4-3E54BD740480} = {96A1D38A-B36B-4340-AEA4-3E54BD740480}
+		{EA383BA3-2114-418D-B6B4-46C7A505D54F} = {EA383BA3-2114-418D-B6B4-46C7A505D54F}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilidadesBD", "UtilidadesBD\UtilidadesBD.csproj", "{96A1D38A-B36B-4340-AEA4-3E54BD740480}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EA383BA3-2114-418D-B6B4-46C7A505D54F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA383BA3-2114-418D-B6B4-46C7A505D54F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA383BA3-2114-418D-B6B4-46C7A505D54F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA383BA3-2114-418D-B6B4-46C7A505D54F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5A3130B-A4A5-467C-A06B-15C3DDAC9FA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5A3130B-A4A5-467C-A06B-15C3DDAC9FA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5A3130B-A4A5-467C-A06B-15C3DDAC9FA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5A3130B-A4A5-467C-A06B-15C3DDAC9FA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CF5CFCE-8C6F-4120-AEC8-393996930CCB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CF5CFCE-8C6F-4120-AEC8-393996930CCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CF5CFCE-8C6F-4120-AEC8-393996930CCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CF5CFCE-8C6F-4120-AEC8-393996930CCB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F05B3E8-5045-4DDC-81D0-9D8AAD341F95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F05B3E8-5045-4DDC-81D0-9D8AAD341F95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F05B3E8-5045-4DDC-81D0-9D8AAD341F95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F05B3E8-5045-4DDC-81D0-9D8AAD341F95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96A1D38A-B36B-4340-AEA4-3E54BD740480}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96A1D38A-B36B-4340-AEA4-3E54BD740480}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96A1D38A-B36B-4340-AEA4-3E54BD740480}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96A1D38A-B36B-4340-AEA4-3E54BD740480}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
