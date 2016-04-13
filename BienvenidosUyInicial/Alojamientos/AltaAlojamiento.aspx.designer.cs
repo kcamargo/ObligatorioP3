@@ -13,6 +13,24 @@ namespace BienvenidosUyInicial {
     public partial class Formulario_web11 {
         
         /// <summary>
+        /// Control labelNombreAlojamiento.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label labelNombreAlojamiento;
+        
+        /// <summary>
+        /// Control txtBoxNombreAlojamiento.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtBoxNombreAlojamiento;
+        
+        /// <summary>
         /// Control labelTipoAlojamiento.
         /// </summary>
         /// <remarks>

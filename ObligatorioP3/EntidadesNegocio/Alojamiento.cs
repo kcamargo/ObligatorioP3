@@ -18,6 +18,8 @@ namespace BienvenidosUyBLL.EntidadesNegocio
         public List<TipoDeAlojamiento> Tipo;
 
         public string Nombre { get; set; }
+        public bool TipoHabitacion { get; set; }
+
         public bool TipoBanio { get; set; }
 
         public int CapacidadXPersona { get; set; }
@@ -58,9 +60,9 @@ namespace BienvenidosUyBLL.EntidadesNegocio
 
         #region Cadenas de comando para ACTIVE RECORD //falta terminar, hacerlo despues de crear las tablas en SQL
 
-        private string cadenaInsertAlojamiento = "INSERT INTO Alojamiento VALUES (@nombre)";
-        private string cadenaUpdateAlojamiento = "UPDATE  Alojamiento SET nombre=@nombre WHERE id=@id";
-        private string cadenaDeleteAlojamiento = "DELETE  Alojamiento WHERE id=@id";
+        private string cadenaInsertAlojamiento = @"INSERT INTO Alojamiento VALUES (@nombre, @tipoHabitacion, @tipoBanio, @capacidadPersonas); SELECT CAST(Scope_Identity() AS INT);";
+        private string cadenaUpdateAlojamiento = @"UPDATE  Alojamiento SET nombre=@nombre, tipoHabitacion=tipo@tipoHabitacion, tipoBanio=@tipoBanio, capacidadPersonas=@capacidadPersonas WHERE id=@id";
+        private string cadenaDeleteAlojamiento = @"DELETE  Alojamiento WHERE id=@id";
 
         #endregion
 
@@ -68,20 +70,50 @@ namespace BienvenidosUyBLL.EntidadesNegocio
 
         public bool Add()
         {
-            if (this.Validar())
+            SqlConnection cn = null; SqlTransaction trn = null;
+            if (!this.Validar()) return false;
+            try
             {
-                using (SqlConnection cn = BdSQL.Conectar())
-                {
-                    using (SqlCommand cmd = new SqlCommand(cadenaInsertAlojamiento, cn))
-                    {
-                        // cmd.Parameters.AddWithValue("@nombre", this.Nombre);
-                        cn.Open();
-                        int afectadas = cmd.ExecuteNonQuery();
-                        return afectadas == 1;
-                    }
-                }
+                cn = UtilidadesBD.BdSQL.Conectar();
+
+                //Preparar el comando de inserción de una organización
+                SqlCommand cmd = new SqlCommand(cadenaInsertAlojamiento, cn);
+                cmd.Parameters.Add(new SqlParameter("@nombre", this.Nombre));
+                cmd.Parameters.Add(new SqlParameter("@tipoHabitacion", this.TipoHabitacion));
+                cmd.Parameters.Add(new SqlParameter("@tipoBanio", this.TipoBanio));
+                cmd.Parameters.Add(new SqlParameter("@capacidadPersonas", this.CapacidadXPersona));
+
+                //Ejecutar el comando para insertar la organización en la tabla maestra
+                //y capturar el valor del identity generado para usarlo
+                // como FK en las direcciones
+
+                //Antes de ejecutar el comando se le debe asignar la transacción
+                BdSQL.AbrirConexion(cn);
+                trn = cn.BeginTransaction(System.Data.IsolationLevel.ReadCommitted);
+                cmd.Transaction = trn;
+                this.Id = (int)cmd.ExecuteScalar();
+                //Preparar el comando para ingresar las direcciones asociadas
+                //La transacción y la conexión permanecen incambiadas
+                
+                //Si se llegó aquí se asume que podemos completar la transacción
+                trn.Commit();
+                trn.Dispose();
+                trn = null;
+                return true;
+
             }
-            return false;
+            catch (Exception ex)
+            {
+                BdSQL.LoguearError(ex.Message + " Error al guardar la organización " + this.Nombre);
+                //Si se produjo un error en cualquier punto de la transacción, deberíamos deshacer todas 
+                //las operaciones.
+                if (trn != null) trn.Rollback();
+                return false;
+            }
+            finally
+            {
+                BdSQL.CerrarConexion(cn);
+            }
         }
         public bool Update()
         {
@@ -91,8 +123,10 @@ namespace BienvenidosUyBLL.EntidadesNegocio
                 {
                     using (SqlCommand cmd = new SqlCommand(cadenaUpdateAlojamiento, cn))
                     {
-                        //cmd.Parameters.AddWithValue("@nombre", this.Nombre);
-                        //cmd.Parameters.AddWithValue("@id", this.Id);
+                        cmd.Parameters.AddWithValue("@nombre", this.Nombre);
+                        cmd.Parameters.AddWithValue("@tipoHabitacion", this.TipoHabitacion);
+                        cmd.Parameters.AddWithValue("@tipoBanio", this.TipoBanio);
+                        cmd.Parameters.AddWithValue("@capacidadPersonas", this.CapacidadXPersona);
                         cn.Open();
                         int afectadas = cmd.ExecuteNonQuery();
                         return afectadas == 1;
@@ -119,11 +153,13 @@ namespace BienvenidosUyBLL.EntidadesNegocio
         }
         public void Load(IDataRecord dr)
         {
-            if (dr != null)
-            {
-                //this.Nombre = dr["nombre"].ToString();
-                this.Id = Convert.ToInt32(dr["id"]);
-            }
+            if (dr == null) return;
+            this.Nombre = dr["Nombre"] == DBNull.Value ? null : dr["Nombre"].ToString();
+            this.Id = (int)dr["Id"];//este no puede ser dbnull
+
+
+
+
         }
         #endregion
 
@@ -135,13 +171,6 @@ namespace BienvenidosUyBLL.EntidadesNegocio
         }
 
 
-        #endregion
-
-        #region REDEFINICIONES DE OBJECT
-        public override string ToString()
-        {
-            return this.Id + " - " ;
-        }
         #endregion
 
     }

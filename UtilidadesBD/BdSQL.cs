@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.IO;
+using System.Data;
 
 namespace UtilidadesBD
 {
@@ -24,6 +25,16 @@ namespace UtilidadesBD
                 return null;
             }
         }
+        public static void AbrirConexion(IDbConnection cn)
+        {
+            if (cn != null && cn.State != ConnectionState.Open)
+                cn.Open();
+        }
+        public static void CerrarConexion(IDbConnection cn)
+        {
+            if (cn != null && cn.State != ConnectionState.Closed)
+                cn.Close();
+        }
         public static void LoguearError(string mensaje)
         {
             try
@@ -39,5 +50,6 @@ namespace UtilidadesBD
                 return;
             }
         }
+
     }
 }

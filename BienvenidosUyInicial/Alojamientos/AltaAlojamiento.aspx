@@ -4,6 +4,10 @@
     <div id="titulo" class="col-lg-10">
         <h1>Ingresar nuevo alojamiento</h1>
     </div>
+         <div class="col-lg-10">
+        <asp:Label ID="labelNombreAlojamiento" runat="server" Text="Nombre Alojamiento"></asp:Label>
+        <asp:TextBox ID="txtBoxNombreAlojamiento" runat="server"></asp:TextBox>
+    </div><br>
     <div class="col-lg-10">
         <asp:Label ID="labelTipoAlojamiento" runat="server" Text="Tipo de Alojamiento"></asp:Label>
         <asp:DropDownList ID="ddlTipoAlojamiento" runat="server"></asp:DropDownList>
