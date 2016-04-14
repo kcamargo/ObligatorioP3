@@ -39,6 +39,7 @@ namespace BienvenidosUyBLL.EntidadesNegocio
         {
             this.Tipo = new List<TipoDeAlojamiento>();
             this.TipoDeServicios = new List<Servicio>();
+            this.Ciudad = Montevideo; // modificacion prueba git flor
         }
 
         #endregion
