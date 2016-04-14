@@ -39,7 +39,6 @@ namespace BienvenidosUyBLL.EntidadesNegocio
         {
             this.Tipo = new List<TipoDeAlojamiento>();
             this.TipoDeServicios = new List<Servicio>();
-            this.Ciudad = Montevideo; // modificacion prueba git flor
         }
 
         #endregion
@@ -144,7 +143,7 @@ namespace BienvenidosUyBLL.EntidadesNegocio
                 using (SqlCommand cmd = new SqlCommand(cadenaDeleteAlojamiento, cn))
                 {
 
-                    //cmd.Parameters.AddWithValue("@id", this.Id);
+                    cmd.Parameters.AddWithValue("@id", this.Id);
                     cn.Open();
                     int afectadas = cmd.ExecuteNonQuery();
                     return afectadas == 1;
@@ -157,9 +156,6 @@ namespace BienvenidosUyBLL.EntidadesNegocio
             if (dr == null) return;
             this.Nombre = dr["Nombre"] == DBNull.Value ? null : dr["Nombre"].ToString();
             this.Id = (int)dr["Id"];//este no puede ser dbnull
-
-
-
 
         }
         #endregion
