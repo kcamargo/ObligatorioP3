@@ -23,6 +23,7 @@ namespace BienvenidosUyInicial
             if (Session["AltaAlojamientoActiva"] == null)
                 Session["AltaAlojamientoActiva"] = new Alojamiento();
 
+
         }
         protected void CargarServicios()
         {
