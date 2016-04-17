@@ -10,19 +10,25 @@
     </div><br>
     <div class="col-lg-10">
         <asp:Label ID="labelTipoAlojamiento" runat="server" Text="Tipo de Alojamiento"></asp:Label>
-        <asp:DropDownList ID="ddlTipoAlojamiento" runat="server"></asp:DropDownList>
+        <asp:DropDownList ID="ddlTipoAlojamiento" runat="server"> </asp:DropDownList>
     </div><br>
     <div class="col-lg-10">
         <asp:Label ID="labelTipoHabitacion" runat="server" Text="Tipo de Habitacion"></asp:Label>
-        <asp:DropDownList ID="ddlTipoHabitacion" runat="server"></asp:DropDownList>
+        <asp:DropDownList ID="ddlTipoHabitacion" runat="server">
+            <asp:ListItem Value="1">Privada</asp:ListItem>
+            <asp:ListItem Value="2">Compartida</asp:ListItem>
+        </asp:DropDownList>
     </div><br>
     <div class="col-lg-10">
         <asp:Label ID="labelBano" runat="server" Text="Tipo de Baño"></asp:Label>
-        <asp:DropDownList ID="ddlBano" runat="server"></asp:DropDownList>
+        <asp:DropDownList ID="ddlBano" runat="server">
+             <asp:ListItem Value="1">Privada</asp:ListItem>
+            <asp:ListItem Value="2">Compartida</asp:ListItem>
+        </asp:DropDownList>
     </div><br>
     <div class="col-lg-10">
         <asp:Label ID="labelCapacidad" runat="server" Text="Capacidad en personas"></asp:Label>
-        <textarea id="TextArea1" cols="20" rows="2"></textarea>
+        <asp:TextBox ID="txtBoxCantidadPersonas" runat="server"></asp:TextBox>
     </div><br>
     <div class="col-lg-10">
         <asp:Label ID="labelCiudad" runat="server" Text="Ciudad"></asp:Label>
@@ -36,7 +42,10 @@
         <asp:Label ID="labelServicios" runat="server" Text="Servicios"></asp:Label>
         <asp:CheckBoxList ID="CheckBoxListServicios" runat="server"></asp:CheckBoxList>
     </div><br>
+        <div class="col-lg-10">
+        <asp:Label ID="LblMensajes" runat="server" ></asp:Label>
+    </div><br>
     <div class="col-lg-10">
-        <asp:Button ID="bttonAgregar" runat="server" Text="Agregar" />
+        <asp:Button ID="bttonAgregar" runat="server" Text="Agregar" OnClick="bttonAgregar_Click" />
     </div><br>
 </asp:Content>

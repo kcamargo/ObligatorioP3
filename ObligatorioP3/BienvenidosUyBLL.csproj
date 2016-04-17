@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="EntidadesNegocio\Alojamiento.cs" />
     <Compile Include="EntidadesNegocio\Anuncio.cs" />
+    <Compile Include="EntidadesNegocio\Direccion.cs" />
     <Compile Include="EntidadesNegocio\Foto.cs" />
     <Compile Include="EntidadesNegocio\IEntity.cs" />
     <Compile Include="EntidadesNegocio\Reserva.cs" />

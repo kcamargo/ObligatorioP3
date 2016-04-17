@@ -15,16 +15,16 @@ namespace BienvenidosUyBLL.EntidadesNegocio
 
         public int Id { get; set; }
 
-        public string NombreTipoAlojamiento { get; set; }
+        public string Nombre { get; set; }
 
-        public string DescripcionTipoAlojamiento { get; set; }
+        public string Descripcion { get; set; }
 
         #endregion
 
         #region Cadenas de comando para ACTIVE RECORD //falta terminar, hacerlo despues de crear las tablas en SQL
 
-        private string cadenaInsertTipoAlojamiento = "INSERT INTO Alojamiento VALUES (@nombre)";
-        private string cadenaUpdateTipoAlojamiento = "UPDATE  Alojamiento SET nombre=@nombre WHERE id=@id";
+        private string cadenaInsertTipoAlojamiento = "INSERT INTO TipoDeAlojamiento VALUES (@nombre, @descripcion)";
+        private string cadenaUpdateTipoAlojamiento = "UPDATE  Alojamiento SET nombre=@nombre descripcion =@descripcion WHERE id=@id";
         private string cadenaDeleteTipoAlojamiento = "DELETE  Alojamiento WHERE id=@id";
 
         #endregion
@@ -82,12 +82,15 @@ namespace BienvenidosUyBLL.EntidadesNegocio
             }
 
         }
-        public void Load(IDataRecord dr)
+        public void Load(SqlDataReader dr)
         {
             if (dr != null)
             {
-                //this.Nombre = dr["nombre"].ToString();
-                this.Id = Convert.ToInt32(dr["id"]);
+
+                this.Id = (int)dr["id"];
+                this.Nombre = dr["nombre"].ToString();
+                this.Descripcion = dr["descripcion"].ToString();
+
             }
         }
         #endregion

@@ -22,4 +22,5 @@ namespace BienvenidosUyBLL.EntidadesNegocio
             return base.Equals(obj) || (obj as Direccion).Linea1.Equals(this.Linea1);
 
         }
+    }
 }

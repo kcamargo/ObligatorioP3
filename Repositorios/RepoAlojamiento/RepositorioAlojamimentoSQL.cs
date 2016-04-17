@@ -25,13 +25,10 @@ namespace Repositorios.RepoAlojamiento
             cmdInsert.CommandText = @"INSERT INTO Alojamiento VALUES (@nombre, @tipoHabitacion, @tipoBanio, @capacidadPersonas)";
             cmdInsert.Connection = cn;
 
-            cmdInsert.Parameters.AddWithValue(("@nombre", labelNombreAlojamiento.text));
-            cmdInsert.Parameters.AddWithValue("@idDir", 1);//obj.direccionPostal.Id
-            cmdInsert.Parameters.AddWithValue("@tel", "20000012");//obj.Telefono
-            cmdInsert.Parameters.AddWithValue("@email", "a@x.com");
-            cmdInsert.Parameters.AddWithValue("@encargado", "Juan");
-            cmdInsert.Parameters.AddWithValue("@estado", 1);//obj.Estado.Id
-
+            cmdInsert.Parameters.AddWithValue("@nombre", obj.Nombre);
+            cmdInsert.Parameters.AddWithValue("@tipoHabitacion", obj.TipoHabitacion);
+            cmdInsert.Parameters.AddWithValue("@tipoBanio", obj.TipoBanio);
+            cmdInsert.Parameters.AddWithValue("@capacidadPersonas", obj.CapacidadXPersona);
             cn.Open();
             int afectadas = cmdInsert.ExecuteNonQuery();
             cn.Close();
@@ -59,5 +56,7 @@ namespace Repositorios.RepoAlojamiento
         {
             throw new NotImplementedException();
         }
+
+      
     }
 }

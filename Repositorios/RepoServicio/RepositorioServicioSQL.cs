@@ -5,6 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BienvenidosUyBLL.EntidadesNegocio;
+using System.Data.SqlClient;
+using System.Data;
+using UtilidadesBD;
 
 namespace Repositorios.RepoServicio
 {
@@ -22,7 +25,42 @@ namespace Repositorios.RepoServicio
 
         public List<BienvenidosUyBLL.EntidadesNegocio.Servicio> FindAll()
         {
-            throw new NotImplementedException();
+            string cadenaSQL = @"SELECT id, nombre, descripcion From Servicios";
+            SqlConnection cn = null;
+            List<Servicio> listaServicios = new List<Servicio>();
+            try
+            {
+
+                using (cn = UtilidadesBD.BdSQL.Conectar())
+                {
+                    //Preparar el comando d 
+                    SqlCommand cmd = new SqlCommand(cadenaSQL, cn);
+                    cmd.CommandType = CommandType.Text;
+                    //Ejecutar el comando para  obtener el reader con las tuplas requeridas
+                    BdSQL.AbrirConexion(cn);
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    //No es necesario un while, como máximo hay una fila para leer
+
+                    while (dr.Read())
+                    {
+                        Servicio s = new Servicio();
+                        s.Load(dr);//Carga los datos propios de la Organización
+                                   //Se crea un objeto estado por simplicidad, con los datos traidos desde
+                                   //el join, pero en realidad debería verificarse que ya no esté cargado
+
+
+                        listaServicios.Add(s);
+
+                    }
+                }
+                return listaServicios;
+            }
+            catch (Exception ex)
+            {
+
+                BdSQL.LoguearError(ex.Message + "No se pueden cargar los servicios");
+                return null;
+            }
         }
 
         public BienvenidosUyBLL.EntidadesNegocio.Servicio FindById(int id)

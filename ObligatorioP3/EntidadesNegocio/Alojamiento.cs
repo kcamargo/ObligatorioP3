@@ -15,12 +15,12 @@ namespace BienvenidosUyBLL.EntidadesNegocio
 
         public int Id { get; set; }
 
-        public List<TipoDeAlojamiento> Tipo;
+        public string TipoAlojamiento { get; set; }
 
         public string Nombre { get; set; }
-        public bool TipoHabitacion { get; set; }
+        public bool TipoHabitacion { get; set; }//true privada
 
-        public bool TipoBanio { get; set; }
+        public bool TipoBanio { get; set; }//true privado
 
         public int CapacidadXPersona { get; set; }
 
@@ -30,14 +30,12 @@ namespace BienvenidosUyBLL.EntidadesNegocio
 
         public List<Servicio> TipoDeServicios;
 
-
         #endregion
 
         #region CONSTRUCTOR
 
         public Alojamiento()
         {
-            this.Tipo = new List<TipoDeAlojamiento>();
             this.TipoDeServicios = new List<Servicio>();
         }
 

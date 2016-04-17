@@ -13,22 +13,11 @@ namespace BienvenidosUyBLL.EntidadesNegocio
     {
         #region PROPERTIES
 
-        public string NombreServicio { get; set; }
+        public string Nombre { get; set; }
 
-        public string DescripcionServicio{ get; set; }
+        public string Descripcion{ get; set; }
 
-        public int Id
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
+        public int Id { get; set ; }
 
         #endregion
 
@@ -94,12 +83,15 @@ namespace BienvenidosUyBLL.EntidadesNegocio
             }
 
         }
-        public void Load(IDataRecord dr)
+        public void Load(SqlDataReader dr)
         {
             if (dr != null)
             {
-                //this.Nombre = dr["nombre"].ToString();
-                this.Id = Convert.ToInt32(dr["id"]);
+
+                this.Id = (int)dr["id"];
+                this.Nombre = dr["nombre"].ToString();
+                this.Descripcion = dr["descripcion"].ToString();
+
             }
         }
         #endregion

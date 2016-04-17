@@ -94,6 +94,15 @@ namespace BienvenidosUyInicial {
         protected global::System.Web.UI.WebControls.Label labelCapacidad;
         
         /// <summary>
+        /// Control txtBoxCantidadPersonas.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtBoxCantidadPersonas;
+        
+        /// <summary>
         /// Control labelCiudad.
         /// </summary>
         /// <remarks>
@@ -146,6 +155,15 @@ namespace BienvenidosUyInicial {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBoxList CheckBoxListServicios;
+        
+        /// <summary>
+        /// Control LblMensajes.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LblMensajes;
         
         /// <summary>
         /// Control bttonAgregar.
