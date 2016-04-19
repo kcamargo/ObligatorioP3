@@ -8,6 +8,7 @@ namespace BienvenidosUyBLL.EntidadesNegocio
 {
     public class Direccion : IEntity
     {
+
         public int Id { get; set; }
         public string Linea1 { get; set; }
         public string Linea2 { get; set; }
