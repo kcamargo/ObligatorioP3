@@ -11,6 +11,7 @@ namespace BienvenidosUyBLL.EntidadesNegocio
 {
     public class Alojamiento : IEntity
     {
+
         #region PROPERTIES
 
         public int Id { get; set; }
