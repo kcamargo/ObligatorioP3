@@ -1,0 +1,65 @@
+[33mcommit 8d2b4e04cb0f7483e35d488b0e1820e1b98cf70d[m
+Author: Kari <camargo.kari@gmail.com>
+Date:   Tue Apr 19 18:29:02 2016 -0300
+
+    modificacion prueba3
+
+[33mcommit 30380bc16a2dc3c1e0a3217cf29244cd3b47a605[m
+Author: Kari <camargo.kari@gmail.com>
+Date:   Sun Apr 17 19:43:28 2016 -0300
+
+    Mejorando if
+
+[33mcommit 71f10969a637c5c57dca6d0f174c06c8adbda531[m
+Author: Kari <camargo.kari@gmail.com>
+Date:   Sun Apr 17 19:31:26 2016 -0300
+
+    Removiendo linea
+
+[33mcommit 15ff86ff3e608a2ee3295031e1654e699d4ddbf5[m
+Author: Kari <camargo.kari@gmail.com>
+Date:   Sun Apr 17 19:28:26 2016 -0300
+
+    Probando git
+
+[33mcommit 3680f9fb453afe48b37c85dca9378c9e0aea5c21[m
+Author: Kari <camargo.kari@gmail.com>
+Date:   Sun Apr 17 19:03:06 2016 -0300
+
+    Corregi errores de ensamblaje con base de datos, y cargue datos para alta de alojamiento
+
+[33mcommit 4b8a80b9aab948f0d133bfe18c5224012332fab2[m
+Author: Kari <camargo.kari@gmail.com>
+Date:   Thu Apr 14 18:31:29 2016 -0300
+
+    Alojamiento: retire la prueba de github. Anuncio: Active record y separacion de direcciones. Direcciones: cree una nueva clase que conecta con anuncio
+
+[33mcommit 27d529a5be362d3ca2ca88e9b983959d16eead50[m
+Author: Kari <camargo.kari@gmail.com>
+Date:   Thu Apr 14 10:05:52 2016 -0300
+
+    Aca lo que hice fue modificar el constructor de alojamiento para mostrarle a flor como funciona el github
+
+[33mcommit a9dd30a3acf45e80e0bca239b4a988985795fe3d[m
+Author: Kari <camargo.kari@gmail.com>
+Date:   Wed Apr 13 20:29:21 2016 -0300
+
+    Borrando .vs
+
+[33mcommit 695067f5922ff98265f07b49a65aabf8e5a4a093[m
+Author: Kari <camargo.kari@gmail.com>
+Date:   Wed Apr 13 20:26:43 2016 -0300
+
+    Ignorando metadata de VS
+
+[33mcommit 4d7c7b6d76b91f09533eabbec729b7f02aca2f0f[m
+Author: Kari <camargo.kari@gmail.com>
+Date:   Wed Apr 13 20:17:25 2016 -0300
+
+    Modifique active record de la clase alojamiento, BlSQL, repositorio alojamiento
+
+[33mcommit 3321bf82c746b8981bafe545e02ecba002aa6a54[m
+Author: Kari <camargo.kari@gmail.com>
+Date:   Wed Apr 13 18:59:48 2016 -0300
+
+    Subir archivos obligatorio
