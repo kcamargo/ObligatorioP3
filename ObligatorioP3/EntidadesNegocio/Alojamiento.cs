@@ -15,9 +15,6 @@ namespace BienvenidosUyBLL.EntidadesNegocio
 
         public int Id { get; set; }
 
-        public int calculito { get; set; }
-
-
         public string TipoAlojamiento { get; set; }
 
         public string Nombre { get; set; }
