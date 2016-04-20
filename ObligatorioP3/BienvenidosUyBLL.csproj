@@ -48,6 +48,7 @@
     <Compile Include="EntidadesNegocio\Reserva.cs" />
     <Compile Include="EntidadesNegocio\Servicio.cs" />
     <Compile Include="EntidadesNegocio\TipoDeAlojamiento.cs" />
+    <Compile Include="EntidadesNegocio\Usuario.cs" />
     <Compile Include="EntidadesNegocio\Vacaciones.cs" />
     <Compile Include="InterfacesRepositorios\IRepositorio.cs" />
     <Compile Include="InterfacesRepositorios\IRepositorioAlojamiento.cs" />
@@ -56,6 +57,7 @@
     <Compile Include="InterfacesRepositorios\IRepositorioReserva.cs" />
     <Compile Include="InterfacesRepositorios\IRepositorioServicio.cs" />
     <Compile Include="InterfacesRepositorios\IRepositorioTipoDeAlojamiento.cs" />
+    <Compile Include="InterfacesRepositorios\IRepositorioUsuario.cs" />
     <Compile Include="InterfacesRepositorios\IRepositorioVacaciones.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -20,3 +20,14 @@ C:\Users\Owner\Desktop\Programacion_3\Obligatorio\ObligatorioP3\FabricaRepositor
 C:\Users\Owner\Desktop\Programacion_3\Obligatorio\ObligatorioP3\FabricaRepositorios\obj\Debug\FabricaRepositorios.csprojResolveAssemblyReference.cache
 C:\Users\Owner\Desktop\Programacion_3\Obligatorio\ObligatorioP3\FabricaRepositorios\obj\Debug\FabricaRepositorios.dll
 C:\Users\Owner\Desktop\Programacion_3\Obligatorio\ObligatorioP3\FabricaRepositorios\obj\Debug\FabricaRepositorios.pdb
+C:\Users\Florencia\ObligatorioP3\FabricaRepositorios\bin\Debug\FabricaRepositorios.dll
+C:\Users\Florencia\ObligatorioP3\FabricaRepositorios\bin\Debug\FabricaRepositorios.pdb
+C:\Users\Florencia\ObligatorioP3\FabricaRepositorios\bin\Debug\BienvenidosUyBLL.dll
+C:\Users\Florencia\ObligatorioP3\FabricaRepositorios\bin\Debug\Repositorios.dll
+C:\Users\Florencia\ObligatorioP3\FabricaRepositorios\bin\Debug\UtilidadesBD.dll
+C:\Users\Florencia\ObligatorioP3\FabricaRepositorios\bin\Debug\BienvenidosUyBLL.pdb
+C:\Users\Florencia\ObligatorioP3\FabricaRepositorios\bin\Debug\Repositorios.pdb
+C:\Users\Florencia\ObligatorioP3\FabricaRepositorios\bin\Debug\UtilidadesBD.pdb
+C:\Users\Florencia\ObligatorioP3\FabricaRepositorios\obj\Debug\FabricaRepositorios.csprojResolveAssemblyReference.cache
+C:\Users\Florencia\ObligatorioP3\FabricaRepositorios\obj\Debug\FabricaRepositorios.dll
+C:\Users\Florencia\ObligatorioP3\FabricaRepositorios\obj\Debug\FabricaRepositorios.pdb

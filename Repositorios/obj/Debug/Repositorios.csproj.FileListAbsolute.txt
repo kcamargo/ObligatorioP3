@@ -16,3 +16,12 @@ C:\Users\Owner\Desktop\Programacion_3\Obligatorio\ObligatorioP3\Repositorios\bin
 C:\Users\Owner\Desktop\Programacion_3\Obligatorio\ObligatorioP3\Repositorios\obj\Debug\Repositorios.csprojResolveAssemblyReference.cache
 C:\Users\Owner\Desktop\Programacion_3\Obligatorio\ObligatorioP3\Repositorios\obj\Debug\Repositorios.dll
 C:\Users\Owner\Desktop\Programacion_3\Obligatorio\ObligatorioP3\Repositorios\obj\Debug\Repositorios.pdb
+C:\Users\Florencia\ObligatorioP3\Repositorios\bin\Debug\Repositorios.dll
+C:\Users\Florencia\ObligatorioP3\Repositorios\bin\Debug\Repositorios.pdb
+C:\Users\Florencia\ObligatorioP3\Repositorios\bin\Debug\BienvenidosUyBLL.dll
+C:\Users\Florencia\ObligatorioP3\Repositorios\bin\Debug\UtilidadesBD.dll
+C:\Users\Florencia\ObligatorioP3\Repositorios\bin\Debug\BienvenidosUyBLL.pdb
+C:\Users\Florencia\ObligatorioP3\Repositorios\bin\Debug\UtilidadesBD.pdb
+C:\Users\Florencia\ObligatorioP3\Repositorios\obj\Debug\Repositorios.csprojResolveAssemblyReference.cache
+C:\Users\Florencia\ObligatorioP3\Repositorios\obj\Debug\Repositorios.dll
+C:\Users\Florencia\ObligatorioP3\Repositorios\obj\Debug\Repositorios.pdb
