@@ -63,16 +63,16 @@ namespace BienvenidosUyInicial
             {
                 a.Nombre = this.txtBoxNombreAlojamiento.Text;
                 a.TipoAlojamiento = this.ddlTipoAlojamiento.SelectedValue;// ojo devuelve un string
-                a.TipoHabitacion = this.ConvertirABoolTipoHabitacion(this.ddlTipoHabitacion.SelectedValue);
+                a.TipoHabitacion = this.ddlTipoHabitacion.SelectedValue == "privada";// this.ConvertirABoolTipoHabitacion(this.ddlTipoHabitacion.SelectedValue);
                 a.TipoBanio = this.ConvertirABoolTipoBanio(this.ddlTipoHabitacion.SelectedValue);
                 a.CapacidadXPersona = Int32.Parse(this.txtBoxCantidadPersonas.Text);
                 a.Ciudad = this.txtboxCiudad.Text;
                 a.Barrio = this.txtboxBarrio.Text;
-                //a.TipoDeServicios = this.CheckBoxListServicios.Items.Cast<ListItem>().ToList();
+                //CargarListaServicios();
 
 
 
-                IRepositorioAlojamiento ro = FabricaRepositoriosBienvenidosUy.CrearRepositorioAlojamiento();
+                 IRepositorioAlojamiento ro = FabricaRepositoriosBienvenidosUy.CrearRepositorioAlojamiento();
                 if (ro.Add(a))
                     this.LblMensajes.Text = "Ingresado";
 
@@ -85,7 +85,7 @@ namespace BienvenidosUyInicial
         protected bool ConvertirABoolTipoHabitacion(string value)
         {
             bool valor = false;
-            if (value == "Privada")
+            if (value == "privada")
                 valor = true;
             return valor;
         }
@@ -104,7 +104,7 @@ namespace BienvenidosUyInicial
         //    {
         //        if (item.Selected)
         //        {
-        //            serviciosSeleccionados.Add(item.Value);
+        //            serviciosSeleccionados.Add(item);
         //        }
         //    }
         //    return serviciosSeleccionados;

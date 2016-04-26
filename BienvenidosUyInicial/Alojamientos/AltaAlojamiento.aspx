@@ -15,8 +15,8 @@
     <div class="col-lg-10">
         <asp:Label ID="labelTipoHabitacion" runat="server" Text="Tipo de Habitacion"></asp:Label>
         <asp:DropDownList ID="ddlTipoHabitacion" runat="server">
-            <asp:ListItem Value="1">Privada</asp:ListItem>
-            <asp:ListItem Value="2">Compartida</asp:ListItem>
+            <asp:ListItem Value="privada">Privada</asp:ListItem>
+            <asp:ListItem Value="compartida">Compartida</asp:ListItem>
         </asp:DropDownList>
     </div><br>
     <div class="col-lg-10">

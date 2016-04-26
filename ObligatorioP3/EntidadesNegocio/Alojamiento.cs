@@ -58,13 +58,21 @@ namespace BienvenidosUyBLL.EntidadesNegocio
 
         #region Cadenas de comando para ACTIVE RECORD //falta terminar, hacerlo despues de crear las tablas en SQL
 
-        private string cadenaInsertAlojamiento = @"INSERT INTO Alojamiento VALUES (@nombre, @tipoHabitacion, @tipoBanio, @capacidadPersonas); SELECT CAST(Scope_Identity() AS INT);";
-        private string cadenaUpdateAlojamiento = @"UPDATE  Alojamiento SET nombre=@nombre, tipoHabitacion=tipo@tipoHabitacion, tipoBanio=@tipoBanio, capacidadPersonas=@capacidadPersonas WHERE id=@id";
-        private string cadenaDeleteAlojamiento = @"DELETE  Alojamiento WHERE id=@id";
+        private string cadenaInsertAlojamiento = @"INSERT INTO Alojamientos VALUES ( @nombre, @tipo_habitacion, @tipo_banio, @capacidad_personas, @ciudad, @barrio)SELECT CAST(Scope_Identity() AS INT);";
+        private string cadenaUpdateAlojamiento = @"UPDATE  Alojamientos SET nombre=@nombre, tipoHabitacion=@tipo_habitacion, tipoBanio=@tipo_banio, capacidadPersonas=@capacidad_personas, ciudad=@ciudad, barrio=@barrio WHERE id=@id";
+        private string cadenaDeleteAlojamiento = @"DELETE  Alojamientos WHERE id=@id";
+
+        public void AgregarServicios(Servicio s)
+        {
+            if (s.Validar() && !this.TipoDeServicios.Contains(s))
+                this.TipoDeServicios.Add(s);
+
+        }
 
         #endregion
 
         #region Métodos ACTIVE RECORD
+
 
         public bool Add()
         {
@@ -74,26 +82,17 @@ namespace BienvenidosUyBLL.EntidadesNegocio
             {
                 cn = UtilidadesBD.BdSQL.Conectar();
 
-                //Preparar el comando de inserción de una organización
                 SqlCommand cmd = new SqlCommand(cadenaInsertAlojamiento, cn);
-                cmd.Parameters.Add(new SqlParameter("@nombre", this.Nombre));
-                cmd.Parameters.Add(new SqlParameter("@tipoHabitacion", this.TipoHabitacion));
-                cmd.Parameters.Add(new SqlParameter("@tipoBanio", this.TipoBanio));
-                cmd.Parameters.Add(new SqlParameter("@capacidadPersonas", this.CapacidadXPersona));
-
-                //Ejecutar el comando para insertar la organización en la tabla maestra
-                //y capturar el valor del identity generado para usarlo
-                // como FK en las direcciones
-
-                //Antes de ejecutar el comando se le debe asignar la transacción
+                cmd.Parameters.AddWithValue("@nombre", this.Nombre);
+                cmd.Parameters.AddWithValue("@tipo_habitacion", this.TipoHabitacion);
+                cmd.Parameters.AddWithValue("@tipo_banio", this.TipoBanio);
+                cmd.Parameters.AddWithValue("@capacidad_personas", this.CapacidadXPersona);
+                cmd.Parameters.AddWithValue("@ciudad", this.Ciudad);
+                cmd.Parameters.AddWithValue("@barrio", this.Barrio);
                 BdSQL.AbrirConexion(cn);
                 trn = cn.BeginTransaction(System.Data.IsolationLevel.ReadCommitted);
                 cmd.Transaction = trn;
                 this.Id = (int)cmd.ExecuteScalar();
-                //Preparar el comando para ingresar las direcciones asociadas
-                //La transacción y la conexión permanecen incambiadas
-                
-                //Si se llegó aquí se asume que podemos completar la transacción
                 trn.Commit();
                 trn.Dispose();
                 trn = null;
@@ -102,9 +101,7 @@ namespace BienvenidosUyBLL.EntidadesNegocio
             }
             catch (Exception ex)
             {
-                BdSQL.LoguearError(ex.Message + " Error al guardar la organización " + this.Nombre);
-                //Si se produjo un error en cualquier punto de la transacción, deberíamos deshacer todas 
-                //las operaciones.
+                BdSQL.LoguearError(ex.Message + " Error al guardar el Alojamiento: " + this.Nombre);
                 if (trn != null) trn.Rollback();
                 return false;
             }

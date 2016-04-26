@@ -15,31 +15,13 @@ namespace Repositorios.RepoAlojamiento
     {
         public bool Add(BienvenidosUyBLL.EntidadesNegocio.Alojamiento obj)
         {
-            //if obj.validar == false return false;
-            string cadenaConexion = ConfigurationManager.
-                 ConnectionStrings["conexionBienvenidosUy"].ConnectionString;
-            SqlConnection cn = new SqlConnection(cadenaConexion);
-
-            SqlCommand cmdInsert = new SqlCommand();
-
-            cmdInsert.CommandText = @"INSERT INTO Alojamiento VALUES (@nombre, @tipoHabitacion, @tipoBanio, @capacidadPersonas)";
-            cmdInsert.Connection = cn;
-
-            cmdInsert.Parameters.AddWithValue("@nombre", obj.Nombre);
-            cmdInsert.Parameters.AddWithValue("@tipoHabitacion", obj.TipoHabitacion);
-            cmdInsert.Parameters.AddWithValue("@tipoBanio", obj.TipoBanio);
-            cmdInsert.Parameters.AddWithValue("@capacidadPersonas", obj.CapacidadXPersona);
-            cn.Open();
-            int afectadas = cmdInsert.ExecuteNonQuery();
-            cn.Close();
-            cn.Dispose();
-            if (afectadas == 1) return true;
-            return false;
+            return obj != null && obj.Add();
         }
 
         public bool Delete(int id)
         {
-            throw new NotImplementedException();
+            Alojamiento o = FindById(id);
+            return (o != null && o.Delete());
         }
 
         public List<BienvenidosUyBLL.EntidadesNegocio.Alojamiento> FindAll()
@@ -52,11 +34,8 @@ namespace Repositorios.RepoAlojamiento
             throw new NotImplementedException();
         }
 
-        public bool Update(BienvenidosUyBLL.EntidadesNegocio.Alojamiento obj)
-        {
-            throw new NotImplementedException();
-        }
+        public bool Update(BienvenidosUyBLL.EntidadesNegocio.Alojamiento obj) { return obj != null & obj.Update(); }
 
-      
+
     }
 }
