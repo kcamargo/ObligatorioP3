@@ -17,18 +17,18 @@
                         </p>
                     </asp:PlaceHolder>
                     <div class="form-group">
-                        <asp:Label runat="server" AssociatedControlID="Email" CssClass="col-md-2 control-label">Correo electrónico</asp:Label>
+                        <asp:Label runat="server" AssociatedControlID="EmailLogIn" CssClass="col-md-2 control-label">Correo electrónico</asp:Label>
                         <div class="col-md-10">
-                            <asp:TextBox runat="server" ID="Email" CssClass="form-control" TextMode="Email" />
-                            <asp:RequiredFieldValidator runat="server" ControlToValidate="Email"
+                            <asp:TextBox runat="server" ID="EmailLogIn" CssClass="form-control" TextMode="Email" />
+                            <asp:RequiredFieldValidator runat="server" ControlToValidate="EmailLogIn"
                                 CssClass="text-danger" ErrorMessage="El campo de correo electrónico es obligatorio." />
                         </div>
                     </div>
                     <div class="form-group">
-                        <asp:Label runat="server" AssociatedControlID="Password" CssClass="col-md-2 control-label">Contraseña</asp:Label>
+                        <asp:Label runat="server" AssociatedControlID="ContraseñaLogIn" CssClass="col-md-2 control-label">Contraseña</asp:Label>
                         <div class="col-md-10">
-                            <asp:TextBox runat="server" ID="Password" TextMode="Password" CssClass="form-control" />
-                            <asp:RequiredFieldValidator runat="server" ControlToValidate="Password" CssClass="text-danger" ErrorMessage="El campo de contraseña es obligatorio." />
+                            <asp:TextBox runat="server" ID="ContraseñaLogIn" TextMode="Password" CssClass="form-control" />
+                            <asp:RequiredFieldValidator runat="server" ControlToValidate="ContraseñaLogIn" CssClass="text-danger" ErrorMessage="El campo de contraseña es obligatorio." />
                         </div>
                     </div>
                     <div class="form-group">
@@ -39,9 +39,12 @@
                             </div>
                         </div>
                     </div>
+
+                    <asp:Label ID="mensaje" runat="server" Text=""></asp:Label>
+
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
-                            <asp:Button runat="server" OnClick="LogIn" Text="Iniciar sesión" CssClass="btn btn-default" />
+                            <asp:Button runat="server" OnClick="LogIn" Text="Iniciar sesión" CssClass="btn btn-default" ID="btnEntrar" />
                         </div>
                     </div>
                 </div>

@@ -60,6 +60,9 @@
     <Compile Include="RepoTiposDeAlojamiento\RepositorioTiposDeAlojamientoMock.cs" />
     <Compile Include="RepoTiposDeAlojamiento\RepositorioTiposDeAlojamientoSQL.cs" />
     <Compile Include="RepoTiposDeAlojamiento\RepositorioTiposDeAlojamientoTexto.cs" />
+    <Compile Include="RepoUsuario\RepositorioUsuarioMock.cs" />
+    <Compile Include="RepoUsuario\RepositorioUsuarioSQL.cs" />
+    <Compile Include="RepoUsuario\RepositorioUsuarioTexto.cs" />
     <Compile Include="RepoVacaciones\RepositorioVacacionesMock.cs" />
     <Compile Include="RepoVacaciones\RepositorioVacacionesSQL.cs" />
     <Compile Include="RepoVacaciones\RepositorioVacacionesTexto.cs" />

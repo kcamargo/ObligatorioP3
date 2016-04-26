@@ -25,6 +25,17 @@ namespace FabricaRepositorios
                 return new Repositorios.RepoAlojamiento.RepositorioAlojamientoTexto();
             return null;
         }
+        public static BienvenidosUyBLL.InterfacesRepositorios.IRepositorioUsuario CrearRepositorioUsuario()
+        {
+            string tipo = LeerTipoDesdeConfiguracion();
+            if (tipo == "sql")
+                return new Repositorios.RepoUsuario.RepositorioUsuarioSQL();
+            else if (tipo == "mock")
+                return new Repositorios.RepoUsuario.RepositorioUsuarioMock();
+            else if (tipo == "texto")
+                return new Repositorios.RepoUsuario.RepositorioUsuarioTexto();
+            return null;
+        }
         public static BienvenidosUyBLL.InterfacesRepositorios.IRepositorioAnuncio CrearRepositorioAnuncio()
         {
             string tipo = LeerTipoDesdeConfiguracion();
