@@ -45,11 +45,14 @@ namespace Repositorios.RepoUsuario
             throw new NotImplementedException();
         }
 
+<<<<<<< HEAD
         public bool FindById()
         {
             throw new NotImplementedException();
         }
 
+=======
+>>>>>>> origin/master
         public Usuario FindById(int id)
         {
             throw new NotImplementedException();
