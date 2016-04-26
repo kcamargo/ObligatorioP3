@@ -58,16 +58,11 @@ namespace BienvenidosUyBLL.EntidadesNegocio
 
         #region Cadenas de comando para ACTIVE RECORD //falta terminar, hacerlo despues de crear las tablas en SQL
 
-        private string cadenaInsertAlojamiento = @"INSERT INTO Alojamientos VALUES ( @nombre, @tipo_habitacion, @tipo_banio, @capacidad_personas, @ciudad, @barrio)SELECT CAST(Scope_Identity() AS INT);";
-        private string cadenaUpdateAlojamiento = @"UPDATE  Alojamientos SET nombre=@nombre, tipoHabitacion=@tipo_habitacion, tipoBanio=@tipo_banio, capacidadPersonas=@capacidad_personas, ciudad=@ciudad, barrio=@barrio WHERE id=@id";
+        private string cadenaInsertAlojamiento = @"INSERT INTO Alojamientos VALUES ( @nombre, @tipo_habitacion, @tipo_banio, @capacidad_personas, @ciudad, @barrio, @tipo_alojamiento)SELECT CAST(Scope_Identity() AS INT);";
+        private string cadenaUpdateAlojamiento = @"UPDATE  Alojamientos SET nombre=@nombre, tipoHabitacion=@tipo_habitacion, tipoBanio=@tipo_banio, capacidadPersonas=@capacidad_personas, ciudad=@ciudad, barrio=@barrio, , tipoAlojamiento=@tipo_alojamiento WHERE id=@id";
         private string cadenaDeleteAlojamiento = @"DELETE  Alojamientos WHERE id=@id";
+        private string cadenaInsertAlojamientoServicio = @"INSERT INTO alojamientoServicio values(@id_alojamiento, @id_servicio)";
 
-        public void AgregarServicios(Servicio s)
-        {
-            if (s.Validar() && !this.TipoDeServicios.Contains(s))
-                this.TipoDeServicios.Add(s);
-
-        }
 
         #endregion
 
@@ -84,6 +79,7 @@ namespace BienvenidosUyBLL.EntidadesNegocio
 
                 SqlCommand cmd = new SqlCommand(cadenaInsertAlojamiento, cn);
                 cmd.Parameters.AddWithValue("@nombre", this.Nombre);
+                cmd.Parameters.AddWithValue("@tipo_alojamiento", this.TipoAlojamiento);
                 cmd.Parameters.AddWithValue("@tipo_habitacion", this.TipoHabitacion);
                 cmd.Parameters.AddWithValue("@tipo_banio", this.TipoBanio);
                 cmd.Parameters.AddWithValue("@capacidad_personas", this.CapacidadXPersona);
@@ -93,6 +89,15 @@ namespace BienvenidosUyBLL.EntidadesNegocio
                 trn = cn.BeginTransaction(System.Data.IsolationLevel.ReadCommitted);
                 cmd.Transaction = trn;
                 this.Id = (int)cmd.ExecuteScalar();
+                cmd.CommandText = cadenaInsertAlojamientoServicio;
+                foreach (Servicio s in this.TipoDeServicios)
+                {
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.Add(new SqlParameter("@id_alojamiento", this.Id));
+                    cmd.Parameters.Add(new SqlParameter("@id_servicio", s.Id));
+                    cmd.ExecuteNonQuery();
+                }
+
                 trn.Commit();
                 trn.Dispose();
                 trn = null;

@@ -45,6 +45,11 @@ namespace Repositorios.RepoUsuario
             throw new NotImplementedException();
         }
 
+        public bool FindById()
+        {
+            throw new NotImplementedException();
+        }
+
         public Usuario FindById(int id)
         {
             throw new NotImplementedException();

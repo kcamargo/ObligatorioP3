@@ -83,7 +83,7 @@ namespace BienvenidosUyBLL.EntidadesNegocio
             }
 
         }
-        public void Load(SqlDataReader dr)
+        public void Load(IDataRecord dr)
         {
             if (dr != null)
             {
@@ -94,6 +94,7 @@ namespace BienvenidosUyBLL.EntidadesNegocio
 
             }
         }
+
         #endregion
 
         #region VALIDACIONES
