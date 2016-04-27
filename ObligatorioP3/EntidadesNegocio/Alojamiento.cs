@@ -18,9 +18,9 @@ namespace BienvenidosUyBLL.EntidadesNegocio
         public string TipoAlojamiento { get; set; }
 
         public string Nombre { get; set; }
-        public bool TipoHabitacion { get; set; }//true privada
+        public string TipoHabitacion { get; set; }//true privada
 
-        public bool TipoBanio { get; set; }//true privado
+        public string TipoBanio { get; set; }//true privado
 
         public int CapacidadXPersona { get; set; }
 

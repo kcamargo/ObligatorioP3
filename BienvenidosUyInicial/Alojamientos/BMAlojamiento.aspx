@@ -4,12 +4,14 @@
     <div id="titulo" class="col-lg-10">
         <h1>Eliminar alojamiento</h1>
     </div>
+     </div>
+         <div class="col-lg-10">
+        <asp:Label ID="labelBuscarNombreAlojamientoBM" runat="server" Text="Nombre Alojamiento"></asp:Label>
+        <asp:TextBox ID="txtBoxBuscarNombreAlojamientoBM" runat="server"></asp:TextBox> 
+             <asp:Button ID="btnBuscarNombreAlojamientoBM" runat="server" Text="Button" OnClick="btnBuscarNombreAlojamientoBM_Click" />
+    </div><br>
     <div class="col-lg-10">
-        <asp:Label ID="labelSeleccionarAlojamiento" runat="server" Text="Seleccione el Alojamiento a eliminar/modificar"></asp:Label>
-        <asp:DropDownList ID="DropDownList1" runat="server"></asp:DropDownList>
-    </div>
-    <div class="col-lg-10">
-        <asp:Label ID="labelTipoAlojamientoBM" runat="server" Text="Tipo de Alojamiento"></asp:Label>
+        <asp:Label ID="labelSeleccionarAlojamientoBM" runat="server" Text="Seleccione el Alojamiento a eliminar/modificar"></asp:Label>
         <asp:DropDownList ID="ddlTipoAlojamientoBM" runat="server"></asp:DropDownList>
     </div>
     <br>
@@ -25,7 +27,7 @@
     <br>
     <div class="col-lg-10">
         <asp:Label ID="labelCapacidadBM" runat="server" Text="Capacidad en personas"></asp:Label>
-        <textarea id="TextArea1BM" cols="20" rows="2"></textarea>
+        <asp:TextBox ID="txtBoxCapacidadBM" runat="server"></asp:TextBox>
     </div>
     <br>
     <div class="col-lg-10">
@@ -44,7 +46,7 @@
     </div>
     <br>
     <div class="col-lg-10">
-        <asp:Button ID="bttonEliminar" runat="server" Text="Eliminar" /><br />
+        <asp:Button ID="bttonEliminar" runat="server" Text="Eliminar" OnClick="bttonEliminar_Click" /><br />
         <asp:Button ID="bttonModificar" runat="server" Text="Modificar" /><br />
     </div>
     <br>

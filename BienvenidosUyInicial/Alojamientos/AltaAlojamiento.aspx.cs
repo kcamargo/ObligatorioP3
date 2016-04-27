@@ -63,20 +63,31 @@ namespace BienvenidosUyInicial
             {
                 a.Nombre = this.txtBoxNombreAlojamiento.Text;
                 a.TipoAlojamiento = this.ddlTipoAlojamiento.SelectedValue;// ojo devuelve un string
-                a.TipoHabitacion = this.ddlTipoHabitacion.SelectedValue == "privada";
-                a.TipoBanio = this.ddlBano.SelectedValue == "privada";
+                a.TipoHabitacion = this.ddlTipoHabitacion.SelectedValue;
+                a.TipoBanio = this.ddlBano.SelectedValue;
                 a.CapacidadXPersona = Int32.Parse(this.txtBoxCantidadPersonas.Text);
                 a.Ciudad = this.txtboxCiudad.Text;
                 a.Barrio = this.txtboxBarrio.Text;
                 a.TipoDeServicios = CargarListaServicios();
                 IRepositorioAlojamiento ro = FabricaRepositoriosBienvenidosUy.CrearRepositorioAlojamiento();
                 if (ro.Add(a))
+                {
                     this.LblMensajes.Text = "Ingresado";
-
+                    LimpiarCampos();
+                }
                 else
                     this.LblMensajes.Text = "Rechazado";
                 Session["AltaAlojamientoActiva"] = new Alojamiento();
             }
+
+        }
+        protected void LimpiarCampos()
+        {
+
+            this.txtBoxNombreAlojamiento.Text = " ";
+            this.txtBoxCantidadPersonas.Text = " ";
+            this.txtboxCiudad.Text = " ";
+            this.txtboxBarrio.Text = " ";
 
         }
 

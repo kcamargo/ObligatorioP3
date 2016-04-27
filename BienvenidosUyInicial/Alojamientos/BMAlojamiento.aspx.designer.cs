@@ -13,31 +13,40 @@ namespace BienvenidosUyInicial {
     public partial class Formulario_web12 {
         
         /// <summary>
-        /// Control labelSeleccionarAlojamiento.
+        /// Control labelBuscarNombreAlojamientoBM.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label labelSeleccionarAlojamiento;
+        protected global::System.Web.UI.WebControls.Label labelBuscarNombreAlojamientoBM;
         
         /// <summary>
-        /// Control DropDownList1.
+        /// Control txtBoxBuscarNombreAlojamientoBM.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        protected global::System.Web.UI.WebControls.TextBox txtBoxBuscarNombreAlojamientoBM;
         
         /// <summary>
-        /// Control labelTipoAlojamientoBM.
+        /// Control btnBuscarNombreAlojamientoBM.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label labelTipoAlojamientoBM;
+        protected global::System.Web.UI.WebControls.Button btnBuscarNombreAlojamientoBM;
+        
+        /// <summary>
+        /// Control labelSeleccionarAlojamientoBM.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label labelSeleccionarAlojamientoBM;
         
         /// <summary>
         /// Control ddlTipoAlojamientoBM.
@@ -92,6 +101,15 @@ namespace BienvenidosUyInicial {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label labelCapacidadBM;
+        
+        /// <summary>
+        /// Control txtBoxCapacidadBM.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtBoxCapacidadBM;
         
         /// <summary>
         /// Control labelCiudadBM.
