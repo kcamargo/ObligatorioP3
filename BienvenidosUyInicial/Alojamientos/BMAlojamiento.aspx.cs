@@ -4,6 +4,7 @@ using FabricaRepositorios;
 using Repositorios;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -17,12 +18,22 @@ namespace BienvenidosUyInicial
         {
             if (!Page.IsPostBack)
             {
+                ListarAlojamientos();
                 CargarServiciosBM();
                 CargarTipoDeAlojamientosBM();
             }
-            if (Session["BMAlojamientoActiva"] == null)
+        }
+
+        private void ListarAlojamientos()
+        {
+            IRepositorioAlojamiento ro = FabricaRepositoriosBienvenidosUy.CrearRepositorioAlojamiento();
+            List<Alojamiento> listAlojamiento = ro.FindAll();
+            if (listAlojamiento != null)
             {
-                Session["BMAlojamientoActiva"] = new Alojamiento();
+
+                if (Session["listaAlojamientosBM"] == null) Session["listaAlojamientosBM"] = listAlojamiento;
+                this.gdvAlojamientoBM.DataSource = listAlojamiento;
+                this.gdvAlojamientoBM.DataBind();
             }
         }
 
@@ -41,6 +52,7 @@ namespace BienvenidosUyInicial
                 this.CheckBoxListServiciosBM.DataBind();
             }
         }
+
         protected void CargarTipoDeAlojamientosBM()
         {
             IRepositorioTipoDeAlojamiento rta = FabricaRepositoriosBienvenidosUy.CrearRepositorioTipoDeAlojamiento();
@@ -55,6 +67,7 @@ namespace BienvenidosUyInicial
                 this.ddlTipoAlojamientoBM.DataBind();
             }
         }
+
         protected List<Servicio> CargarListaServicios()
         {
             IRepositorioServicio ro = FabricaRepositoriosBienvenidosUy.CrearRepositorioServicio();
@@ -71,17 +84,113 @@ namespace BienvenidosUyInicial
             return serviciosSeleccionados;
         }
 
-        protected void bttonEliminar_Click(object sender, EventArgs e)
+        protected void gdvAlojamientoBM_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-           
+            int idSeleccionado = Int32.Parse(this.gdvAlojamientoBM.Rows[e.RowIndex].Cells[0].Text);
+            if (idSeleccionado >= 0)
+            {
+                IRepositorioAlojamiento ra = FabricaRepositoriosBienvenidosUy.CrearRepositorioAlojamiento();
+
+                if (ra.Delete(idSeleccionado))
+                {
+                    ListarAlojamientos();
+                    mensajes.Text = "El Alojamiento " + idSeleccionado +
+                            " fue eliminado";
+                }
+                else
+                    mensajes.Text = "No fue posible eliminar el alojamiento";
+
+            }
+
+
+            else
+                mensajes.Text = "Debe seleccionar un Alojamiento para eliminarlo";
+
         }
 
-        protected void btnBuscarNombreAlojamientoBM_Click(object sender, EventArgs e)
+        protected void gdvAlojamientoBM_RowEditing(object sender, GridViewEditEventArgs e)
         {
-            Alojamiento a = new Alojamiento();
-            a.Nombre = this.txtBoxBuscarNombreAlojamientoBM.Text;
-            IRepositorioAlojamiento ro = FabricaRepositoriosBienvenidosUy.CrearRepositorioAlojamiento();
+            int id = Int32.Parse(this.gdvAlojamientoBM.Rows[e.NewEditIndex].Cells[0].Text);
+            IRepositorioAlojamiento ra = FabricaRepositoriosBienvenidosUy.CrearRepositorioAlojamiento();
+            Alojamiento a = ra.FindById(id);
+            txtBoxNombreAlojamientoBM.Text = a.Nombre;
+            ddlTipoAlojamientoBM.SelectedValue = a.TipoAlojamiento;
+            ddlTipoHabitacionBM.SelectedValue = a.TipoHabitacion;
+            ddlBanoBM.SelectedValue = a.TipoBanio;
+            txtBoxCapacidadBM.Text = a.CapacidadXPersona.ToString();
+            txtboxCiudadBM.Text = a.Ciudad;
+            txtboxBarrioBM.Text = a.Barrio;
+            foreach (ListItem item in CheckBoxListServiciosBM.Items)
+            {
+                item.Selected = ExisteServicio(item.Value, a.TipoDeServicios);
+            }
+             Session["modificacionAlojamientoActiva"] = a;
         }
+
+        protected bool ExisteServicio(string item, List<Servicio> list)
+        {
+            bool encontrado = false;
+            int i = 0;
+            while (i < list.Count && !encontrado)
+            {
+                if (list[i].Id.ToString() == item)
+                {
+                    encontrado = true;
+                }
+                i++;
+            }
+            return encontrado;
+        }
+        protected void btnActualizarBM_Click(object sender, EventArgs e)
+        {
+            Alojamiento a = Session["modificacionAlojamientoActiva"] as Alojamiento;
+            if (a != null)
+            {
+                a.Nombre = this.txtBoxNombreAlojamientoBM.Text;
+                a.TipoAlojamiento = this.ddlTipoAlojamientoBM.SelectedValue;// ojo devuelve un string
+                a.TipoHabitacion = this.ddlTipoHabitacionBM.SelectedValue;
+                a.TipoBanio = this.ddlBanoBM.SelectedValue;
+                a.CapacidadXPersona = Int32.Parse(this.txtBoxCapacidadBM.Text);
+                a.Ciudad = this.txtboxCiudadBM.Text;
+                a.Barrio = this.txtboxBarrioBM.Text;
+                a.TipoDeServicios = CargarListaServicios();
+                IRepositorioAlojamiento ro = FabricaRepositoriosBienvenidosUy.CrearRepositorioAlojamiento();
+                if (ro.Update(a))
+                {
+                    mensajes.Text = "Ingresado";
+                    LimpiarCampos();
+                }
+                else
+                    mensajes.Text = "Rechazado";
+                Session["modificacionAlojamientoActiva"] = new Alojamiento();
+            }
+        }
+        protected void LimpiarCampos()
+        {
+
+            this.txtBoxNombreAlojamientoBM.Text = " ";
+            this.txtBoxCapacidadBM.Text = " ";
+            this.txtboxCiudadBM.Text = " ";
+            this.txtboxBarrioBM.Text = " ";
+
+        }
+
+        //protected void DesplegarAdvertencia(string mensaje)
+        //{
+        //    this.lblMensajes.CssClass = "label-warning";
+        //    this.lblMensajes.Text = mensaje;
+        //}
+        //protected void DesplegarExito(string mensaje)
+        //{
+        //    this.lblMensajes.CssClass = "label-success";
+        //    this.lblMensajes.Text = mensaje;
+        //}
+        //protected void LimpiarMensajes()
+        //{
+        //    this.lblMensajes.CssClass = "label-default";
+        //    this.lblMensajes.Text = "";
+        //}
+
 
     }
 }

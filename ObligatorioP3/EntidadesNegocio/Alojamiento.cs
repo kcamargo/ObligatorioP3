@@ -62,6 +62,7 @@ namespace BienvenidosUyBLL.EntidadesNegocio
         private string cadenaUpdateAlojamiento = @"UPDATE  Alojamientos SET nombre=@nombre, tipoHabitacion=@tipo_habitacion, tipoBanio=@tipo_banio, capacidadPersonas=@capacidad_personas, ciudad=@ciudad, barrio=@barrio, , tipoAlojamiento=@tipo_alojamiento WHERE id=@id";
         private string cadenaDeleteAlojamiento = @"DELETE  Alojamientos WHERE id=@id";
         private string cadenaInsertAlojamientoServicio = @"INSERT INTO alojamientoServicio values(@id_alojamiento, @id_servicio)";
+        private string cadenaUpdateAlojamientoServicio = @"UPDATE alojamientoServicio SET id_Alojamiento=@id_alojamiento, id_Servicio=@id_servicio";
 
 
         #endregion
@@ -124,9 +125,18 @@ namespace BienvenidosUyBLL.EntidadesNegocio
                     using (SqlCommand cmd = new SqlCommand(cadenaUpdateAlojamiento, cn))
                     {
                         cmd.Parameters.AddWithValue("@nombre", this.Nombre);
-                        cmd.Parameters.AddWithValue("@tipoHabitacion", this.TipoHabitacion);
-                        cmd.Parameters.AddWithValue("@tipoBanio", this.TipoBanio);
-                        cmd.Parameters.AddWithValue("@capacidadPersonas", this.CapacidadXPersona);
+                        cmd.Parameters.AddWithValue("@tipo_habitacion", this.TipoHabitacion);
+                        cmd.Parameters.AddWithValue("@tipo_banio", this.TipoBanio);
+                        cmd.Parameters.AddWithValue("@capacidad_Personas", this.CapacidadXPersona);
+                        cmd.Parameters.AddWithValue("@ciudad", this.Ciudad);
+                        cmd.Parameters.AddWithValue("@barrio", this.Barrio);
+                        cmd.CommandText = cadenaUpdateAlojamientoServicio;
+                        foreach (Servicio s in this.TipoDeServicios)
+                        {
+                            cmd.Parameters.Clear();
+                            cmd.Parameters.Add(new SqlParameter("@id_alojamiento", this.Id));
+                            cmd.Parameters.Add(new SqlParameter("@id_servicio", s.Id));
+                        }
                         cn.Open();
                         int afectadas = cmd.ExecuteNonQuery();
                         return afectadas == 1;
@@ -154,9 +164,14 @@ namespace BienvenidosUyBLL.EntidadesNegocio
         public void Load(IDataRecord dr)
         {
             if (dr == null) return;
+            this.Id = (int)dr["Id"];
             this.Nombre = dr["Nombre"] == DBNull.Value ? null : dr["Nombre"].ToString();
-            this.Id = (int)dr["Id"];//este no puede ser dbnull
-
+            this.TipoHabitacion = dr["tipo_habitacion"] == DBNull.Value ? null : dr["tipo_habitacion"].ToString();
+            this.TipoBanio = dr["tipo_banio"] == DBNull.Value ? null : dr["tipo_banio"].ToString();
+            this.CapacidadXPersona = (int)dr["capacidad_personas"];
+            this.Ciudad = dr["ciudad"] == DBNull.Value ? null : dr["ciudad"].ToString();
+            this.Barrio = dr["barrio"] == DBNull.Value ? null : dr["barrio"].ToString();
+            this.TipoAlojamiento = dr["tipo_alojamiento"] == DBNull.Value ? null : dr["tipo_alojamiento"].ToString();
         }
         #endregion
 

@@ -107,5 +107,21 @@ namespace BienvenidosUyInicial
             return serviciosSeleccionados;
         }
 
+        protected void DesplegarAdvertencia(string mensaje)
+        {
+            this.LblMensajes.CssClass = "label-warning";
+            this.LblMensajes.Text = mensaje;
+        }
+        protected void DesplegarExito(string mensaje)
+        {
+            this.LblMensajes.CssClass = "label-success";
+            this.LblMensajes.Text = mensaje;
+        }
+        protected void LimpiarMensajes()
+        {
+            this.LblMensajes.CssClass = "label-default";
+            this.LblMensajes.Text = "";
+        }
+
     }
 }
