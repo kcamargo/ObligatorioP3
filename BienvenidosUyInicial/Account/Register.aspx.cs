@@ -20,6 +20,7 @@ namespace BienvenidosUyInicial.Account
             if (!Page.IsPostBack)
             {
 
+                //
             }
             if (Session["AltaUsuarioActiva"] == null)
             {

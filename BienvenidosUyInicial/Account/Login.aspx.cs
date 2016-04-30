@@ -90,6 +90,13 @@ namespace BienvenidosUyInicial.Account
             System.Web.Security.FormsAuthentication.SignOut();
             Response.Redirect("Login.aspx");
         }
+
+        protected void LogIn(object sender, EventArgs e)
+        {
+
+            //hello
+
+        }
     }
 }
             
