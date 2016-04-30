@@ -9,5 +9,7 @@ namespace BienvenidosUyBLL.EntidadesNegocio
     public class Foto : IEntity
     {
         public int Id { get; set; }
+
+        public Anuncio Anuncio { get; set; }
     }
 }

@@ -102,5 +102,9 @@ namespace FabricaRepositorios
                 return new Repositorios.RepoVacaciones.RepositorioVacacionesTexto();
             return null;
         }
+        public static BienvenidosUyBLL.InterfacesRepositorios.IRepositorioDirecciones CrearRepositorioDirecciones()
+            {
+            if(CrearR )
+            }
     }
 }

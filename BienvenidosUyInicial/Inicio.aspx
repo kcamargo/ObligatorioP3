@@ -15,7 +15,7 @@
                                     <a href="Alojamientos/AltaAlojamiento.aspx">Nuevo Alojamiento</a>
                                 </li>
                                 <li>
-                                    <a href="Alojamientos/BajaAlojamiento.aspx">Eliminar/Modificar Alojamiento</a>
+                                    <a href="Alojamientos/BMAlojamiento.aspx">Eliminar/Modificar Alojamiento</a>
                                 </li>
                             </ul>
                         </li>
@@ -28,7 +28,7 @@
                                     <a href="Anuncio/AltaAnuncio.aspx">Nuevo publicacion</a>
                                 </li>
                                 <li>
-                                    <a href="Anuncio/BajaAnuncio.aspx">Eliminar/Modificar publicacion</a>
+                                    <a href="Anuncio/BMAnuncio.aspx">Eliminar/Modificar publicacion</a>
                                 </li>
                             </ul>
                         </li>
@@ -41,7 +41,7 @@
                                     <a href="Reserva/AltaReserva.aspx">Nueva Reserva</a>
                                 </li>
                                 <li>
-                                    <a href="Reserva/BajaReserva.aspx">Eliminar/Modificar Reserva</a>
+                                    <a href="Reserva/BMReserva.aspx">Eliminar/Modificar Reserva</a>
                                 </li>
                             </ul>
                         </li>

@@ -53,6 +53,7 @@
     <Compile Include="InterfacesRepositorios\IRepositorio.cs" />
     <Compile Include="InterfacesRepositorios\IRepositorioAlojamiento.cs" />
     <Compile Include="InterfacesRepositorios\IRepositorioAnuncio.cs" />
+    <Compile Include="InterfacesRepositorios\IRepositorioDirecciones.cs" />
     <Compile Include="InterfacesRepositorios\IRepositorioFoto.cs" />
     <Compile Include="InterfacesRepositorios\IRepositorioReserva.cs" />
     <Compile Include="InterfacesRepositorios\IRepositorioServicio.cs" />

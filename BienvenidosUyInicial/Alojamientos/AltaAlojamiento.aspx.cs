@@ -57,7 +57,6 @@ namespace BienvenidosUyInicial
         }
         protected void bttonAgregar_Click(object sender, EventArgs e)
         {
-            //Al hacer clic se agrega la organización, que se asume ya cuenta con sus direcciones
             Alojamiento a = Session["AltaAlojamientoActiva"] as Alojamiento;
             if (a != null)
             {

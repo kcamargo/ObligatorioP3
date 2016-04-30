@@ -41,6 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Direcciones\IRepositorioDireccionesMock.cs" />
+    <Compile Include="Direcciones\IRepositorioDireccionesSQL.cs" />
+    <Compile Include="Direcciones\IRepositorioDireccionesTexto.cs" />
     <Compile Include="RepoAlojamiento\RepositorioAlojamientoTexto.cs" />
     <Compile Include="RepoAlojamiento\RepositorioAlojamimentoSQL.cs" />
     <Compile Include="RepoAlojamiento\RespositorioAlojamientoMock.cs" />

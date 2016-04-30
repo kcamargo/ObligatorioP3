@@ -30,6 +30,11 @@ namespace Repositorios.RepoVacaciones
             throw new NotImplementedException();
         }
 
+        public List<Vacaciones> FindByIdAlojamiento(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool Update(Vacaciones obj)
         {
             throw new NotImplementedException();

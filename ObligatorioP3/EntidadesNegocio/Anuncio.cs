@@ -14,7 +14,7 @@ namespace BienvenidosUyBLL.EntidadesNegocio
         #region PROPERTIES
         public int Id { get; set; }
 
-        public List<Alojamiento> AlojamientosDisponibles;
+        public Alojamiento Alojamiento { get; set; };
 
         public List<Direccion> Direcciones { get; set; }
 
@@ -32,11 +32,11 @@ namespace BienvenidosUyBLL.EntidadesNegocio
 
         #region Cadenas de comando para ACTIVE RECORD //falta terminar, hacerlo despues de crear las tablas en SQL
 
-        private string cadenaInsertAnuncio = "INSERT INTO Anuncios VALUES (@nombreAnuncio, @descripcionAnuncio, @precioBase);SELECT CAST(Scope_Identity() AS INT);";
-        private string cadenaInsertDireccionesAnuncio = @"INSERT INTO DireccionAnuncio VALUES (@linea1,@linea2)";
-        private string cadenaUpdateAnuncio = "UPDATE  Anuncios SET nombreAnuncio=@nombreAnuncio, descripcionAnuncio=@descripcionAnuncio, precioBase=@precioBase WHERE id=@id";
-        private string cadenaDeleteAnuncio = "DELETE  Anuncios WHERE id=@id";
-        private string cadenaDeleteDireccionAnuncio = "DELETE  DireccionAnuncio WHERE id=@id";
+        private string cadenaInsertAnuncio = @"INSERT INTO Anuncios VALUES (@nombre, @descripcion, @precio_base);SELECT CAST(Scope_Identity() AS INT);";
+        private string cadenaInsertDireccionesAnuncio = @"INSERT INTO Direcciones VALUES (@linea1,@linea2);SELECT CAST(Scope_Identity() AS INT);";
+        private string cadenaUpdateAnuncio = @"UPDATE  Anuncios SET nombre=@nombre, descripcion=@descripcion, precio_base=@precio_base WHERE id=@id";
+        private string cadenaDeleteAnuncio = @"DELETE  Anuncios WHERE id=@id";
+        private string cadenaDeleteDireccionAnuncio = @"DELETE  Direcciones WHERE id=@id";
 
         #endregion
 
@@ -56,28 +56,24 @@ namespace BienvenidosUyBLL.EntidadesNegocio
             {
                 cn = UtilidadesBD.BdSQL.Conectar();
 
-                //Preparar el comando de inserción de una organización
                 SqlCommand cmd = new SqlCommand(cadenaInsertAnuncio, cn);
-                cmd.Parameters.Add(new SqlParameter("@nombreAnuncio", this.NombreAnuncio));
-                cmd.Parameters.Add(new SqlParameter("@descripcionAnuncio", this.DescripcionAnuncio));
-                cmd.Parameters.Add(new SqlParameter("@precioBase", this.PrecioBase));
+                cmd.Parameters.Add(new SqlParameter("@nombre", this.NombreAnuncio));
+                cmd.Parameters.Add(new SqlParameter("@descripcion", this.DescripcionAnuncio));
+                cmd.Parameters.Add(new SqlParameter("@precio_base", this.PrecioBase));
 
                 BdSQL.AbrirConexion(cn);
                 trn = cn.BeginTransaction(System.Data.IsolationLevel.ReadCommitted);
                 cmd.Transaction = trn;
                 this.Id = (int)cmd.ExecuteScalar();
-                //Preparar el comando para ingresar las direcciones asociadas
-                //La transacción y la conexión permanecen incambiadas
                 cmd.CommandText = cadenaInsertDireccionesAnuncio;
                 foreach (Direccion d in this.Direcciones)
                 {
-                    //preparar los parámetros para cada dirección y ejecutar el comando
                     cmd.Parameters.Clear();
                     cmd.Parameters.Add(new SqlParameter("@linea1", d.Linea1));
                     cmd.Parameters.Add(new SqlParameter("@linea2", d.Linea2));
                     cmd.ExecuteNonQuery();
                 }
-                //Si se llegó aquí se asume que podemos completar la transacción
+
                 trn.Commit();
                 trn.Dispose();
                 trn = null;
@@ -86,7 +82,7 @@ namespace BienvenidosUyBLL.EntidadesNegocio
             }
             catch (Exception ex)
             {
-                BdSQL.LoguearError(ex.Message + " Error al guardar la organización " + this.NombreAnuncio);
+                BdSQL.LoguearError(ex.Message + " Error al guardar el anuncio " + this.NombreAnuncio);
                 if (trn != null) trn.Rollback();
                 return false;
             }

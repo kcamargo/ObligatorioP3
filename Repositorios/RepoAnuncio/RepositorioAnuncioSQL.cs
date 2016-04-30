@@ -14,25 +14,7 @@ namespace Repositorios.RepoAnuncio
     {
         public bool Add(Anuncio obj)
         {
-            //if obj.validar == false return false;
-            string cadenaConexion = ConfigurationManager.
-                 ConnectionStrings["conexionBienvenidosUy"].ConnectionString;
-            SqlConnection cn = new SqlConnection(cadenaConexion);
-
-            SqlCommand cmdInsert = new SqlCommand();
-
-            cmdInsert.CommandText = @"INSERT INTO Anuncios VALUES (@nombreAnuncio, @descripcionAnuncio, @precioBase)";
-            cmdInsert.Connection = cn;
-
-            cmdInsert.Parameters.AddWithValue("@nombreAnuncio", obj.NombreAnuncio);
-            cmdInsert.Parameters.AddWithValue("@descripcionAnuncio", obj.DescripcionAnuncio);
-            cmdInsert.Parameters.AddWithValue("@precioBase", obj.PrecioBase);
-            cn.Open();
-            int afectadas = cmdInsert.ExecuteNonQuery();
-            cn.Close();
-            cn.Dispose();
-            if (afectadas == 1) return true;
-            return false;
+            return obj != null && obj.Add();
         }
 
         public bool Delete(int id)

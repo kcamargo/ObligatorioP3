@@ -5,12 +5,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BienvenidosUyBLL.EntidadesNegocio;
+using System.Data.SqlClient;
+using UtilidadesBD;
+using System.Configuration;
+using System.Data;
 
-namespace Repositorios.RepoVacaciones
+namespace Repositorios.Direcciones
 {
-    public class RepositorioVacacionesMock : IRepositorioVacaciones
+    class IRepositorioDireccionesSQL : IRepositorioDirecciones
     {
-        public bool Add(BienvenidosUyBLL.EntidadesNegocio.Vacaciones obj)
+        public bool Add(Direccion obj)
         {
             throw new NotImplementedException();
         }
@@ -20,22 +24,17 @@ namespace Repositorios.RepoVacaciones
             throw new NotImplementedException();
         }
 
-        public List<BienvenidosUyBLL.EntidadesNegocio.Vacaciones> FindAll()
+        public List<Direccion> FindAll()
         {
             throw new NotImplementedException();
         }
 
-        public BienvenidosUyBLL.EntidadesNegocio.Vacaciones FindById(int id)
+        public Direccion FindById(int id)
         {
             throw new NotImplementedException();
         }
 
-        public List<Vacaciones> FindByIdAlojamiento(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool Update(BienvenidosUyBLL.EntidadesNegocio.Vacaciones obj)
+        public bool Update(Direccion obj)
         {
             throw new NotImplementedException();
         }
