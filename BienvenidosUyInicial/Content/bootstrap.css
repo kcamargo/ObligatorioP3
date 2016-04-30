@@ -162,7 +162,7 @@ button,
 input,
 select,
 textarea {
-  margin: 0;
+  margin: 0 0 0 31px;
   font-family: inherit;
   font-size: 100%;
 }
@@ -1964,8 +1964,10 @@ textarea.input-lg {
   padding-top: 7px;
   margin-top: 0;
   margin-bottom: 0;
-    top: 8px;
-    left: 3px;
+    top: 2px;
+    left: -1px;
+    width: 146px;
+    height: 24px;
 }
 
 .form-horizontal .form-group {

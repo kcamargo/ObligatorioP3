@@ -25,12 +25,22 @@ namespace Repositorios.RepoUsuario
             throw new NotImplementedException();
         }
 
+        public Usuario FindByEmail(string email)
+        {
+            throw new NotImplementedException();
+        }
+
         public Usuario FindById(int id)
         {
             throw new NotImplementedException();
         }
 
         public bool Update(Usuario obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Validar(string password, string email)
         {
             throw new NotImplementedException();
         }

@@ -40,22 +40,13 @@ namespace BienvenidosUyInicial.Account {
         protected global::System.Web.UI.WebControls.TextBox EmailLogIn;
         
         /// <summary>
-        /// Control ContraseñaLogIn.
+        /// Control ContraseniaLogIn.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ContraseñaLogIn;
-        
-        /// <summary>
-        /// Control RememberMe.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox RememberMe;
+        protected global::System.Web.UI.WebControls.TextBox ContraseniaLogIn;
         
         /// <summary>
         /// Control mensaje.
@@ -74,6 +65,15 @@ namespace BienvenidosUyInicial.Account {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnEntrar;
+        
+        /// <summary>
+        /// Control btnSalir.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSalir;
         
         /// <summary>
         /// Control RegisterHyperLink.

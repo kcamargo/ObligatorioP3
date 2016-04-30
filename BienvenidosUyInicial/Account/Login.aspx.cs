@@ -8,6 +8,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Security.Cryptography;
 
 namespace BienvenidosUyInicial.Account
 {
@@ -15,97 +16,80 @@ namespace BienvenidosUyInicial.Account
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack)
-            {
-                BuscarSiExiste();
-               
-            }
-            if (Session["AltaAlojamientoActiva"] == null)
-            {
-                Session["AltaAlojamientoActiva"] = new Alojamiento();
-            }
+            /* if (!Page.IsPostBack)
+             {
+                if (Session["AutenticaciónActiva"] == null)
+             {
 
-            RegisterHyperLink.NavigateUrl = "Register";
-            // Habilite esta opción una vez tenga la confirmación de la cuenta habilitada para la funcionalidad de restablecimiento de contraseña
-            //ForgotPasswordHyperLink.NavigateUrl = "Forgot";
-            OpenAuthLogin.ReturnUrl = Request.QueryString["ReturnUrl"];
-            var returnUrl = HttpUtility.UrlEncode(Request.QueryString["ReturnUrl"]);
-            if (!String.IsNullOrEmpty(returnUrl))
-            {
-                RegisterHyperLink.NavigateUrl += "?ReturnUrl=" + returnUrl;
-            }
+             } 
+
+             }
+
+
+             RegisterHyperLink.NavigateUrl = "Register";
+             // Habilite esta opción una vez tenga la confirmación de la cuenta habilitada para la funcionalidad de restablecimiento de contraseña
+             //ForgotPasswordHyperLink.NavigateUrl = "Forgot";
+             OpenAuthLogin.ReturnUrl = Request.QueryString["ReturnUrl"];
+             var returnUrl = HttpUtility.UrlEncode(Request.QueryString["ReturnUrl"]);
+             if (!String.IsNullOrEmpty(returnUrl))
+             {
+                 RegisterHyperLink.NavigateUrl += "?ReturnUrl=" + returnUrl;
+             }
+         }*/
         }
-        protected Usuario BuscarSiExiste(string email)
-        { 
-            IRepositorioUsuario user = FabricaRepositoriosBienvenidosUy.CrearRepositorioUsuario();
-            Usuario usuario = user.BuscarUsuario(email);
-            email = EmailLogIn.Text;
-            if (usuario != null)
+        protected bool BuscarSiExiste(string email)
+        {
+            IRepositorioUsuario ro = FabricaRepositoriosBienvenidosUy.CrearRepositorioUsuario();
+     
+            if (ro.FindByEmail(email) != null)
             {
-                return usuario;
-
-
+                return true;
             }
-            else {
+            else
+                return false;
 
+        }
+        public bool Validar(string password, string email)
+        {
+            IRepositorioUsuario ro = FabricaRepositoriosBienvenidosUy.CrearRepositorioUsuario();
+
+            if (ro.Validar(password,email))
+            {
+                return true;
             }
-            
+            else
+                return false;
+
         }
 
         protected void btnEntrar_click(object sender, EventArgs e)
         {
-            
+            Usuario u = Session["AutenticaciónActiva"] as Usuario;
+            //string password = u.SHA1Encrypt(ContraseniaLogIn.Text);
 
-            //Al hacer clic se agrega la organización, que se asume ya cuenta con sus direcciones
-            Usuario u = Session["LogInActiva"] as Usuario;
-            if (u != null)
+           
+            if (BuscarSiExiste(EmailLogIn.Text))
             {
-                
-
-
-
-
-                IRepositorioUsuario ro = FabricaRepositoriosBienvenidosUy.CrearRepositorioUsuario();
-                if (ro.FindById())
+                if (Validar(u.SHA1Encrypt(ContraseniaLogIn.Text),EmailLogIn.Text) )
+                {
                     this.mensaje.Text = "Ingresado";
-
-                else
-                    this.mensaje.Text = "Rechazado";
-                Session["LogInActiva"] = new Usuario();
+                    Session["youreSessionName"] = EmailLogIn;
+                    Response.Redirect("./Home.aspx");
+                }
             }
+            else
+            {
+                this.mensaje.Text = "No puede ingresar, usated no esta registrado";
+                Response.Redirect("Home.aspx?mensaje=Log in solamente es accesible para usuarios registrados");
+            }
+        }
 
-
-            /* if (IsValid)
-             {
-                 // Validar la contraseña del usuario
-                 var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
-                 var signinManager = Context.GetOwinContext().GetUserManager<ApplicationSignInManager>();
-
-                 // Esto no cuenta los errores de inicio de sesión hacia el bloqueo de cuenta
-                 // Para habilitar los errores de contraseña para desencadenar el bloqueo, cambie a shouldLockout: true
-                 var result = signinManager.PasswordSignIn(Email.Text, Password.Text, RememberMe.Checked, shouldLockout: false);
-
-                 switch (result)
-                 {
-                     case SignInStatus.Success:
-                         IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
-                         break;
-                     case SignInStatus.LockedOut:
-                         Response.Redirect("/Account/Lockout");
-                         break;
-                     case SignInStatus.RequiresVerification:
-                         Response.Redirect(String.Format("/Account/TwoFactorAuthenticationSignIn?ReturnUrl={0}&RememberMe={1}", 
-                                                         Request.QueryString["ReturnUrl"],
-                                                         RememberMe.Checked),
-                                           true);
-                         break;
-                     case SignInStatus.Failure:
-                     default:
-                         FailureText.Text = "Intento de inicio de sesión no válido";
-                         ErrorMessage.Visible = true;
-                         break;
-                 }
-             }*/
+        protected void LogOut(object sender, EventArgs e)
+        {
+            // The SignOut method invalidates the authentication cookie.
+            System.Web.Security.FormsAuthentication.SignOut();
+            Response.Redirect("Login.aspx");
         }
     }
 }
+            

@@ -3,13 +3,13 @@
 <%@ Register Src="~/Account/OpenAuthProviders.ascx" TagPrefix="uc" TagName="OpenAuthProviders" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
-    <h2><%: Title %>.</h2>
+    <h2><%: Title %></h2>
 
     <div class="row">
         <div class="col-md-8">
             <section id="loginForm">
                 <div class="form-horizontal">
-                    <h4>Utilice una cuenta local para iniciar sesión.</h4>
+                    <h4>Utilice su cuenta para iniciar sesión.</h4>
                     <hr />
                     <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
                         <p class="text-danger">
@@ -27,15 +27,13 @@
                     <div class="form-group">
                         <asp:Label runat="server" AssociatedControlID="ContraseñaLogIn" CssClass="col-md-2 control-label">Contraseña</asp:Label>
                         <div class="col-md-10">
-                            <asp:TextBox runat="server" ID="ContraseñaLogIn" TextMode="Password" CssClass="form-control" />
+                            <asp:TextBox runat="server" ID="ContraseniaLogIn" TextMode="Password" CssClass="form-control" />
                             <asp:RequiredFieldValidator runat="server" ControlToValidate="ContraseñaLogIn" CssClass="text-danger" ErrorMessage="El campo de contraseña es obligatorio." />
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
                             <div class="checkbox">
-                                <asp:CheckBox runat="server" ID="RememberMe" />
-                                <asp:Label runat="server" AssociatedControlID="RememberMe">¿Recordar cuenta?</asp:Label>
                             </div>
                         </div>
                     </div>
@@ -44,7 +42,9 @@
 
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
-                            <asp:Button runat="server" OnClick="LogIn" Text="Iniciar sesión" CssClass="btn btn-default" ID="btnEntrar" />
+                            <asp:Button runat="server" OnClick="LogIn" Text="Iniciar sesión" CssClass="btn btn-success" ID="btnEntrar" />
+                        
+                            <asp:Button runat="server" OnClick="LogOut" Text="Cerrar sesión" CssClass="btn btn-danger" ID="btnSalir" />
                         </div>
                     </div>
                 </div>

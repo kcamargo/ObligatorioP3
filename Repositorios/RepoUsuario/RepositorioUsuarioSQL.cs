@@ -7,32 +7,57 @@ using System.Threading.Tasks;
 using BienvenidosUyBLL.EntidadesNegocio;
 using System.Configuration;
 using System.Data.SqlClient;
+using UtilidadesBD;
 
 namespace Repositorios.RepoUsuario
 {
     public class RepositorioUsuarioSQL : IRepositorioUsuario
     {
+
+
+        public Usuario FindByEmail(string email)
+
+        {
+            string CADENABUSCAR = "SELECT * FROM Usuario WHERE email_Usuario=@email";
+            Usuario usuarioEncontrado = null;
+
+            using (SqlConnection cn = BdSQL.Conectar())
+            {
+                using (SqlCommand cmd = new SqlCommand(CADENABUSCAR, cn))
+                {
+                    cmd.Parameters.AddWithValue("@email", email);
+                    cn.Open();
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader != null)
+                    {
+                        while (reader.Read())
+                        {
+
+                            Usuario U = new Usuario();
+                            U.Load(reader);
+                            U.Email = email;
+                            if (U.Validar())
+                            {
+
+                                usuarioEncontrado = U;
+
+                            }
+
+                        }
+
+
+                    }
+
+                }
+                return usuarioEncontrado;
+
+            }
+        }
         public bool Add(Usuario obj)
         {
-            //if obj.validar == false return false;
-            string cadenaConexion = ConfigurationManager.
-                 ConnectionStrings["conexionBienvenidosUy"].ConnectionString;
-            SqlConnection cn = new SqlConnection(cadenaConexion);
 
-            SqlCommand cmdInsert = new SqlCommand();
-
-            cmdInsert.CommandText = @"INSERT INTO Usuarios VALUES (@nombreUsuario, @apellidoUsuario, @telefonoUsuario)";
-            cmdInsert.Connection = cn;
-
-            cmdInsert.Parameters.AddWithValue("@nombreUsuario", obj.NombreUsuario);
-            cmdInsert.Parameters.AddWithValue("@apellidoUsuario", obj.ApellidoUsuario);
-            cmdInsert.Parameters.AddWithValue("@telefonoUsuario", obj.Telefono);
-            cn.Open();
-            int afectadas = cmdInsert.ExecuteNonQuery();
-            cn.Close();
-            cn.Dispose();
-            if (afectadas == 1) return true;
-            return false;
+            return obj.Add();
+           
         }
 
         public bool Delete(int id)
@@ -51,6 +76,11 @@ namespace Repositorios.RepoUsuario
         }
 
         public bool Update(Usuario obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Validar(string password, string email)
         {
             throw new NotImplementedException();
         }

@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="Registrarse" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Register.aspx.cs" Inherits="BienvenidosUyInicial.Account.Register" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
-    <h2><%: Title %>.</h2>
+    <h2><%: Title %></h2>
     <p class="text-danger">
         <asp:Literal runat="server" ID="ErrorMessage" />
     </p>
@@ -10,12 +10,12 @@
         <h4>Crear un nuevo usuario</h4>
         <asp:ValidationSummary runat="server" CssClass="text-danger" />
         <hr />
-        <div class="form-group">
-            <asp:Label runat="server" AssociatedControlID="Email" CssClass="col-md-2 control-label">Correo electrónico</asp:Label>
+          <div class="form-group">
+            <asp:Label runat="server" AssociatedControlID="Email" CssClass="col-md-2 control-label">Correo Electrónico</asp:Label>
             <div class="col-md-10">
-                <asp:TextBox runat="server" ID="Email" CssClass="form-control" TextMode="Email" />
-                <asp:RequiredFieldValidator runat="server" ControlToValidate="Email"
-                    CssClass="text-danger" ErrorMessage="El campo de correo electrónico es obligatorio." />
+                <asp:TextBox runat="server" ID="Email" TextMode="Email" CssClass="form-control" />
+                 <asp:RequiredFieldValidator runat="server" ControlToValidate="Email"
+                    CssClass="text-danger" ErrorMessage="El campo de correo es obligatorio." />
             </div>
         </div>
         <div class="form-group">
@@ -60,7 +60,8 @@
          <div class="form-group">
             <asp:Label runat="server" AssociatedControlID="Foto" CssClass="col-md-2 control-label">Foto</asp:Label>
             <div class="col-md-10">
-                <asp:TextBox runat="server" ID="Foto" type="file" CssClass="form-control" />
+                <asp:TextBox runat="server" ID="Foto" type="file" CssClass="form-control" OnTextChanged="Foto_TextChanged" />
+
                 <asp:RequiredFieldValidator runat="server" ControlToValidate="Foto"
                     CssClass="text-danger" ErrorMessage="El campo de Foto es obligatorio." />
             </div>
@@ -78,7 +79,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <asp:Button runat="server" OnClick="CreateUser_Click" Text="Registrarse" CssClass="btn btn-default" />
+                <asp:Button runat="server" OnClick="CreateUser_Click" Text="Registrarse" CssClass="btn btn-warning" ID="CreateUser" />
             </div>
         </div>
     </div>

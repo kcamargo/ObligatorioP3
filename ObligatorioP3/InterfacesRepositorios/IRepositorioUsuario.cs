@@ -9,7 +9,8 @@ namespace BienvenidosUyBLL.InterfacesRepositorios
 {
     public interface IRepositorioUsuario : IRepositorio<Usuario>
     {
-        bool FindById();
+         Usuario FindByEmail(string email);
+        bool Validar(string password, string email);
     }
 }
 
