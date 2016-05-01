@@ -20,12 +20,12 @@ namespace BienvenidosUyInicial.Account
             if (!Page.IsPostBack)
             {
 
-                //
+               
             }
-            if (Session["AltaUsuarioActiva"] == null)
+            /*if (Session["AltaUsuarioActiva"] == null)
             {
                 Session["AltaUsuarioActiva"] = new Usuario();
-            }
+            }*/
 
         }
 
