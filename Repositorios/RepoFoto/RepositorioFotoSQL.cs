@@ -12,12 +12,13 @@ namespace Repositorios.RepoFoto
     {
         public bool Add(Foto obj)
         {
-            throw new NotImplementedException();
+            return obj != null && obj.Add();
         }
 
         public bool Delete(int id)
         {
-            throw new NotImplementedException();
+            Foto o = FindById(id);
+            return (o != null && o.Delete());
         }
 
         public List<Foto> FindAll()
@@ -32,7 +33,7 @@ namespace Repositorios.RepoFoto
 
         public bool Update(Foto obj)
         {
-            throw new NotImplementedException();
+            return obj != null & obj.Update();
         }
     }
 }

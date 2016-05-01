@@ -5,16 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BienvenidosUyBLL.EntidadesNegocio;
-using System.Data.SqlClient;
-using UtilidadesBD;
-using System.Configuration;
-using System.Data;
 
-namespace Repositorios.Direcciones
+namespace Repositorios.RepoTemporada
 {
-    class IRepositorioDireccionesSQL : IRepositorioDirecciones
+    public class RepositorioTemporadaTexto : IRepositorioTemporada
     {
-        public bool Add(Direccion obj)
+        public bool Add(Temporada obj)
         {
             throw new NotImplementedException();
         }
@@ -24,17 +20,22 @@ namespace Repositorios.Direcciones
             throw new NotImplementedException();
         }
 
-        public List<Direccion> FindAll()
+        public List<Temporada> FindAll()
         {
             throw new NotImplementedException();
         }
 
-        public Direccion FindById(int id)
+        public Temporada FindById(int id)
         {
             throw new NotImplementedException();
         }
 
-        public bool Update(Direccion obj)
+        public List<Temporada> FindByIdAlojamiento(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Update(Temporada obj)
         {
             throw new NotImplementedException();
         }

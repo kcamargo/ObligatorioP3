@@ -6,11 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 using BienvenidosUyBLL.EntidadesNegocio;
 
-namespace Repositorios.RepoVacaciones
+namespace Repositorios.RepoTemporada
 {
-    public class RepositorioVacacionesMock : IRepositorioVacaciones
+    public class RepositorioTemporadaMock : IRepositorioTemporada
     {
-        public bool Add(BienvenidosUyBLL.EntidadesNegocio.Vacaciones obj)
+        public bool Add(BienvenidosUyBLL.EntidadesNegocio.Temporada obj)
         {
             throw new NotImplementedException();
         }
@@ -20,22 +20,22 @@ namespace Repositorios.RepoVacaciones
             throw new NotImplementedException();
         }
 
-        public List<BienvenidosUyBLL.EntidadesNegocio.Vacaciones> FindAll()
+        public List<BienvenidosUyBLL.EntidadesNegocio.Temporada> FindAll()
         {
             throw new NotImplementedException();
         }
 
-        public BienvenidosUyBLL.EntidadesNegocio.Vacaciones FindById(int id)
+        public BienvenidosUyBLL.EntidadesNegocio.Temporada FindById(int id)
         {
             throw new NotImplementedException();
         }
 
-        public List<Vacaciones> FindByIdAlojamiento(int id)
+        public List<Temporada> FindByIdAlojamiento(int id)
         {
             throw new NotImplementedException();
         }
 
-        public bool Update(BienvenidosUyBLL.EntidadesNegocio.Vacaciones obj)
+        public bool Update(BienvenidosUyBLL.EntidadesNegocio.Temporada obj)
         {
             throw new NotImplementedException();
         }

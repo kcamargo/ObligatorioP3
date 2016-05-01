@@ -13,6 +13,15 @@ namespace BienvenidosUyInicial {
     public partial class Formulario_web15 {
         
         /// <summary>
+        /// Control mensajes.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label mensajes;
+        
+        /// <summary>
         /// Control labelAlojamientoAnuncio.
         /// </summary>
         /// <remarks>
@@ -85,24 +94,6 @@ namespace BienvenidosUyInicial {
         protected global::System.Web.UI.WebControls.TextBox txtBoxDireAnuncio1;
         
         /// <summary>
-        /// Control labelDireccionAnuncio2.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label labelDireccionAnuncio2;
-        
-        /// <summary>
-        /// Control txtBoxDireAnuncio2.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBoxDireAnuncio2;
-        
-        /// <summary>
         /// Control labelPrecioBaseAnuncio.
         /// </summary>
         /// <remarks>
@@ -121,85 +112,13 @@ namespace BienvenidosUyInicial {
         protected global::System.Web.UI.WebControls.TextBox txtBoxPrecioBaseAnuncio;
         
         /// <summary>
-        /// Control Foto.
+        /// Control repTemporadas.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Foto;
-        
-        /// <summary>
-        /// Control txtFoto1.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFoto1;
-        
-        /// <summary>
-        /// Control txtFoto2.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFoto2;
-        
-        /// <summary>
-        /// Control TextBox3.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox3;
-        
-        /// <summary>
-        /// Control TextBox4.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox4;
-        
-        /// <summary>
-        /// Control TextBox5.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox5;
-        
-        /// <summary>
-        /// Control bttnAgregarAnuncio.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button bttnAgregarAnuncio;
-        
-        /// <summary>
-        /// Control RangosDeVacaciones.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel RangosDeVacaciones;
-        
-        /// <summary>
-        /// Control labelRangosAnuncio.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label labelRangosAnuncio;
+        protected global::System.Web.UI.WebControls.Repeater repTemporadas;
         
         /// <summary>
         /// Control Calendar1.
@@ -220,15 +139,6 @@ namespace BienvenidosUyInicial {
         protected global::System.Web.UI.WebControls.Calendar Calendar2;
         
         /// <summary>
-        /// Control lblImporteXFechaAnuncio.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblImporteXFechaAnuncio;
-        
-        /// <summary>
         /// Control txtBoxImporteXFechaAnuncio.
         /// </summary>
         /// <remarks>
@@ -238,30 +148,75 @@ namespace BienvenidosUyInicial {
         protected global::System.Web.UI.WebControls.TextBox txtBoxImporteXFechaAnuncio;
         
         /// <summary>
-        /// Control LblMensajes.
+        /// Control btnAgregarTemporada.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblMensajes;
+        protected global::System.Web.UI.WebControls.LinkButton btnAgregarTemporada;
         
         /// <summary>
-        /// Control btnImporteXfechaAnuncio.
+        /// Control Foto.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnImporteXfechaAnuncio;
+        protected global::System.Web.UI.WebControls.Label Foto;
         
         /// <summary>
-        /// Control gdvImporteXFechaAnuncio.
+        /// Control fuFoto1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gdvImporteXFechaAnuncio;
+        protected global::System.Web.UI.WebControls.FileUpload fuFoto1;
+        
+        /// <summary>
+        /// Control fuFoto2.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload fuFoto2;
+        
+        /// <summary>
+        /// Control fuFoto3.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload fuFoto3;
+        
+        /// <summary>
+        /// Control fuFoto4.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload fuFoto4;
+        
+        /// <summary>
+        /// Control fuFoto5.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload fuFoto5;
+        
+        /// <summary>
+        /// Control btnSalvarAnuncio.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnSalvarAnuncio;
     }
 }

@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace BienvenidosUyBLL.InterfacesRepositorios
 {
-    public interface IRepositorioDirecciones : IRepositorio<Direccion>
+    public interface IRepositorioTemporada: IRepositorio<Temporada>
     {
+        List<Temporada> FindByIdAlojamiento(int id);
     }
 }

@@ -59,10 +59,11 @@ namespace BienvenidosUyBLL.EntidadesNegocio
         #region Cadenas de comando para ACTIVE RECORD //falta terminar, hacerlo despues de crear las tablas en SQL
 
         private string cadenaInsertAlojamiento = @"INSERT INTO Alojamientos VALUES ( @nombre, @tipo_habitacion, @tipo_banio, @capacidad_personas, @ciudad, @barrio, @tipo_alojamiento)SELECT CAST(Scope_Identity() AS INT);";
-        private string cadenaUpdateAlojamiento = @"UPDATE  Alojamientos SET nombre=@nombre, tipoHabitacion=@tipo_habitacion, tipoBanio=@tipo_banio, capacidadPersonas=@capacidad_personas, ciudad=@ciudad, barrio=@barrio, , tipoAlojamiento=@tipo_alojamiento WHERE id=@id";
+        private string cadenaUpdateAlojamiento = @"UPDATE  Alojamientos SET nombre=@nombre, tipo_habitacion=@tipo_habitacion, tipo_banio=@tipo_banio, capacidad_personas=@capacidad_personas, ciudad=@ciudad, barrio=@barrio, tipo_alojamiento=@tipo_alojamiento WHERE id=@id";
         private string cadenaDeleteAlojamiento = @"DELETE  Alojamientos WHERE id=@id";
         private string cadenaInsertAlojamientoServicio = @"INSERT INTO alojamientoServicio values(@id_alojamiento, @id_servicio)";
-        private string cadenaUpdateAlojamientoServicio = @"UPDATE alojamientoServicio SET id_Alojamiento=@id_alojamiento, id_Servicio=@id_servicio";
+        //private string cadenaUpdateAlojamientoServicio = @"UPDATE alojamientoServicio SET id_Alojamiento=@id_alojamiento, id_servicio=@id_servicio";
+        private string cadenaDeleteAlojamientoServicios = @"DELETE alojamientoServicio WHERE id_alojamiento=@id_alojamiento";
 
 
         #endregion
@@ -124,21 +125,42 @@ namespace BienvenidosUyBLL.EntidadesNegocio
                 {
                     using (SqlCommand cmd = new SqlCommand(cadenaUpdateAlojamiento, cn))
                     {
+                        SqlTransaction trn = null;
+                        BdSQL.AbrirConexion(cn);
+                        trn = cn.BeginTransaction(System.Data.IsolationLevel.ReadCommitted);
+                        cmd.Transaction = trn;
+
+                        //Update alojamiento
                         cmd.Parameters.AddWithValue("@nombre", this.Nombre);
                         cmd.Parameters.AddWithValue("@tipo_habitacion", this.TipoHabitacion);
                         cmd.Parameters.AddWithValue("@tipo_banio", this.TipoBanio);
+                        cmd.Parameters.AddWithValue("@tipo_alojamiento", this.TipoAlojamiento);
                         cmd.Parameters.AddWithValue("@capacidad_Personas", this.CapacidadXPersona);
                         cmd.Parameters.AddWithValue("@ciudad", this.Ciudad);
                         cmd.Parameters.AddWithValue("@barrio", this.Barrio);
-                        cmd.CommandText = cadenaUpdateAlojamientoServicio;
+                        cmd.Parameters.AddWithValue("@id", this.Id);
+                        int afectadas = cmd.ExecuteNonQuery();
+
+                        //Delete alojamiento servicios
+                        cmd.Parameters.Clear();
+                        cmd.CommandText = cadenaDeleteAlojamientoServicios;
+                        cmd.Parameters.AddWithValue("@id_alojamiento", this.Id);
+                        cmd.ExecuteNonQuery();
+
+                        //Insert alojamiento servicios
+                        cmd.CommandText = cadenaInsertAlojamientoServicio;
                         foreach (Servicio s in this.TipoDeServicios)
                         {
                             cmd.Parameters.Clear();
                             cmd.Parameters.Add(new SqlParameter("@id_alojamiento", this.Id));
                             cmd.Parameters.Add(new SqlParameter("@id_servicio", s.Id));
+                            cmd.ExecuteNonQuery();
                         }
-                        cn.Open();
-                        int afectadas = cmd.ExecuteNonQuery();
+
+                        trn.Commit();
+                        trn.Dispose();
+                        trn = null;
+
                         return afectadas == 1;
                     }
                 }

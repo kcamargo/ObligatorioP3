@@ -13,15 +13,6 @@ namespace BienvenidosUyInicial {
     public partial class Formulario_web12 {
         
         /// <summary>
-        /// Control gdvAlojamientoBM.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gdvAlojamientoBM;
-        
-        /// <summary>
         /// Control mensajes.
         /// </summary>
         /// <remarks>
@@ -29,6 +20,15 @@ namespace BienvenidosUyInicial {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label mensajes;
+        
+        /// <summary>
+        /// Control repAlojamientos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater repAlojamientos;
         
         /// <summary>
         /// Control labelNombreAlojamientoBM.
@@ -157,13 +157,13 @@ namespace BienvenidosUyInicial {
         protected global::System.Web.UI.WebControls.TextBox txtboxBarrioBM;
         
         /// <summary>
-        /// Control labelServiciosBM.
+        /// Control label9.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label labelServiciosBM;
+        protected global::System.Web.UI.WebControls.Label label9;
         
         /// <summary>
         /// Control CheckBoxListServiciosBM.

@@ -28,44 +28,29 @@ namespace BienvenidosUyInicial
         {
             IRepositorioAlojamiento ro = FabricaRepositoriosBienvenidosUy.CrearRepositorioAlojamiento();
             List<Alojamiento> listAlojamiento = ro.FindAll();
-            if (listAlojamiento != null)
-            {
 
-                if (Session["listaAlojamientosBM"] == null) Session["listaAlojamientosBM"] = listAlojamiento;
-                this.gdvAlojamientoBM.DataSource = listAlojamiento;
-                this.gdvAlojamientoBM.DataBind();
-            }
+            this.repAlojamientos.DataSource = listAlojamiento;
+            this.repAlojamientos.DataBind();
         }
 
         protected void CargarServiciosBM()
         {
             IRepositorioServicio rs = FabricaRepositoriosBienvenidosUy.CrearRepositorioServicio();
             List<Servicio> todosLosServicios = rs.FindAll();
-            if (todosLosServicios != null)
-            {
-                //Las zonas son estables, y se utilizan varias veces
-                //cargadas en session para no ir a buscarlas cada vez que se necesiten
-                if (Session["listaServicios"] == null) Session["listaServicios"] = todosLosServicios;
-                this.CheckBoxListServiciosBM.DataSource = todosLosServicios;
-                this.CheckBoxListServiciosBM.DataValueField = "Id";
-                this.CheckBoxListServiciosBM.DataTextField = "Nombre";
-                this.CheckBoxListServiciosBM.DataBind();
-            }
+            this.CheckBoxListServiciosBM.DataSource = todosLosServicios;
+            this.CheckBoxListServiciosBM.DataValueField = "Id";
+            this.CheckBoxListServiciosBM.DataTextField = "Nombre";
+            this.CheckBoxListServiciosBM.DataBind();
         }
 
         protected void CargarTipoDeAlojamientosBM()
         {
             IRepositorioTipoDeAlojamiento rta = FabricaRepositoriosBienvenidosUy.CrearRepositorioTipoDeAlojamiento();
             List<TipoDeAlojamiento> todosLosTiposAlojamiento = rta.FindAll();
-            if (todosLosTiposAlojamiento != null)
-            {
-
-                if (Session["listaTipoDeAlojamiento"] == null) Session["listaTipoDeAlojamiento"] = todosLosTiposAlojamiento;
-                this.ddlTipoAlojamientoBM.DataSource = todosLosTiposAlojamiento;
-                this.ddlTipoAlojamientoBM.DataValueField = "Nombre";
-                this.ddlTipoAlojamientoBM.DataTextField = "Nombre";
-                this.ddlTipoAlojamientoBM.DataBind();
-            }
+            this.ddlTipoAlojamientoBM.DataSource = todosLosTiposAlojamiento;
+            this.ddlTipoAlojamientoBM.DataValueField = "Nombre";
+            this.ddlTipoAlojamientoBM.DataTextField = "Nombre";
+            this.ddlTipoAlojamientoBM.DataBind();
         }
 
         protected List<Servicio> CargarListaServicios()
@@ -82,49 +67,6 @@ namespace BienvenidosUyInicial
                 }
             }
             return serviciosSeleccionados;
-        }
-
-        protected void gdvAlojamientoBM_RowDeleting(object sender, GridViewDeleteEventArgs e)
-        {
-            int idSeleccionado = Int32.Parse(this.gdvAlojamientoBM.Rows[e.RowIndex].Cells[0].Text);
-            if (idSeleccionado >= 0)
-            {
-                IRepositorioAlojamiento ra = FabricaRepositoriosBienvenidosUy.CrearRepositorioAlojamiento();
-
-                if (ra.Delete(idSeleccionado))
-                {
-                    ListarAlojamientos();
-                    mensajes.Text = "El Alojamiento " + idSeleccionado +
-                            " fue eliminado";
-                }
-                else
-                    mensajes.Text = "No fue posible eliminar el alojamiento";
-
-            }
-
-
-            else
-                mensajes.Text = "Debe seleccionar un Alojamiento para eliminarlo";
-
-        }
-
-        protected void gdvAlojamientoBM_RowEditing(object sender, GridViewEditEventArgs e)
-        {
-            int id = Int32.Parse(this.gdvAlojamientoBM.Rows[e.NewEditIndex].Cells[0].Text);
-            IRepositorioAlojamiento ra = FabricaRepositoriosBienvenidosUy.CrearRepositorioAlojamiento();
-            Alojamiento a = ra.FindById(id);
-            txtBoxNombreAlojamientoBM.Text = a.Nombre;
-            ddlTipoAlojamientoBM.SelectedValue = a.TipoAlojamiento;
-            ddlTipoHabitacionBM.SelectedValue = a.TipoHabitacion;
-            ddlBanoBM.SelectedValue = a.TipoBanio;
-            txtBoxCapacidadBM.Text = a.CapacidadXPersona.ToString();
-            txtboxCiudadBM.Text = a.Ciudad;
-            txtboxBarrioBM.Text = a.Barrio;
-            foreach (ListItem item in CheckBoxListServiciosBM.Items)
-            {
-                item.Selected = ExisteServicio(item.Value, a.TipoDeServicios);
-            }
-             Session["modificacionAlojamientoActiva"] = a;
         }
 
         protected bool ExisteServicio(string item, List<Servicio> list)
@@ -154,17 +96,22 @@ namespace BienvenidosUyInicial
                 a.Ciudad = this.txtboxCiudadBM.Text;
                 a.Barrio = this.txtboxBarrioBM.Text;
                 a.TipoDeServicios = CargarListaServicios();
+
                 IRepositorioAlojamiento ro = FabricaRepositoriosBienvenidosUy.CrearRepositorioAlojamiento();
                 if (ro.Update(a))
                 {
-                    mensajes.Text = "Ingresado";
+                    mensajes.Text = "El alojamiento se ha modificado correctamente";
+                    Session["modificacionAlojamientoActiva"] = null;
                     LimpiarCampos();
+                    ListarAlojamientos();
                 }
                 else
-                    mensajes.Text = "Rechazado";
-                Session["modificacionAlojamientoActiva"] = new Alojamiento();
+                {
+                    mensajes.Text = "El alojamiento no se ha podido modificar";
+                }
             }
         }
+
         protected void LimpiarCampos()
         {
 
@@ -173,6 +120,42 @@ namespace BienvenidosUyInicial
             this.txtboxCiudadBM.Text = " ";
             this.txtboxBarrioBM.Text = " ";
 
+        }
+
+        protected void repAlojamientos_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            IRepositorioAlojamiento ra = FabricaRepositoriosBienvenidosUy.CrearRepositorioAlojamiento();
+            int id = Int32.Parse(e.CommandArgument.ToString());
+            if (e.CommandName == "edit")
+            {
+                Alojamiento a = ra.FindById(id);
+                txtBoxNombreAlojamientoBM.Text = a.Nombre;
+                ddlTipoAlojamientoBM.SelectedValue = a.TipoAlojamiento;
+                ddlTipoHabitacionBM.SelectedValue = a.TipoHabitacion;
+                ddlBanoBM.SelectedValue = a.TipoBanio;
+                txtBoxCapacidadBM.Text = a.CapacidadXPersona.ToString();
+                txtboxCiudadBM.Text = a.Ciudad;
+                txtboxBarrioBM.Text = a.Barrio;
+
+                foreach (ListItem item in CheckBoxListServiciosBM.Items)
+                {
+                    item.Selected = ExisteServicio(item.Value, a.TipoDeServicios);
+                }
+                Session["modificacionAlojamientoActiva"] = a;
+            }
+            else if (e.CommandName == "delete")
+            {
+                if (ra.Delete(id))
+                {
+                    ListarAlojamientos();
+                    mensajes.Text = "El Alojamiento " + id + " fue eliminado";
+                }
+                else
+                {
+                    mensajes.Text = "No fue posible eliminar el alojamiento";
+                }
+                
+            }
         }
 
         //protected void DesplegarAdvertencia(string mensaje)

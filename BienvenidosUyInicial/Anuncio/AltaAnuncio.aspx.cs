@@ -20,55 +20,44 @@ namespace BienvenidosUyInicial
             {
                 CargarAlojamientos();
             }
-            if (Session["AltaAnuncioActiva"] == null)
-            {
-                Session["AltaAnuncioActiva"] = new Anuncio();
-            }
-            if (Session["listaVacaciones"] == null)
-            {
-                Session["listaVacaciones"] = new List<Vacaciones>();
-            }
-            if (Session["AltaVacacionesActiva"] == null)
-            {
-                Session["AltaVacacionesActiva"] = new Vacaciones();
-            }
-
         }
+
+        private bool SubirFoto(FileUpload fu)
+        {
+            if (fu.HasFile)
+            {
+                String fileExtension = System.IO.Path.GetExtension(fu.FileName).ToLower();
+                String[] allowedExtensions = { ".gif", ".png", ".jpeg", ".jpg" };
+                if (allowedExtensions.Contains(fileExtension))
+                {
+                    try
+                    {
+                        fu.PostedFile.SaveAs(FotoURL(fu.FileName));
+                    }
+                    catch (Exception ex)
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
+        private string FotoURL(string fileName)
+        {
+            return Server.MapPath("~/UploadedImages/") + fileName;
+        }
+
         protected void CargarAlojamientos()
         {
             IRepositorioAlojamiento ra = FabricaRepositoriosBienvenidosUy.CrearRepositorioAlojamiento();
             List<Alojamiento> todosLosAlojamientos = ra.FindAll();
-            if (todosLosAlojamientos != null)
-            {
-                if (Session["listaAlojamientos"] == null) Session["listaAlojamientos"] = todosLosAlojamientos;
-                this.ddlTipoDeAlojamientoParaAnuncio.DataSource = todosLosAlojamientos;
-                this.ddlTipoDeAlojamientoParaAnuncio.DataValueField = "Id";
-                this.ddlTipoDeAlojamientoParaAnuncio.DataTextField = "Nombre";
-                this.ddlTipoDeAlojamientoParaAnuncio.DataBind();
-            }
+            this.ddlTipoDeAlojamientoParaAnuncio.DataSource = todosLosAlojamientos;
+            this.ddlTipoDeAlojamientoParaAnuncio.DataValueField = "Id";
+            this.ddlTipoDeAlojamientoParaAnuncio.DataTextField = "Nombre";
+            this.ddlTipoDeAlojamientoParaAnuncio.DataBind();
         }
 
-        protected void btnImporteXfechaAnuncio_Click(object sender, EventArgs e)
-        {
-            Vacaciones v = Session["AltaVacacionesActiva"] as Vacaciones;
-            if (v != null)
-            {
-
-                v.FechaInicio = Calendar1.SelectedDate;
-                v.FechaFin = Calendar2.SelectedDate;
-                v.Importe = Int32.Parse(this.txtBoxImporteXFechaAnuncio.Text);
-                IRepositorioVacaciones ro = FabricaRepositoriosBienvenidosUy.CrearRepositorioVacaciones();
-                if (ro.Add(v))
-                {
-                    this.LblMensajes.Text = "Ingresado";
-                    LimpiarCampos();
-                    ListarRangos(v);
-                }
-                else
-                    this.LblMensajes.Text = "Rechazado";
-                Session["AltaVacacionesActiva"] = new Vacaciones();
-            }
-        }
         protected void LimpiarCampos()
         {
 
@@ -79,16 +68,13 @@ namespace BienvenidosUyInicial
 
         }
 
-        protected void ListarRangos(Vacaciones v)
+        protected void AgregarTemporada(Temporada v)
         {
-            List<Vacaciones> lista = Session["listaVacaciones"] as List<Vacaciones>;
-            if (lista != null)
-            {
-                lista.Add(v);
-                this.gdvImporteXFechaAnuncio.DataSource = lista;
-                this.gdvImporteXFechaAnuncio.DataBind();
-            }
+            List<Temporada> lista = Session["temporadas"] as List<Temporada>;
+            if (lista == null) { lista = new List<Temporada>(); }
 
+            lista.Add(v);
+            Session["temporadas"] = lista;
         }
 
         protected Alojamiento BuscarAlojamientoXddl(string s)
@@ -100,29 +86,71 @@ namespace BienvenidosUyInicial
 
         }
 
-        protected void bttnAgregarAnuncio_Click(object sender, EventArgs e)
+        protected Foto CrearFoto(FileUpload fu)
         {
+            Foto foto = new BienvenidosUyBLL.EntidadesNegocio.Foto();
+            foto.Url = FotoURL(fu.FileName);
+            return foto;
+        }
 
-            Anuncio a = Session["AltaAnuncioActiva"] as Anuncio;
-            if (a != null)
+
+        protected void btnSalvarAnuncio_Click(object sender, EventArgs e)
+        {
+            bool foto1Subida = SubirFoto(fuFoto1);
+            bool foto2Subida = SubirFoto(fuFoto2);
+            bool foto3Subida = SubirFoto(fuFoto3);
+            bool foto4Subida = SubirFoto(fuFoto4);
+            bool foto5Subida = SubirFoto(fuFoto5);
+
+            if (!foto1Subida || !foto2Subida || !foto3Subida || !foto4Subida || !foto5Subida)
             {
-                a.Alojamiento = BuscarAlojamientoXddl(ddlTipoDeAlojamientoParaAnuncio.SelectedValue);
-                a.NombreAnuncio = this.txtboxNombreAnuncio.Text;
-                a.DescripcionAnuncio = this.txtBoxDescripcionAnuncio.Text;
-                a.PrecioBase = Int32.Parse(this.txtBoxPrecioBaseAnuncio.Text);
-                IRepositorioAnuncio ro = FabricaRepositoriosBienvenidosUy.CrearRepositorioAnuncio();
-                if (ro.Add(a))
-                {
-                    IRepositorioDirecciones rd = FabricaRepositoriosBienvenidosUy.CrearRepositorioDireccion();
-                    this.LblMensajes.Text = "Ingresado";
-                    LimpiarCampos();
-                }
-                else
-                    this.LblMensajes.Text = "Rechazado";
-                Session["AltaAnuncioActiva"] = new Alojamiento();
+                mensajes.Text = "Algunas fotos no fueron subidas";
+                return;
             }
 
+            Anuncio a = new Anuncio();
+            a.Alojamiento = BuscarAlojamientoXddl(ddlTipoDeAlojamientoParaAnuncio.SelectedValue);
+            a.NombreAnuncio = this.txtboxNombreAnuncio.Text;
+            a.DescripcionAnuncio = this.txtBoxDescripcionAnuncio.Text;
+            a.PrecioBase = Int32.Parse(this.txtBoxPrecioBaseAnuncio.Text);
+            a.Direccion = txtBoxDireAnuncio1.Text;
+            a.Feriados = Session["temporadas"] as List<Temporada>;
 
+            if (fuFoto1.HasFile) { a.FotosAnuncio.Add(CrearFoto(fuFoto1)); }
+            if (fuFoto2.HasFile) { a.FotosAnuncio.Add(CrearFoto(fuFoto2)); }
+            if (fuFoto3.HasFile) { a.FotosAnuncio.Add(CrearFoto(fuFoto3)); }
+            if (fuFoto4.HasFile) { a.FotosAnuncio.Add(CrearFoto(fuFoto4)); }
+            if (fuFoto5.HasFile) { a.FotosAnuncio.Add(CrearFoto(fuFoto5)); }
+
+            IRepositorioAnuncio ro = FabricaRepositoriosBienvenidosUy.CrearRepositorioAnuncio();
+            if (ro.Add(a))
+            {
+                mensajes.Text = "El anuncio fue creado correctamente";
+                LimpiarCampos();
+            }
+            else
+            {
+                mensajes.Text = "Ha ocurrido un error";
+            }
+        }
+
+        protected void btnAgregarTemporada_Click(object sender, EventArgs e)
+        {
+            Temporada v = new Temporada();
+            v.FechaInicio = Calendar1.SelectedDate;
+            v.FechaFin = Calendar2.SelectedDate;
+            v.Importe = Int32.Parse(this.txtBoxImporteXFechaAnuncio.Text);
+
+            AgregarTemporada(v);
+            ListarTemporadas();
+            LimpiarCampos();
+        }
+
+
+        private void ListarTemporadas()
+        {
+            this.repTemporadas.DataSource = Session["temporadas"];
+            this.repTemporadas.DataBind();
         }
     }
 }

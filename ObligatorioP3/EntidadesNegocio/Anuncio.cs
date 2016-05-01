@@ -14,9 +14,9 @@ namespace BienvenidosUyBLL.EntidadesNegocio
         #region PROPERTIES
         public int Id { get; set; }
 
-        public Alojamiento Alojamiento { get; set; };
+        public Alojamiento Alojamiento { get; set; }
 
-        public List<Direccion> Direcciones { get; set; }
+        public string Direccion { get; set; }
 
         public string NombreAnuncio { get; set; }
 
@@ -26,28 +26,33 @@ namespace BienvenidosUyBLL.EntidadesNegocio
 
         public int PrecioBase { get; set; }
 
-        public List<Vacaciones> Feriados;
+        public List<Temporada> Feriados;
+
+        #endregion
+
+
+        #region CONSTRUCTOR
+
+        public Anuncio()
+        {
+            this.FotosAnuncio = new List<Foto>();
+        }
 
         #endregion
 
         #region Cadenas de comando para ACTIVE RECORD //falta terminar, hacerlo despues de crear las tablas en SQL
 
-        private string cadenaInsertAnuncio = @"INSERT INTO Anuncios VALUES (@nombre, @descripcion, @precio_base);SELECT CAST(Scope_Identity() AS INT);";
-        private string cadenaInsertDireccionesAnuncio = @"INSERT INTO Direcciones VALUES (@linea1,@linea2);SELECT CAST(Scope_Identity() AS INT);";
-        private string cadenaUpdateAnuncio = @"UPDATE  Anuncios SET nombre=@nombre, descripcion=@descripcion, precio_base=@precio_base WHERE id=@id";
+        private string cadenaInsertAnuncio = @"INSERT INTO Anuncios VALUES (@nombre, @descripcion, @precio_base, @direccion);SELECT CAST(Scope_Identity() AS INT);";
+        private string cadenaInsertFoto = @"INSERT INTO Fotos VALUES (@url, @id_anuncio);SELECT CAST(Scope_Identity() AS INT);";
+        private string cadenaUpdateAnuncio = @"UPDATE  Anuncios SET nombre=@nombre, descripcion=@descripcion, precio_base=@precio_base, direccion=@direccion WHERE id=@id";
         private string cadenaDeleteAnuncio = @"DELETE  Anuncios WHERE id=@id";
-        private string cadenaDeleteDireccionAnuncio = @"DELETE  Direcciones WHERE id=@id";
+        private string cadenaInsertTemporadas = @"INSERT INTO Temporadas VALUES (@fecha_inicio, @fecha_fin, @importe, @id_anuncio)SELECT CAST(Scope_Identity() AS INT);";
+
 
         #endregion
 
         #region Métodos ACTIVE RECORD
 
-        public void AgregarDireccion(Direccion d)
-        {
-            if (d.Validar() && !this.Direcciones.Contains(d))
-                this.Direcciones.Add(d);
-
-        }
         public bool Add()
         {
             SqlConnection cn = null; SqlTransaction trn = null;
@@ -60,17 +65,30 @@ namespace BienvenidosUyBLL.EntidadesNegocio
                 cmd.Parameters.Add(new SqlParameter("@nombre", this.NombreAnuncio));
                 cmd.Parameters.Add(new SqlParameter("@descripcion", this.DescripcionAnuncio));
                 cmd.Parameters.Add(new SqlParameter("@precio_base", this.PrecioBase));
+                cmd.Parameters.Add(new SqlParameter("@direccion", this.Direccion));
 
                 BdSQL.AbrirConexion(cn);
                 trn = cn.BeginTransaction(System.Data.IsolationLevel.ReadCommitted);
                 cmd.Transaction = trn;
                 this.Id = (int)cmd.ExecuteScalar();
-                cmd.CommandText = cadenaInsertDireccionesAnuncio;
-                foreach (Direccion d in this.Direcciones)
+
+                cmd.CommandText = cadenaInsertFoto;
+                foreach (Foto f in this.FotosAnuncio)
                 {
                     cmd.Parameters.Clear();
-                    cmd.Parameters.Add(new SqlParameter("@linea1", d.Linea1));
-                    cmd.Parameters.Add(new SqlParameter("@linea2", d.Linea2));
+                    cmd.Parameters.Add(new SqlParameter("@url", f.Url));
+                    cmd.Parameters.Add(new SqlParameter("@id_anuncio", this.Id));
+                    cmd.ExecuteNonQuery();
+                }
+
+                cmd.CommandText = cadenaInsertTemporadas;
+                foreach (Temporada t in this.Feriados)
+                {
+                    cmd.Parameters.Clear();
+                    cmd.Parameters.Add(new SqlParameter("@fecha_inicio", t.FechaInicio));
+                    cmd.Parameters.Add(new SqlParameter("@fecha_fin", t.FechaFin));
+                    cmd.Parameters.Add(new SqlParameter("@importe", t.Importe));
+                    cmd.Parameters.Add(new SqlParameter("@id_anuncio", this.Id));
                     cmd.ExecuteNonQuery();
                 }
 
@@ -91,6 +109,7 @@ namespace BienvenidosUyBLL.EntidadesNegocio
                 BdSQL.CerrarConexion(cn);
             }
         }
+        
         public bool UpdateAnuncio()
         {
             if (this.Validar())
@@ -111,62 +130,7 @@ namespace BienvenidosUyBLL.EntidadesNegocio
             }
             return false;
         }
-        public bool UpdateDirecciones()
-        {
-            if (this.Validar())
-            {
-                using (SqlConnection cn = BdSQL.Conectar())
-                {
-                    using (SqlCommand cmd = new SqlCommand(cadenaInsertDireccionesAnuncio, cn))
-                    {
-                        cmd.CommandText = cadenaInsertDireccionesAnuncio;
-                        foreach (Direccion d in this.Direcciones)
-                        {
-                            cmd.Parameters.AddWithValue("@linea1", d.Linea1);
-                            cmd.Parameters.AddWithValue("@linea2", d.Linea2);
-                            cn.Open();
-                            int afectadas = cmd.ExecuteNonQuery();
-                            return afectadas == 1;
-                        }
-                        
-                    }
-
-                }
-            }
-            return false;
-        }
-
-        public bool DeleteAnuncio()
-        {
-            using (SqlConnection cn = BdSQL.Conectar())
-            {
-                using (SqlCommand cmd = new SqlCommand(cadenaDeleteAnuncio, cn))
-                {
-
-                    cmd.Parameters.AddWithValue("@id", this.Id);
-                    cn.Open();
-                    int afectadas = cmd.ExecuteNonQuery();
-                    return afectadas == 1;
-                }
-            }
-
-        }
-
-        public bool DeleteDireccion()
-        {
-            using (SqlConnection cn = BdSQL.Conectar())
-            {
-                using (SqlCommand cmd = new SqlCommand(cadenaDeleteDireccionAnuncio, cn))
-                {
-
-                    cmd.Parameters.AddWithValue("@id", this.Id);
-                    cn.Open();
-                    int afectadas = cmd.ExecuteNonQuery();
-                    return afectadas == 1;
-                }
-            }
-
-        }
+ 
         public void Load(IDataRecord dr)
         {
             if (dr == null) return;

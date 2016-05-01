@@ -10,11 +10,11 @@ using UtilidadesBD;
 using System.Configuration;
 using System.Data;
 
-namespace Repositorios.RepoVacaciones
+namespace Repositorios.RepoTemporada
 {
-    public class RepositorioVacacionesSQL : IRepositorioVacaciones
+    public class RepositorioTemporadaSQL : IRepositorioTemporada
     {
-        public bool Add(BienvenidosUyBLL.EntidadesNegocio.Vacaciones obj)
+        public bool Add(BienvenidosUyBLL.EntidadesNegocio.Temporada obj)
         {
             return obj != null && obj.Add();
         }
@@ -22,15 +22,15 @@ namespace Repositorios.RepoVacaciones
         public bool Delete(int id)
         {
 
-            Vacaciones o = FindById(id);
+            Temporada o = FindById(id);
             return (o != null && o.Delete());
         }
 
-        public List<BienvenidosUyBLL.EntidadesNegocio.Vacaciones> FindAll()
+        public List<BienvenidosUyBLL.EntidadesNegocio.Temporada> FindAll()
         {
             string cadenaSQL = @"SELECT *  From Vacaciones";
             SqlConnection cn = null;
-            List<Vacaciones> lista = new List<Vacaciones>();
+            List<Temporada> lista = new List<Temporada>();
             try
             {
 
@@ -41,7 +41,7 @@ namespace Repositorios.RepoVacaciones
                     SqlDataReader dr = cmd.ExecuteReader();
                     while (dr.Read())
                     {
-                        Vacaciones v = new Vacaciones();
+                        Temporada v = new Temporada();
                         v.Load(dr);
                         lista.Add(v);
 
@@ -57,7 +57,7 @@ namespace Repositorios.RepoVacaciones
             }
         }
 
-        public BienvenidosUyBLL.EntidadesNegocio.Vacaciones FindById(int id)
+        public BienvenidosUyBLL.EntidadesNegocio.Temporada FindById(int id)
         {
             string cadenaSQL = @"SELECT * From Vacaciones where id=@id";
             SqlConnection cn = null;
@@ -73,7 +73,7 @@ namespace Repositorios.RepoVacaciones
                     SqlDataReader dr = cmd.ExecuteReader();
                     if (dr.Read())
                     {
-                        Vacaciones v = new Vacaciones
+                        Temporada v = new Temporada
                         {
                             //Id = (int)dr["id"],
                             //Nombre = dr["Nombre"] == DBNull.Value ? null : dr["Nombre"].ToString(),
@@ -99,16 +99,16 @@ namespace Repositorios.RepoVacaciones
             }
         }
 
-        public bool Update(BienvenidosUyBLL.EntidadesNegocio.Vacaciones obj)
+        public bool Update(BienvenidosUyBLL.EntidadesNegocio.Temporada obj)
         {
             return obj != null & obj.Update();
         }
 
-        public List<Vacaciones> FindByIdAlojamiento(int id)
+        public List<Temporada> FindByIdAlojamiento(int id)
         {
             string cadenaSQL = @"SELECT *  From Vacaciones WHERE id=@id";
             SqlConnection cn = null;
-            List<Vacaciones> lista = new List<Vacaciones>();
+            List<Temporada> lista = new List<Temporada>();
             try
             {
 
@@ -120,7 +120,7 @@ namespace Repositorios.RepoVacaciones
                     SqlDataReader dr = cmd.ExecuteReader();
                     while (dr.Read())
                     {
-                        Vacaciones v = new Vacaciones();
+                        Temporada v = new Temporada();
                         v.Load(dr);
                         lista.Add(v);
 

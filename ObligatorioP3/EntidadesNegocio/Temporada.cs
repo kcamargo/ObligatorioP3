@@ -9,7 +9,7 @@ using UtilidadesBD;
 
 namespace BienvenidosUyBLL.EntidadesNegocio
 {
-    public class Vacaciones : IEntity
+    public class Temporada : IEntity
     {
         #region PROPERTIES
 
@@ -21,16 +21,18 @@ namespace BienvenidosUyBLL.EntidadesNegocio
 
         public int Importe { get; set; }
 
+        public int Id_anuncio { get; set; }
+
+
 
         #endregion
 
-        #region Cadenas de comando para ACTIVE RECORD //falta terminar, hacerlo despues de crear las tablas en SQL
+        #region Cadenas de comando para ACTIVE RECORD //falta terminar, hacerlo despues de crear las tablas en SQL2
 
-        private string cadenaInsertVacaciones = @"INSERT INTO Vacaciones VALUES (@fecha_inicio, @fecha_fin, @importe)SELECT CAST(Scope_Identity() AS INT);";
-        private string cadenaUpdateVacaciones = @"UPDATE  Vacaciones SET fecha_inicio=@fecha_inicio, fecha_fin=@fecha_fin, importe=@importe  WHERE id=@id";
-        private string cadenaDeleteVacaciones = @"DELETE  Vacaciones WHERE id=@id";
-        private string cadenaInsertAnuncioVacaciones = @"INSERT INTO anuncioVacaciones values(@id_vacaciones, @id_anuncios)";
-        private string cadenaDeleteAnuncioVacaciones = @"UPDATE anuncioVacaciones SET id_vacaciones=@id_vacaciones, id_anuncios=@id_anuncios";
+        private string cadenaInsertTemporadas = @"INSERT INTO Temporadas VALUES (@fecha_inicio, @fecha_fin, @importe, id_anuncio)SELECT CAST(Scope_Identity() AS INT);";
+        private string cadenaUpdateTemporadas = @"UPDATE  Temporadas SET fecha_inicio=@fecha_inicio, fecha_fin=@fecha_fin, importe=@importe, id_anuncio=@id_anuncio  WHERE id=@id";
+        private string cadenaDeleteTemporadas = @"DELETE  Temporadas WHERE id=@id";
+
 
 
         #endregion
@@ -45,19 +47,15 @@ namespace BienvenidosUyBLL.EntidadesNegocio
             {
                 cn = UtilidadesBD.BdSQL.Conectar();
 
-                SqlCommand cmd = new SqlCommand(cadenaInsertVacaciones, cn);
+                SqlCommand cmd = new SqlCommand(cadenaInsertTemporadas, cn);
                 cmd.Parameters.Add(new SqlParameter("@fecha_inicio", this.FechaInicio));
                 cmd.Parameters.Add(new SqlParameter("@fecha_fin", this.FechaFin));
                 cmd.Parameters.Add(new SqlParameter("@importe", this.Importe));
+                cmd.Parameters.Add(new SqlParameter("@id_anuncio", this.Id_anuncio));
                 BdSQL.AbrirConexion(cn);
                 trn = cn.BeginTransaction(System.Data.IsolationLevel.ReadCommitted);
                 cmd.Transaction = trn;
                 this.Id = (int)cmd.ExecuteScalar();
-                //cmd.CommandText = cadenaInsertAnuncioVacaciones;
-                //cmd.Parameters.Clear();
-                //cmd.Parameters.Add(new SqlParameter("@id_vacaciones", this.Id));
-                //cmd.Parameters.Add(new SqlParameter("@id_anuncios", s.Id));
-                //cmd.ExecuteNonQuery();
                 trn.Commit();
                 trn.Dispose();
                 trn = null;
@@ -81,7 +79,7 @@ namespace BienvenidosUyBLL.EntidadesNegocio
             {
                 using (SqlConnection cn = BdSQL.Conectar())
                 {
-                    using (SqlCommand cmd = new SqlCommand(cadenaUpdateVacaciones, cn))
+                    using (SqlCommand cmd = new SqlCommand(cadenaUpdateTemporadas, cn))
                     {
                         //cmd.Parameters.AddWithValue("@nombre", this.Nombre);
                         //cmd.Parameters.AddWithValue("@id", this.Id);
@@ -98,7 +96,7 @@ namespace BienvenidosUyBLL.EntidadesNegocio
 
             using (SqlConnection cn = BdSQL.Conectar())
             {
-                using (SqlCommand cmd = new SqlCommand(cadenaDeleteVacaciones, cn))
+                using (SqlCommand cmd = new SqlCommand(cadenaDeleteTemporadas, cn))
                 {
 
                     //cmd.Parameters.AddWithValue("@id", this.Id);

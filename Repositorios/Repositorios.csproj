@@ -41,9 +41,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Direcciones\IRepositorioDireccionesMock.cs" />
-    <Compile Include="Direcciones\IRepositorioDireccionesSQL.cs" />
-    <Compile Include="Direcciones\IRepositorioDireccionesTexto.cs" />
     <Compile Include="RepoAlojamiento\RepositorioAlojamientoTexto.cs" />
     <Compile Include="RepoAlojamiento\RepositorioAlojamimentoSQL.cs" />
     <Compile Include="RepoAlojamiento\RespositorioAlojamientoMock.cs" />
@@ -66,9 +63,9 @@
     <Compile Include="RepoUsuario\RepositorioUsuarioMock.cs" />
     <Compile Include="RepoUsuario\RepositorioUsuarioSQL.cs" />
     <Compile Include="RepoUsuario\RepositorioUsuarioTexto.cs" />
-    <Compile Include="RepoVacaciones\RepositorioVacacionesMock.cs" />
-    <Compile Include="RepoVacaciones\RepositorioVacacionesSQL.cs" />
-    <Compile Include="RepoVacaciones\RepositorioVacacionesTexto.cs" />
+    <Compile Include="RepoTemporada\RepositorioTemporadaMock.cs" />
+    <Compile Include="RepoTemporada\RepositorioTemporadaSQL.cs" />
+    <Compile Include="RepoTemporada\RepositorioTemporadaTexto.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
