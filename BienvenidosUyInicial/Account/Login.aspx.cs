@@ -16,7 +16,7 @@ namespace BienvenidosUyInicial.Account
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            /* if (!Page.IsPostBack)
+             if (!Page.IsPostBack)
              {
                 if (Session["AutenticaciónActiva"] == null)
              {
@@ -24,7 +24,7 @@ namespace BienvenidosUyInicial.Account
              } 
 
              }
-
+             /*
 
              RegisterHyperLink.NavigateUrl = "Register";
              // Habilite esta opción una vez tenga la confirmación de la cuenta habilitada para la funcionalidad de restablecimiento de contraseña
@@ -41,7 +41,7 @@ namespace BienvenidosUyInicial.Account
         {
             IRepositorioUsuario ro = FabricaRepositoriosBienvenidosUy.CrearRepositorioUsuario();
      
-            if (ro.FindByEmail(email) != null)
+            if (ro.FindByEmail(email))
             {
                 return true;
             }
@@ -80,23 +80,22 @@ namespace BienvenidosUyInicial.Account
             else
             {
                 this.mensaje.Text = "No puede ingresar, usated no esta registrado";
-                Response.Redirect("Home.aspx?mensaje=Log in solamente es accesible para usuarios registrados");
+                Response.Redirect("./Register.aspx?mensaje=Log in solamente es accesible para usuarios registrados");
             }
         }
 
-        protected void LogOut(object sender, EventArgs e)
-        {
-            // The SignOut method invalidates the authentication cookie.
-            System.Web.Security.FormsAuthentication.SignOut();
-            Response.Redirect("Login.aspx");
-        }
+        //protected void LogOut(object sender, EventArgs e)
+        //{
+        //    // The SignOut method invalidates the authentication cookie.
+        //    System.Web.Security.FormsAuthentication.SignOut();
+        //    Response.Redirect("Login.aspx");
+        //}
 
-        protected void LogIn(object sender, EventArgs e)
-        {
+        protected void LogIn(object sender, EventArgs e) { }
 
-            //hello
 
-        }
+        protected void ContraseniaLogIn_TextChanged(object sender, EventArgs e) { }
+        
     }
 }
             

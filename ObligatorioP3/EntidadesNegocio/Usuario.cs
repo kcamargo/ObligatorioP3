@@ -20,7 +20,7 @@ namespace BienvenidosUyBLL.EntidadesNegocio
         public string NombreUsuario { get; set; }
         public string Email { get; set; }
         public string ApellidoUsuario { get; set; }
-        public string IdUser { get; set; }
+        public int IdUser { get; set; }
         public string Contraseña { get; set; }
         public string Direccion { get; set; }
         public string Telefono { get; set; }
@@ -31,9 +31,9 @@ namespace BienvenidosUyBLL.EntidadesNegocio
 
         #region Cadenas de comando para ACTIVE RECORD //falta terminar, hacerlo despues de crear las tablas en SQL
 
-        private string cadenaInsertUsuario = "INSERT INTO Usuarios VALUES (@nombre_Usuario,@contraseña, @apellido_Usuario,@direccion_Usuario,@telefono_Usuario,@descripcion_Usuario,@email_Usuario, @foto )";
-        private string cadenaUpdateUsuario = "UPDATE  Usuarios SET nombre_Usuario=@nombre_Usuario, contraseña=@contraseña,apellido_Usuario=@apellido_Usuario, direccion_Usuario=@direccion_Usuario, telefono_Usuario=@telefono_Usuario, descripcion_Usuario=@descripcion_Usuario,email_Usuario=email_Usuario,foto= @foto WHERE email_Usuario=@email_Usuario";
-        private string cadenaDeleteUsuario = "DELETE  Usuarios WHERE email_Usuario=@email_Usuario";
+        private string cadenaInsertUsuario = "INSERT INTO Usuarios VALUES (@nombre,@contrasena, @apellido,@direccion,@telefono,@descripcion,@email, @foto ); SELECT CAST (Scope_Identity()AS INT);";
+        private string cadenaUpdateUsuario = "UPDATE  Usuarios SET nombre@nombre, contrasena=@contrasena,apellido=@apellido, direccion=@direccion, telefono=@telefono, descripcion=@descripcion,email=@email,foto= @foto WHERE id=@idUser";
+        private string cadenaDeleteUsuario = "DELETE  Usuarios WHERE id=@idUser";
 
 
         #endregion
@@ -48,28 +48,27 @@ namespace BienvenidosUyBLL.EntidadesNegocio
             {
                 cn = UtilidadesBD.BdSQL.Conectar();
 
-                //Preparar el comando de inserción
                 SqlCommand cmd = new SqlCommand(cadenaInsertUsuario, cn);
-                cmd.Parameters.Add(new SqlParameter("@nombre_Usuario", this.NombreUsuario));
-                cmd.Parameters.Add(new SqlParameter("@apellido_Usuario", this.ApellidoUsuario));
-                cmd.Parameters.Add(new SqlParameter("@contraseña", this.Contraseña));
-                cmd.Parameters.Add(new SqlParameter("@direccion_Usuario", this.Direccion));
-                cmd.Parameters.Add(new SqlParameter("@telefono_Usuario", this.Telefono));
-                cmd.Parameters.Add(new SqlParameter("@descripcion_Usuario", this.Descripcion));
-                cmd.Parameters.Add(new SqlParameter("@emali_Usuario", this.Email));
+                cmd.Parameters.Add(new SqlParameter("@nombre", this.NombreUsuario));
+                cmd.Parameters.Add(new SqlParameter("@apellido", this.ApellidoUsuario));
+                cmd.Parameters.Add(new SqlParameter("@contrasena", this.Contraseña));
+                cmd.Parameters.Add(new SqlParameter("@direccion", this.Direccion));
+                cmd.Parameters.Add(new SqlParameter("@telefono", this.Telefono));
+                cmd.Parameters.Add(new SqlParameter("@descripcion", this.Descripcion));
+                cmd.Parameters.Add(new SqlParameter("@email", this.Email));
                 cmd.Parameters.Add(new SqlParameter("@foto", this.Foto));
 
 
                 BdSQL.AbrirConexion(cn);
                 trn = cn.BeginTransaction(System.Data.IsolationLevel.ReadCommitted);
                 cmd.Transaction = trn;
-                
+                this.IdUser = (int)cmd.ExecuteScalar();
                 //La transacción y la conexión permanecen incambiadas
 
                 //Si se llegó aquí se asume que podemos completar la transacción
                 trn.Commit();
-                
-                //trn = null;
+                trn.Dispose();
+                trn = null;
                 return true;
 
             }
@@ -83,7 +82,7 @@ namespace BienvenidosUyBLL.EntidadesNegocio
             {
                 BdSQL.CerrarConexion(cn);
                 cn.Dispose();
-                trn.Dispose();
+
             }
         }
 
@@ -96,13 +95,13 @@ namespace BienvenidosUyBLL.EntidadesNegocio
                 {
                     using (SqlCommand cmd = new SqlCommand(cadenaUpdateUsuario, cn))
                     {
-                        cmd.Parameters.Add(new SqlParameter("@nombre_Usuario", this.NombreUsuario));
-                        cmd.Parameters.Add(new SqlParameter("@apellido_Usuario", this.ApellidoUsuario));
-                        cmd.Parameters.Add(new SqlParameter("@contraseña", this.Contraseña));
-                        cmd.Parameters.Add(new SqlParameter("@direccion_Usuario", this.Direccion));
-                        cmd.Parameters.Add(new SqlParameter("@telefono_Usuario", this.Telefono));
-                        cmd.Parameters.Add(new SqlParameter("@descripcion_Usuario", this.Descripcion));
-                        cmd.Parameters.Add(new SqlParameter("@emali_Usuario", this.Email));
+                        cmd.Parameters.Add(new SqlParameter("@nombre", this.NombreUsuario));
+                        cmd.Parameters.Add(new SqlParameter("@apellido", this.ApellidoUsuario));
+                        cmd.Parameters.Add(new SqlParameter("@contrasena", this.Contraseña));
+                        cmd.Parameters.Add(new SqlParameter("@direccion", this.Direccion));
+                        cmd.Parameters.Add(new SqlParameter("@telefono", this.Telefono));
+                        cmd.Parameters.Add(new SqlParameter("@descripcion", this.Descripcion));
+                        cmd.Parameters.Add(new SqlParameter("@email", this.Email));
                         cmd.Parameters.Add(new SqlParameter("@foto", this.Foto));
                         cn.Open();
 
@@ -138,13 +137,13 @@ namespace BienvenidosUyBLL.EntidadesNegocio
             if (dr == null) return;
             //El operador condicional u operador ternario tiene la siguiente forma: test ? expression1 : expression2
             //y es análogo a if (dr["Nombre]==DBNull.Value) return null else return dr["Nombre"].ToString();
-            this.NombreUsuario = dr["nombre_Usuario"] == DBNull.Value ? null : dr["nombre_Usuario"].ToString();
-            this.ApellidoUsuario = dr["apellido_Usuario"] == DBNull.Value ? null : dr["apellido_Usuario"].ToString();
-            this.Contraseña = dr["contraseña"] == DBNull.Value ? null : dr["contraseña"].ToString();
-            this.Telefono = dr["telefono_Usuario"] == DBNull.Value ? null : dr["telefono_Usuario"].ToString();
-            this.Descripcion = dr["descripcion_Usuario"] == DBNull.Value ? null : dr["descripcion_Usuario"].ToString();
-            this.Direccion = dr["direccion_Usuario"] == DBNull.Value ? null : dr["direccion_Usuario"].ToString();
-            this.Direccion = dr["email_Usuario"] == DBNull.Value ? null : dr["email_Usuario"].ToString();
+            this.NombreUsuario = dr["nombre"] == DBNull.Value ? null : dr["nombre"].ToString();
+            this.ApellidoUsuario = dr["apellido"] == DBNull.Value ? null : dr["apellido"].ToString();
+            this.Contraseña = dr["contrasena"] == DBNull.Value ? null : dr["contrasena"].ToString();
+            this.Telefono = dr["telefono"] == DBNull.Value ? null : dr["telefono"].ToString();
+            this.Descripcion = dr["descripcion"] == DBNull.Value ? null : dr["descripcion"].ToString();
+            this.Direccion = dr["direccion"] == DBNull.Value ? null : dr["direccion"].ToString();
+            this.Direccion = dr["email"] == DBNull.Value ? null : dr["email"].ToString();
             this.Id = (int)dr["Id"];//este no puede ser dbnull
         }
 
@@ -174,9 +173,9 @@ namespace BienvenidosUyBLL.EntidadesNegocio
         }
 
 
-       public bool Validar(string password, string email)
+        public bool Validar(string password, string email)
         {
-            string traercontraseñaEncriptada = "select contraseña from usuarios where email_Usuario=@emailUsuario";
+            string traercontraseñaEncriptada = "select contrasena from Usuarios where email=@email";
             {
                 SqlConnection cn = null; SqlTransaction trn = null;
                 if (!this.Validar()) return false;
@@ -186,13 +185,13 @@ namespace BienvenidosUyBLL.EntidadesNegocio
 
                     //Preparar el comando
                     SqlCommand cmd = new SqlCommand(traercontraseñaEncriptada, cn);
-                    cmd.Parameters.Add(new SqlParameter("@emailUsuario", email));
+                    cmd.Parameters.Add(new SqlParameter("@email", email));
                     BdSQL.AbrirConexion(cn);
                     trn = cn.BeginTransaction(System.Data.IsolationLevel.ReadCommitted);
                     cmd.Transaction = trn;
                     string contraseña = (String)cmd.ExecuteScalar();
                     //La transacción y la conexión permanecen incambiadas
-                    
+
                     //Si se llegó aquí se asume que podemos completar la transacción
                     trn.Commit();
                     trn.Dispose();
@@ -225,15 +224,17 @@ namespace BienvenidosUyBLL.EntidadesNegocio
 
 
 
+
         #endregion
 
         #region REDEFINICIONES DE OBJECT
-        public override string ToString()
-        {
-            return this.Id + " - ";
-        }
+        //public override string ToString()
+        //{
+        //    return this.Id + " - ";
+        //}
         #endregion
 
     }
 }
+
 

@@ -22,10 +22,10 @@ namespace BienvenidosUyInicial.Account
 
                
             }
-            /*if (Session["AltaUsuarioActiva"] == null)
+            if (Session["AltaUsuarioActiva"] == null)
             {
                 Session["AltaUsuarioActiva"] = new Usuario();
-            }*/
+            }
 
         }
 
@@ -47,8 +47,9 @@ namespace BienvenidosUyInicial.Account
                 
                 IRepositorioUsuario user = FabricaRepositoriosBienvenidosUy.CrearRepositorioUsuario();
                 if (user.Add(u))
+                {
                     this.mensaje.Text = "Usuario corretamente ingresado";
-
+                }
                 else
                     this.mensaje.Text = "Usuario rechazado";
                 Session["AltaUsuarioActiva"] = new Usuario();

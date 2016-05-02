@@ -25,10 +25,10 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <asp:Label runat="server" AssociatedControlID="ContraseñaLogIn" CssClass="col-md-2 control-label">Contraseña</asp:Label>
+                        <asp:Label runat="server" AssociatedControlID="ContraseniaLogIn" CssClass="col-md-2 control-label">Contraseña</asp:Label>
                         <div class="col-md-10">
-                            <asp:TextBox runat="server" ID="ContraseniaLogIn" TextMode="Password" CssClass="form-control" />
-                            <asp:RequiredFieldValidator runat="server" ControlToValidate="ContraseñaLogIn" CssClass="text-danger" ErrorMessage="El campo de contraseña es obligatorio." />
+                            <asp:TextBox runat="server" ID="ContraseniaLogIn" TextMode="Password" CssClass="form-control" OnTextChanged="ContraseniaLogIn_TextChanged" />
+                            <asp:RequiredFieldValidator runat="server" ControlToValidate="ContraseniaLogIn" CssClass="text-danger" ErrorMessage="El campo de contraseña es obligatorio." />
                         </div>
                     </div>
                     <div class="form-group">
@@ -44,7 +44,6 @@
                         <div class="col-md-offset-2 col-md-10">
                             <asp:Button runat="server" OnClick="LogIn" Text="Iniciar sesión" CssClass="btn btn-success" ID="btnEntrar" />
                         
-                            <asp:Button runat="server" OnClick="LogOut" Text="Cerrar sesión" CssClass="btn btn-danger" ID="btnSalir" />
                         </div>
                     </div>
                 </div>

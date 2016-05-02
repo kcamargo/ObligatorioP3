@@ -14,45 +14,7 @@ namespace Repositorios.RepoUsuario
     public class RepositorioUsuarioSQL : IRepositorioUsuario
     {
 
-
-        public Usuario FindByEmail(string email)
-
-        {
-            string CADENABUSCAR = "SELECT * FROM Usuario WHERE email_Usuario=@email";
-            Usuario usuarioEncontrado = null;
-
-            using (SqlConnection cn = BdSQL.Conectar())
-            {
-                using (SqlCommand cmd = new SqlCommand(CADENABUSCAR, cn))
-                {
-                    cmd.Parameters.AddWithValue("@email", email);
-                    cn.Open();
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    if (reader != null)
-                    {
-                        while (reader.Read())
-                        {
-
-                            Usuario U = new Usuario();
-                            U.Load(reader);
-                            U.Email = email;
-                            if (U.Validar())
-                            {
-
-                                usuarioEncontrado = U;
-
-                            }
-
-                        }
-
-
-                    }
-
-                }
-                return usuarioEncontrado;
-
-            }
-        }
+ 
         public bool Add(Usuario obj)
         {
 
@@ -84,5 +46,45 @@ namespace Repositorios.RepoUsuario
         {
             throw new NotImplementedException();
         }
+
+         public bool FindByEmail(string email)
+
+        {
+            string CADENABUSCAR = "SELECT email FROM Usuarios WHERE email=@email";
+            string usuarioEmail;
+
+            using (SqlConnection cn = BdSQL.Conectar())
+            {
+
+                using (SqlCommand cmd = new SqlCommand(CADENABUSCAR, cn))
+                {
+
+                    cmd.Parameters.AddWithValue("@email", email);
+                    BdSQL.AbrirConexion(cn);
+                    usuarioEmail = (String)cmd.ExecuteScalar();
+                    BdSQL.CerrarConexion(cn);
+                    cn.Dispose();
+                }
+            }
+                    if (usuarioEmail == email)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                    
+                }
+                
+            
+
+        Usuario IRepositorioUsuario.FindByEmail(string email)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+}
     }
 }
