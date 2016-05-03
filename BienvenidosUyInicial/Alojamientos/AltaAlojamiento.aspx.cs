@@ -62,17 +62,17 @@ namespace BienvenidosUyInicial
             {
                 a.Nombre = this.txtBoxNombreAlojamiento.Text;
                 a.TipoAlojamiento = this.ddlTipoAlojamiento.SelectedValue;// ojo devuelve un string
-<<<<<<< HEAD
-                a.TipoHabitacion = this.ddlTipoHabitacion.SelectedValue == "privada";
-                a.TipoBanio = this.ddlBano.SelectedValue == "privada";
-=======
+
+                a.TipoHabitacion = this.ddlTipoHabitacion.SelectedValue.ToString();
+                a.TipoBanio = this.ddlBano.SelectedValue.ToString();
+
                 a.TipoHabitacion = this.ddlTipoHabitacion.SelectedValue;
                 a.TipoBanio = this.ddlBano.SelectedValue;
->>>>>>> origin/Alta_Anuncio
+
                 a.CapacidadXPersona = Int32.Parse(this.txtBoxCantidadPersonas.Text);
                 a.Ciudad = this.txtboxCiudad.Text;
                 a.Barrio = this.txtboxBarrio.Text;
-                a.TipoDeServicios = CargarListaServicios();
+                a.TipoDeServicios = AgrergarListaServicios();
                 IRepositorioAlojamiento ro = FabricaRepositoriosBienvenidosUy.CrearRepositorioAlojamiento();
                 if (ro.Add(a))
                 {
@@ -85,7 +85,7 @@ namespace BienvenidosUyInicial
             }
 
         }
-<<<<<<< HEAD
+
 
         protected List<Servicio> CargarListaServicios()
         {
@@ -101,7 +101,8 @@ namespace BienvenidosUyInicial
                 }
             }
             return serviciosSeleccionados;
-=======
+        }
+
         protected void LimpiarCampos()
         {
 
@@ -112,7 +113,7 @@ namespace BienvenidosUyInicial
 
         }
 
-        protected List<Servicio> CargarListaServicios()
+        protected List<Servicio> AgrergarListaServicios()
         {
             IRepositorioServicio ro = FabricaRepositoriosBienvenidosUy.CrearRepositorioServicio();
             List<Servicio> serviciosSeleccionados = new List<Servicio>();
@@ -142,7 +143,7 @@ namespace BienvenidosUyInicial
         {
             this.LblMensajes.CssClass = "label-default";
             this.LblMensajes.Text = "";
->>>>>>> origin/Alta_Anuncio
+
         }
 
     }
