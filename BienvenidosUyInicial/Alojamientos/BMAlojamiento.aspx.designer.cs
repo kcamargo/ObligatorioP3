@@ -13,31 +13,49 @@ namespace BienvenidosUyInicial {
     public partial class Formulario_web12 {
         
         /// <summary>
-        /// Control labelSeleccionarAlojamiento.
+        /// Control mensajes.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label labelSeleccionarAlojamiento;
+        protected global::System.Web.UI.WebControls.Label mensajes;
         
         /// <summary>
-        /// Control DropDownList1.
+        /// Control repAlojamientos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        protected global::System.Web.UI.WebControls.Repeater repAlojamientos;
         
         /// <summary>
-        /// Control labelTipoAlojamientoBM.
+        /// Control labelNombreAlojamientoBM.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label labelTipoAlojamientoBM;
+        protected global::System.Web.UI.WebControls.Label labelNombreAlojamientoBM;
+        
+        /// <summary>
+        /// Control txtBoxNombreAlojamientoBM.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtBoxNombreAlojamientoBM;
+        
+        /// <summary>
+        /// Control labelSeleccionarAlojamientoBM.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label labelSeleccionarAlojamientoBM;
         
         /// <summary>
         /// Control ddlTipoAlojamientoBM.
@@ -94,6 +112,15 @@ namespace BienvenidosUyInicial {
         protected global::System.Web.UI.WebControls.Label labelCapacidadBM;
         
         /// <summary>
+        /// Control txtBoxCapacidadBM.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtBoxCapacidadBM;
+        
+        /// <summary>
         /// Control labelCiudadBM.
         /// </summary>
         /// <remarks>
@@ -130,13 +157,13 @@ namespace BienvenidosUyInicial {
         protected global::System.Web.UI.WebControls.TextBox txtboxBarrioBM;
         
         /// <summary>
-        /// Control labelServiciosBM.
+        /// Control label9.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label labelServiciosBM;
+        protected global::System.Web.UI.WebControls.Label label9;
         
         /// <summary>
         /// Control CheckBoxListServiciosBM.
@@ -148,21 +175,12 @@ namespace BienvenidosUyInicial {
         protected global::System.Web.UI.WebControls.CheckBoxList CheckBoxListServiciosBM;
         
         /// <summary>
-        /// Control bttonEliminar.
+        /// Control btnActualizarBM.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button bttonEliminar;
-        
-        /// <summary>
-        /// Control bttonModificar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button bttonModificar;
+        protected global::System.Web.UI.WebControls.Button btnActualizarBM;
     }
 }

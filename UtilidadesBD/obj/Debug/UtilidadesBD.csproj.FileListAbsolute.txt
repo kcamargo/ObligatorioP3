@@ -3,12 +3,19 @@ C:\Users\Owner\Desktop\Programacion_3\ObligatorioP3\UtilidadesBD\bin\Debug\Utili
 C:\Users\Owner\Desktop\Programacion_3\ObligatorioP3\UtilidadesBD\obj\Debug\UtilidadesBD.csprojResolveAssemblyReference.cache
 C:\Users\Owner\Desktop\Programacion_3\ObligatorioP3\UtilidadesBD\obj\Debug\UtilidadesBD.dll
 C:\Users\Owner\Desktop\Programacion_3\ObligatorioP3\UtilidadesBD\obj\Debug\UtilidadesBD.pdb
+<<<<<<< HEAD
 C:\Users\Owner\Desktop\Programacion_3\Obligatorio\ObligatorioP3\UtilidadesBD\bin\Debug\UtilidadesBD.dll
 C:\Users\Owner\Desktop\Programacion_3\Obligatorio\ObligatorioP3\UtilidadesBD\bin\Debug\UtilidadesBD.pdb
 C:\Users\Owner\Desktop\Programacion_3\Obligatorio\ObligatorioP3\UtilidadesBD\obj\Debug\UtilidadesBD.dll
 C:\Users\Owner\Desktop\Programacion_3\Obligatorio\ObligatorioP3\UtilidadesBD\obj\Debug\UtilidadesBD.pdb
+=======
+>>>>>>> origin/Alta_Anuncio
 C:\Users\Florencia\ObligatorioP3\UtilidadesBD\bin\Debug\UtilidadesBD.dll
 C:\Users\Florencia\ObligatorioP3\UtilidadesBD\bin\Debug\UtilidadesBD.pdb
 C:\Users\Florencia\ObligatorioP3\UtilidadesBD\obj\Debug\UtilidadesBD.csprojResolveAssemblyReference.cache
 C:\Users\Florencia\ObligatorioP3\UtilidadesBD\obj\Debug\UtilidadesBD.dll
 C:\Users\Florencia\ObligatorioP3\UtilidadesBD\obj\Debug\UtilidadesBD.pdb
+C:\Users\Owner\Desktop\Programacion_3\Obligatorio\ObligatorioP3\UtilidadesBD\bin\Debug\UtilidadesBD.dll
+C:\Users\Owner\Desktop\Programacion_3\Obligatorio\ObligatorioP3\UtilidadesBD\bin\Debug\UtilidadesBD.pdb
+C:\Users\Owner\Desktop\Programacion_3\Obligatorio\ObligatorioP3\UtilidadesBD\obj\Debug\UtilidadesBD.dll
+C:\Users\Owner\Desktop\Programacion_3\Obligatorio\ObligatorioP3\UtilidadesBD\obj\Debug\UtilidadesBD.pdb

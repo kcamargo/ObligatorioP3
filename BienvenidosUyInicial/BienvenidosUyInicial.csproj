@@ -467,6 +467,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="UploadedImages\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FabricaRepositorios\FabricaRepositorios.csproj">

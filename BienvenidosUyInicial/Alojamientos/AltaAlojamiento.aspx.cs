@@ -57,26 +57,58 @@ namespace BienvenidosUyInicial
         }
         protected void bttonAgregar_Click(object sender, EventArgs e)
         {
-            //Al hacer clic se agrega la organización, que se asume ya cuenta con sus direcciones
             Alojamiento a = Session["AltaAlojamientoActiva"] as Alojamiento;
             if (a != null)
             {
                 a.Nombre = this.txtBoxNombreAlojamiento.Text;
                 a.TipoAlojamiento = this.ddlTipoAlojamiento.SelectedValue;// ojo devuelve un string
+<<<<<<< HEAD
                 a.TipoHabitacion = this.ddlTipoHabitacion.SelectedValue == "privada";
                 a.TipoBanio = this.ddlBano.SelectedValue == "privada";
+=======
+                a.TipoHabitacion = this.ddlTipoHabitacion.SelectedValue;
+                a.TipoBanio = this.ddlBano.SelectedValue;
+>>>>>>> origin/Alta_Anuncio
                 a.CapacidadXPersona = Int32.Parse(this.txtBoxCantidadPersonas.Text);
                 a.Ciudad = this.txtboxCiudad.Text;
                 a.Barrio = this.txtboxBarrio.Text;
                 a.TipoDeServicios = CargarListaServicios();
                 IRepositorioAlojamiento ro = FabricaRepositoriosBienvenidosUy.CrearRepositorioAlojamiento();
                 if (ro.Add(a))
+                {
                     this.LblMensajes.Text = "Ingresado";
-
+                    LimpiarCampos();
+                }
                 else
                     this.LblMensajes.Text = "Rechazado";
                 Session["AltaAlojamientoActiva"] = new Alojamiento();
             }
+
+        }
+<<<<<<< HEAD
+
+        protected List<Servicio> CargarListaServicios()
+        {
+            IRepositorioServicio ro = FabricaRepositoriosBienvenidosUy.CrearRepositorioServicio();
+            List<Servicio> serviciosSeleccionados = new List<Servicio>();
+            List<ListItem> lista = this.CheckBoxListServicios.Items.Cast<ListItem>().ToList();
+            foreach (ListItem item in lista)
+            {
+                if (item.Selected)
+                {
+                    Servicio servicio = ro.FindById(Int32.Parse(item.Value));
+                    serviciosSeleccionados.Add(servicio);
+                }
+            }
+            return serviciosSeleccionados;
+=======
+        protected void LimpiarCampos()
+        {
+
+            this.txtBoxNombreAlojamiento.Text = " ";
+            this.txtBoxCantidadPersonas.Text = " ";
+            this.txtboxCiudad.Text = " ";
+            this.txtboxBarrio.Text = " ";
 
         }
 
@@ -94,6 +126,23 @@ namespace BienvenidosUyInicial
                 }
             }
             return serviciosSeleccionados;
+        }
+
+        protected void DesplegarAdvertencia(string mensaje)
+        {
+            this.LblMensajes.CssClass = "label-warning";
+            this.LblMensajes.Text = mensaje;
+        }
+        protected void DesplegarExito(string mensaje)
+        {
+            this.LblMensajes.CssClass = "label-success";
+            this.LblMensajes.Text = mensaje;
+        }
+        protected void LimpiarMensajes()
+        {
+            this.LblMensajes.CssClass = "label-default";
+            this.LblMensajes.Text = "";
+>>>>>>> origin/Alta_Anuncio
         }
 
     }

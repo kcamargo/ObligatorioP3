@@ -26,17 +26,36 @@ namespace Repositorios.RepoUsuario
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/Alta_Anuncio
         public bool FindById()
         {
             throw new NotImplementedException();
         }
 
+<<<<<<< HEAD
 =======
 >>>>>>> origin/master
+=======
+>>>>>>> origin/Alta_Anuncio
         public Usuario FindById(int id)
         {
             throw new NotImplementedException();
         }
+
+        //<<<<<<< HEAD
+        //        public bool FindById()
+        //        {
+        //            throw new NotImplementedException();
+        //        }
+
+        //=======
+        //>>>>>>> origin/master
+        //        public Usuario FindById(int id)
+        //        {
+        //            throw new NotImplementedException();
+        //        }
 
         public bool Update(Usuario obj)
         {

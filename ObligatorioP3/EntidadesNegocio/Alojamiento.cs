@@ -18,9 +18,9 @@ namespace BienvenidosUyBLL.EntidadesNegocio
         public string TipoAlojamiento { get; set; }
 
         public string Nombre { get; set; }
-        public bool TipoHabitacion { get; set; }//true privada
+        public string TipoHabitacion { get; set; }//true privada
 
-        public bool TipoBanio { get; set; }//true privado
+        public string TipoBanio { get; set; }//true privado
 
         public int CapacidadXPersona { get; set; }
 
@@ -59,9 +59,16 @@ namespace BienvenidosUyBLL.EntidadesNegocio
         #region Cadenas de comando para ACTIVE RECORD //falta terminar, hacerlo despues de crear las tablas en SQL
 
         private string cadenaInsertAlojamiento = @"INSERT INTO Alojamientos VALUES ( @nombre, @tipo_habitacion, @tipo_banio, @capacidad_personas, @ciudad, @barrio, @tipo_alojamiento)SELECT CAST(Scope_Identity() AS INT);";
+<<<<<<< HEAD
         private string cadenaUpdateAlojamiento = @"UPDATE  Alojamientos SET nombre=@nombre, tipoHabitacion=@tipo_habitacion, tipoBanio=@tipo_banio, capacidadPersonas=@capacidad_personas, ciudad=@ciudad, barrio=@barrio, , tipoAlojamiento=@tipo_alojamiento WHERE id=@id";
         private string cadenaDeleteAlojamiento = @"DELETE  Alojamientos WHERE id=@id";
         private string cadenaInsertAlojamientoServicio = @"INSERT INTO alojamientoServicio values(@id_alojamiento, @id_servicio)";
+=======
+        private string cadenaUpdateAlojamiento = @"UPDATE  Alojamientos SET nombre=@nombre, tipo_habitacion=@tipo_habitacion, tipo_banio=@tipo_banio, capacidad_personas=@capacidad_personas, ciudad=@ciudad, barrio=@barrio, tipo_alojamiento=@tipo_alojamiento WHERE id=@id";
+        private string cadenaDeleteAlojamiento = @"DELETE  Alojamientos WHERE id=@id";
+        private string cadenaInsertAlojamientoServicio = @"INSERT INTO alojamientoServicio values(@id_alojamiento, @id_servicio)";
+        private string cadenaDeleteAlojamientoServicios = @"DELETE alojamientoServicio WHERE id_alojamiento=@id_alojamiento";
+>>>>>>> origin/Alta_Anuncio
 
 
         #endregion
@@ -123,12 +130,42 @@ namespace BienvenidosUyBLL.EntidadesNegocio
                 {
                     using (SqlCommand cmd = new SqlCommand(cadenaUpdateAlojamiento, cn))
                     {
+                        SqlTransaction trn = null;
+                        BdSQL.AbrirConexion(cn);
+                        trn = cn.BeginTransaction(System.Data.IsolationLevel.ReadCommitted);
+                        cmd.Transaction = trn;
+
+                        //Update alojamiento
                         cmd.Parameters.AddWithValue("@nombre", this.Nombre);
-                        cmd.Parameters.AddWithValue("@tipoHabitacion", this.TipoHabitacion);
-                        cmd.Parameters.AddWithValue("@tipoBanio", this.TipoBanio);
-                        cmd.Parameters.AddWithValue("@capacidadPersonas", this.CapacidadXPersona);
-                        cn.Open();
+                        cmd.Parameters.AddWithValue("@tipo_habitacion", this.TipoHabitacion);
+                        cmd.Parameters.AddWithValue("@tipo_banio", this.TipoBanio);
+                        cmd.Parameters.AddWithValue("@tipo_alojamiento", this.TipoAlojamiento);
+                        cmd.Parameters.AddWithValue("@capacidad_Personas", this.CapacidadXPersona);
+                        cmd.Parameters.AddWithValue("@ciudad", this.Ciudad);
+                        cmd.Parameters.AddWithValue("@barrio", this.Barrio);
+                        cmd.Parameters.AddWithValue("@id", this.Id);
                         int afectadas = cmd.ExecuteNonQuery();
+
+                        //Delete alojamiento servicios
+                        cmd.Parameters.Clear();
+                        cmd.CommandText = cadenaDeleteAlojamientoServicios;
+                        cmd.Parameters.AddWithValue("@id_alojamiento", this.Id);
+                        cmd.ExecuteNonQuery();
+
+                        //Insert alojamiento servicios
+                        cmd.CommandText = cadenaInsertAlojamientoServicio;
+                        foreach (Servicio s in this.TipoDeServicios)
+                        {
+                            cmd.Parameters.Clear();
+                            cmd.Parameters.Add(new SqlParameter("@id_alojamiento", this.Id));
+                            cmd.Parameters.Add(new SqlParameter("@id_servicio", s.Id));
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        trn.Commit();
+                        trn.Dispose();
+                        trn = null;
+
                         return afectadas == 1;
                     }
                 }
@@ -142,10 +179,23 @@ namespace BienvenidosUyBLL.EntidadesNegocio
             {
                 using (SqlCommand cmd = new SqlCommand(cadenaDeleteAlojamiento, cn))
                 {
-
+                    SqlTransaction trn = null;
+                    BdSQL.AbrirConexion(cn);
+                    trn = cn.BeginTransaction(System.Data.IsolationLevel.ReadCommitted);
                     cmd.Parameters.AddWithValue("@id", this.Id);
-                    cn.Open();
+                    cmd.Transaction = trn;
                     int afectadas = cmd.ExecuteNonQuery();
+
+                    cmd.Parameters.Clear();
+                    cmd.CommandText = cadenaDeleteAlojamientoServicios;
+                    cmd.Parameters.AddWithValue("@id_alojamiento", this.Id);
+                    cmd.ExecuteNonQuery();
+
+
+                    trn.Commit();
+                    trn.Dispose();
+                    trn = null;
+
                     return afectadas == 1;
                 }
             }
@@ -154,9 +204,14 @@ namespace BienvenidosUyBLL.EntidadesNegocio
         public void Load(IDataRecord dr)
         {
             if (dr == null) return;
+            this.Id = (int)dr["Id"];
             this.Nombre = dr["Nombre"] == DBNull.Value ? null : dr["Nombre"].ToString();
-            this.Id = (int)dr["Id"];//este no puede ser dbnull
-
+            this.TipoHabitacion = dr["tipo_habitacion"] == DBNull.Value ? null : dr["tipo_habitacion"].ToString();
+            this.TipoBanio = dr["tipo_banio"] == DBNull.Value ? null : dr["tipo_banio"].ToString();
+            this.CapacidadXPersona = (int)dr["capacidad_personas"];
+            this.Ciudad = dr["ciudad"] == DBNull.Value ? null : dr["ciudad"].ToString();
+            this.Barrio = dr["barrio"] == DBNull.Value ? null : dr["barrio"].ToString();
+            this.TipoAlojamiento = dr["tipo_alojamiento"] == DBNull.Value ? null : dr["tipo_alojamiento"].ToString();
         }
         #endregion
 

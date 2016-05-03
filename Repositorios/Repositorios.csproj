@@ -63,9 +63,9 @@
     <Compile Include="RepoUsuario\RepositorioUsuarioMock.cs" />
     <Compile Include="RepoUsuario\RepositorioUsuarioSQL.cs" />
     <Compile Include="RepoUsuario\RepositorioUsuarioTexto.cs" />
-    <Compile Include="RepoVacaciones\RepositorioVacacionesMock.cs" />
-    <Compile Include="RepoVacaciones\RepositorioVacacionesSQL.cs" />
-    <Compile Include="RepoVacaciones\RepositorioVacacionesTexto.cs" />
+    <Compile Include="RepoTemporada\RepositorioTemporadaMock.cs" />
+    <Compile Include="RepoTemporada\RepositorioTemporadaSQL.cs" />
+    <Compile Include="RepoTemporada\RepositorioTemporadaTexto.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

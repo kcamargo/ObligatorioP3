@@ -30,6 +30,11 @@ namespace Repositorios.RepoFoto
             throw new NotImplementedException();
         }
 
+        public List<Foto> FindByIdAnuncio(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool Update(BienvenidosUyBLL.EntidadesNegocio.Foto obj)
         {
             throw new NotImplementedException();

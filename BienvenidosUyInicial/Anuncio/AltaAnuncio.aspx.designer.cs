@@ -13,6 +13,15 @@ namespace BienvenidosUyInicial {
     public partial class Formulario_web15 {
         
         /// <summary>
+        /// Control mensajes.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label mensajes;
+        
+        /// <summary>
         /// Control labelAlojamientoAnuncio.
         /// </summary>
         /// <remarks>
@@ -85,24 +94,6 @@ namespace BienvenidosUyInicial {
         protected global::System.Web.UI.WebControls.TextBox txtBoxDireAnuncio1;
         
         /// <summary>
-        /// Control labelDireccionAnuncio2.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label labelDireccionAnuncio2;
-        
-        /// <summary>
-        /// Control txtBoxDireAnuncio2.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBoxDireAnuncio2;
-        
-        /// <summary>
         /// Control labelPrecioBaseAnuncio.
         /// </summary>
         /// <remarks>
@@ -121,111 +112,111 @@ namespace BienvenidosUyInicial {
         protected global::System.Web.UI.WebControls.TextBox txtBoxPrecioBaseAnuncio;
         
         /// <summary>
-        /// Control labelServiciosAnuncio.
+        /// Control repTemporadas.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label labelServiciosAnuncio;
+        protected global::System.Web.UI.WebControls.Repeater repTemporadas;
         
         /// <summary>
-        /// Control CheckBoxPrimerQuiEnero.
+        /// Control Calendar1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBoxPrimerQuiEnero;
+        protected global::System.Web.UI.WebControls.Calendar Calendar1;
         
         /// <summary>
-        /// Control CheckBoxSegQuiEnero.
+        /// Control Calendar2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBoxSegQuiEnero;
+        protected global::System.Web.UI.WebControls.Calendar Calendar2;
         
         /// <summary>
-        /// Control CheckBoxPrimerQuiFebrero.
+        /// Control txtBoxImporteXFechaAnuncio.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBoxPrimerQuiFebrero;
+        protected global::System.Web.UI.WebControls.TextBox txtBoxImporteXFechaAnuncio;
         
         /// <summary>
-        /// Control CheckBoxSegQuiFebrero.
+        /// Control btnAgregarTemporada.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBoxSegQuiFebrero;
+        protected global::System.Web.UI.WebControls.LinkButton btnAgregarTemporada;
         
         /// <summary>
-        /// Control CheckBoxCarnaval.
+        /// Control Foto.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBoxCarnaval;
+        protected global::System.Web.UI.WebControls.Label Foto;
         
         /// <summary>
-        /// Control CheckBoxSemanaTurismo.
+        /// Control fuFoto1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBoxSemanaTurismo;
+        protected global::System.Web.UI.WebControls.FileUpload fuFoto1;
         
         /// <summary>
-        /// Control CheckBoxVacInvierno.
+        /// Control fuFoto2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBoxVacInvierno;
+        protected global::System.Web.UI.WebControls.FileUpload fuFoto2;
         
         /// <summary>
-        /// Control CheckBoxVacPrimavera.
+        /// Control fuFoto3.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBoxVacPrimavera;
+        protected global::System.Web.UI.WebControls.FileUpload fuFoto3;
         
         /// <summary>
-        /// Control CheckBoxOtros.
+        /// Control fuFoto4.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBoxOtros;
+        protected global::System.Web.UI.WebControls.FileUpload fuFoto4;
         
         /// <summary>
-        /// Control CheckBoxAux.
+        /// Control fuFoto5.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBoxAux;
+        protected global::System.Web.UI.WebControls.FileUpload fuFoto5;
         
         /// <summary>
-        /// Control bttnAgregarAnuncio.
+        /// Control btnSalvarAnuncio.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button bttnAgregarAnuncio;
+        protected global::System.Web.UI.WebControls.LinkButton btnSalvarAnuncio;
     }
 }

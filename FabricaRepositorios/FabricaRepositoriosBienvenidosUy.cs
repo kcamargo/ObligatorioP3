@@ -91,16 +91,17 @@ namespace FabricaRepositorios
                 return new Repositorios.RepoTiposDeAlojamiento.RepositorioTiposDeAlojamientoTexto();
             return null;
         }
-        public static BienvenidosUyBLL.InterfacesRepositorios.IRepositorioVacaciones CrearRepositorioVacaciones()
+        public static BienvenidosUyBLL.InterfacesRepositorios.IRepositorioTemporada CrearRepositorioTemporada()
         {
             string tipo = LeerTipoDesdeConfiguracion();
             if (tipo == "sql")
-                return new Repositorios.RepoVacaciones.RepositorioVacacionesSQL();
+                return new Repositorios.RepoTemporada.RepositorioTemporadaSQL();
             else if (tipo == "mock")
-                return new Repositorios.RepoVacaciones.RepositorioVacacionesMock();
+                return new Repositorios.RepoTemporada.RepositorioTemporadaMock();
             else if (tipo == "texto")
-                return new Repositorios.RepoVacaciones.RepositorioVacacionesTexto();
+                return new Repositorios.RepoTemporada.RepositorioTemporadaTexto();
             return null;
         }
+
     }
 }
