@@ -154,26 +154,9 @@ namespace BienvenidosUyInicial
                 {
                     mensajes.Text = "No fue posible eliminar el alojamiento";
                 }
-                
+
             }
         }
-
-        //protected void DesplegarAdvertencia(string mensaje)
-        //{
-        //    this.lblMensajes.CssClass = "label-warning";
-        //    this.lblMensajes.Text = mensaje;
-        //}
-        //protected void DesplegarExito(string mensaje)
-        //{
-        //    this.lblMensajes.CssClass = "label-success";
-        //    this.lblMensajes.Text = mensaje;
-        //}
-        //protected void LimpiarMensajes()
-        //{
-        //    this.lblMensajes.CssClass = "label-default";
-        //    this.lblMensajes.Text = "";
-        //}
-
 
     }
 }

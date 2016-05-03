@@ -35,6 +35,11 @@ namespace Repositorios.RepoTemporada
             throw new NotImplementedException();
         }
 
+        public List<Temporada> FindByIdAnuncio(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool Update(Temporada obj)
         {
             throw new NotImplementedException();

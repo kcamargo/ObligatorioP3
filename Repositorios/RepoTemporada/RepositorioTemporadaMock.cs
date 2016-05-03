@@ -39,5 +39,40 @@ namespace Repositorios.RepoTemporada
         {
             throw new NotImplementedException();
         }
+
+        bool IRepositorio<Temporada>.Add(Temporada obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        bool IRepositorio<Temporada>.Delete(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        List<Temporada> IRepositorio<Temporada>.FindAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        Temporada IRepositorio<Temporada>.FindById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        List<Temporada> IRepositorioTemporada.FindByIdAlojamiento(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        List<Temporada> IRepositorioTemporada.FindByIdAnuncio(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        bool IRepositorio<Temporada>.Update(Temporada obj)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

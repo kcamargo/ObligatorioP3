@@ -38,8 +38,8 @@
                     <td><asp:Label runat="server" ID="Label7" text='<%# Eval("Barrio") %>' /></td>
                     <td><asp:Label runat="server" ID="Label8" text='<%# Eval("TipoAlojamiento") %>' /></td>
                     <td>
-                        <asp:LinkButton CommandName="delete" CommandArgument=<%# Eval("Id") %> runat="server">Delete</asp:LinkButton>
-                        <asp:LinkButton CommandName="edit" CommandArgument=<%# Eval("Id") %> runat="server">Edit</asp:LinkButton>
+                        <asp:LinkButton CommandName="delete" CommandArgument=<%# Eval("Id") %> runat="server">Eliminar</asp:LinkButton>
+                        <asp:LinkButton CommandName="edit" CommandArgument=<%# Eval("Id") %> runat="server">Editar</asp:LinkButton>
                     </td>
                 </tr>
             </ItemTemplate>
@@ -116,11 +116,4 @@
                 </div>
             </div>
         <% } %>
-
-    </div>
-
-    <div>
-        
-    </div>
-    <br>
 </asp:Content>

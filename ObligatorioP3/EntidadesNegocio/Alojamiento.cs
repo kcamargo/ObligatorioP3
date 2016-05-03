@@ -62,7 +62,6 @@ namespace BienvenidosUyBLL.EntidadesNegocio
         private string cadenaUpdateAlojamiento = @"UPDATE  Alojamientos SET nombre=@nombre, tipo_habitacion=@tipo_habitacion, tipo_banio=@tipo_banio, capacidad_personas=@capacidad_personas, ciudad=@ciudad, barrio=@barrio, tipo_alojamiento=@tipo_alojamiento WHERE id=@id";
         private string cadenaDeleteAlojamiento = @"DELETE  Alojamientos WHERE id=@id";
         private string cadenaInsertAlojamientoServicio = @"INSERT INTO alojamientoServicio values(@id_alojamiento, @id_servicio)";
-        //private string cadenaUpdateAlojamientoServicio = @"UPDATE alojamientoServicio SET id_Alojamiento=@id_alojamiento, id_servicio=@id_servicio";
         private string cadenaDeleteAlojamientoServicios = @"DELETE alojamientoServicio WHERE id_alojamiento=@id_alojamiento";
 
 
@@ -174,10 +173,23 @@ namespace BienvenidosUyBLL.EntidadesNegocio
             {
                 using (SqlCommand cmd = new SqlCommand(cadenaDeleteAlojamiento, cn))
                 {
-
+                    SqlTransaction trn = null;
+                    BdSQL.AbrirConexion(cn);
+                    trn = cn.BeginTransaction(System.Data.IsolationLevel.ReadCommitted);
                     cmd.Parameters.AddWithValue("@id", this.Id);
-                    cn.Open();
+                    cmd.Transaction = trn;
                     int afectadas = cmd.ExecuteNonQuery();
+
+                    cmd.Parameters.Clear();
+                    cmd.CommandText = cadenaDeleteAlojamientoServicios;
+                    cmd.Parameters.AddWithValue("@id_alojamiento", this.Id);
+                    cmd.ExecuteNonQuery();
+
+
+                    trn.Commit();
+                    trn.Dispose();
+                    trn = null;
+
                     return afectadas == 1;
                 }
             }

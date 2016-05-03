@@ -77,15 +77,6 @@ namespace BienvenidosUyInicial
             Session["temporadas"] = lista;
         }
 
-        protected Alojamiento BuscarAlojamientoXddl(string s)
-        {
-            int id = Int32.Parse(s);
-            IRepositorioAlojamiento ro = FabricaRepositoriosBienvenidosUy.CrearRepositorioAlojamiento();
-            Alojamiento a = ro.FindById(id);
-            return a;
-
-        }
-
         protected Foto CrearFoto(FileUpload fu)
         {
             Foto foto = new BienvenidosUyBLL.EntidadesNegocio.Foto();
@@ -109,7 +100,7 @@ namespace BienvenidosUyInicial
             }
 
             Anuncio a = new Anuncio();
-            a.Alojamiento = BuscarAlojamientoXddl(ddlTipoDeAlojamientoParaAnuncio.SelectedValue);
+            a.IdAlojamiento =Int32.Parse(ddlTipoDeAlojamientoParaAnuncio.SelectedValue);
             a.NombreAnuncio = this.txtboxNombreAnuncio.Text;
             a.DescripcionAnuncio = this.txtBoxDescripcionAnuncio.Text;
             a.PrecioBase = Int32.Parse(this.txtBoxPrecioBaseAnuncio.Text);

@@ -10,5 +10,7 @@ namespace BienvenidosUyBLL.InterfacesRepositorios
     public interface IRepositorioTemporada: IRepositorio<Temporada>
     {
         List<Temporada> FindByIdAlojamiento(int id);
+
+        List<Temporada> FindByIdAnuncio(int id);
     }
 }

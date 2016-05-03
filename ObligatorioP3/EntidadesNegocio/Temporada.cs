@@ -29,7 +29,7 @@ namespace BienvenidosUyBLL.EntidadesNegocio
 
         #region Cadenas de comando para ACTIVE RECORD //falta terminar, hacerlo despues de crear las tablas en SQL2
 
-        private string cadenaInsertTemporadas = @"INSERT INTO Temporadas VALUES (@fecha_inicio, @fecha_fin, @importe, id_anuncio)SELECT CAST(Scope_Identity() AS INT);";
+        private string cadenaInsertTemporadas = @"INSERT INTO Temporadas VALUES (@fecha_inicio, @fecha_fin, @importe, @id_anuncio)SELECT CAST(Scope_Identity() AS INT);";
         private string cadenaUpdateTemporadas = @"UPDATE  Temporadas SET fecha_inicio=@fecha_inicio, fecha_fin=@fecha_fin, importe=@importe, id_anuncio=@id_anuncio  WHERE id=@id";
         private string cadenaDeleteTemporadas = @"DELETE  Temporadas WHERE id=@id";
 
@@ -81,27 +81,48 @@ namespace BienvenidosUyBLL.EntidadesNegocio
                 {
                     using (SqlCommand cmd = new SqlCommand(cadenaUpdateTemporadas, cn))
                     {
-                        //cmd.Parameters.AddWithValue("@nombre", this.Nombre);
-                        //cmd.Parameters.AddWithValue("@id", this.Id);
-                        cn.Open();
+                        SqlTransaction trn = null;
+                        BdSQL.AbrirConexion(cn);
+                        trn = cn.BeginTransaction(System.Data.IsolationLevel.ReadCommitted);
+                        cmd.Transaction = trn;
+
+                        cmd.Parameters.Add(new SqlParameter("@id", this.Id));
+                        cmd.Parameters.Add(new SqlParameter("@id_anuncio", this.Id_anuncio));
+                        cmd.Parameters.Add(new SqlParameter("@fecha_inicio", this.FechaInicio));
+                        cmd.Parameters.Add(new SqlParameter("@fecha_fin", this.FechaFin));
+                        cmd.Parameters.Add(new SqlParameter("@importe", this.Importe));
+
                         int afectadas = cmd.ExecuteNonQuery();
+
+                        trn.Commit();
+                        trn.Dispose();
+                        trn = null;
+
                         return afectadas == 1;
                     }
+
                 }
             }
             return false;
         }
         public bool Delete()
         {
-
             using (SqlConnection cn = BdSQL.Conectar())
             {
                 using (SqlCommand cmd = new SqlCommand(cadenaDeleteTemporadas, cn))
                 {
+                    SqlTransaction trn = null;
+                    BdSQL.AbrirConexion(cn);
+                    trn = cn.BeginTransaction(System.Data.IsolationLevel.ReadCommitted);
+                    cmd.Transaction = trn;
+                    cmd.Parameters.AddWithValue("@id", this.Id);
 
-                    //cmd.Parameters.AddWithValue("@id", this.Id);
-                    cn.Open();
                     int afectadas = cmd.ExecuteNonQuery();
+
+                    trn.Commit();
+                    trn.Dispose();
+                    trn = null;
+
                     return afectadas == 1;
                 }
             }

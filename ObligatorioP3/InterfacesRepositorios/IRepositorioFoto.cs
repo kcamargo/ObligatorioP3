@@ -9,5 +9,6 @@ namespace BienvenidosUyBLL.InterfacesRepositorios
 {
     public interface IRepositorioFoto: IRepositorio<Foto>
     {
+        List<Foto> FindByIdAnuncio(int id);
     }
 }

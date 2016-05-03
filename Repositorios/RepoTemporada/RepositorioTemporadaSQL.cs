@@ -52,14 +52,14 @@ namespace Repositorios.RepoTemporada
             catch (Exception ex)
             {
 
-                BdSQL.LoguearError(ex.Message + "No se pueden cargar las vacaciones");
+                BdSQL.LoguearError(ex.Message + "No se pueden cargar las temporadas del anuncio");
                 return null;
             }
         }
 
         public BienvenidosUyBLL.EntidadesNegocio.Temporada FindById(int id)
         {
-            string cadenaSQL = @"SELECT * From Vacaciones where id=@id";
+            string cadenaSQL = @"SELECT * From Temporadas where id=@id";
             SqlConnection cn = null;
 
             try
@@ -75,14 +75,11 @@ namespace Repositorios.RepoTemporada
                     {
                         Temporada v = new Temporada
                         {
-                            //Id = (int)dr["id"],
-                            //Nombre = dr["Nombre"] == DBNull.Value ? null : dr["Nombre"].ToString(),
-                            //TipoHabitacion = dr["tipo_habitacion"] == DBNull.Value ? null : dr["tipo_habitacion"].ToString(),
-                            //TipoBanio = dr["tipo_banio"] == DBNull.Value ? null : dr["tipo_banio"].ToString(),
-                            //CapacidadXPersona = (int)dr["capacidad_personas"],
-                            //Ciudad = dr["ciudad"] == DBNull.Value ? null : dr["ciudad"].ToString(),
-                            //Barrio = dr["barrio"] == DBNull.Value ? null : dr["barrio"].ToString(),
-                            //TipoDeServicios = GetAllAlojamientosServiciosXIdAlojamiento(id),
+                            Id = (int)dr["id"],
+                            FechaInicio = Convert.ToDateTime(dr["fecha_inicio"] == DBNull.Value ? null : dr["fecha_inicio"].ToString()),
+                            FechaFin = Convert.ToDateTime(dr["fecha_fin"] == DBNull.Value ? null : dr["fecha_fin"].ToString()),
+                            Importe = Int32.Parse(dr["importe"] == DBNull.Value ? null : dr["importe"].ToString()),
+                            Id_anuncio = Int32.Parse(dr["id_anuncio"] == DBNull.Value ? null : dr["id_anuncio"].ToString()),
 
                         };
 
@@ -132,6 +129,38 @@ namespace Repositorios.RepoTemporada
             {
 
                 BdSQL.LoguearError(ex.Message + "No se pueden cargar las vacaciones");
+                return null;
+            }
+        }
+
+        public List<Temporada> FindByIdAnuncio(int id)
+        {
+            string cadenaSQL = @"SELECT *  From Temporadas WHERE id_anuncio=@id_anuncio";
+            SqlConnection cn = null;
+            List<Temporada> lista = new List<Temporada>();
+            try
+            {
+
+                using (cn = UtilidadesBD.BdSQL.Conectar())
+                {
+                    SqlCommand cmd = new SqlCommand(cadenaSQL, cn);
+                    cmd.Parameters.AddWithValue("@id_anuncio", id);
+                    BdSQL.AbrirConexion(cn);
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        Temporada v = new Temporada();
+                        v.Load(dr);
+                        lista.Add(v);
+
+                    }
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+
+                BdSQL.LoguearError(ex.Message + "No se pueden cargar las temporadas correspondientes al anuncio");
                 return null;
             }
         }
