@@ -65,7 +65,33 @@ namespace Repositorios.RepoServicio
 
         public BienvenidosUyBLL.EntidadesNegocio.Servicio FindById(int id)
         {
-            throw new NotImplementedException();
+
+            Servicio s = null;
+            string cadenaSQL = @"SELECT id, nombre, descripcion FROM Servicios WHERE id=@id";
+            SqlConnection cn = null;
+            try
+            {
+
+                using (cn = UtilidadesBD.BdSQL.Conectar())
+                {
+                    SqlCommand cmd = new SqlCommand(cadenaSQL, cn);
+                    cmd.Parameters.Add(new SqlParameter("@id", id));
+                    BdSQL.AbrirConexion(cn);
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    if (dr != null && dr.Read())
+                    {
+                        s = new Servicio();
+                        s.Load(dr);
+                    }
+                }
+                return s;
+            }
+            catch (Exception ex)
+            {
+
+                BdSQL.LoguearError(ex.Message + "No se puede cargar el Servicio");
+                return null;
+            }
         }
 
         public bool Update(BienvenidosUyBLL.EntidadesNegocio.Servicio obj)

@@ -50,7 +50,7 @@ namespace BienvenidosUyInicial
 
                 if (Session["listaTipoDeAlojamiento"] == null) Session["listaTipoDeAlojamiento"] = todosLosTiposAlojamiento;
                 this.ddlTipoAlojamiento.DataSource = todosLosTiposAlojamiento;
-                this.ddlTipoAlojamiento.DataValueField = "Id";
+                this.ddlTipoAlojamiento.DataValueField = "Nombre";
                 this.ddlTipoAlojamiento.DataTextField = "Nombre";
                 this.ddlTipoAlojamiento.DataBind();
             }
@@ -63,16 +63,13 @@ namespace BienvenidosUyInicial
             {
                 a.Nombre = this.txtBoxNombreAlojamiento.Text;
                 a.TipoAlojamiento = this.ddlTipoAlojamiento.SelectedValue;// ojo devuelve un string
-                a.TipoHabitacion = this.ddlTipoHabitacion.SelectedValue == "privada";// this.ConvertirABoolTipoHabitacion(this.ddlTipoHabitacion.SelectedValue);
-                a.TipoBanio = this.ConvertirABoolTipoBanio(this.ddlTipoHabitacion.SelectedValue);
+                a.TipoHabitacion = this.ddlTipoHabitacion.SelectedValue == "privada";
+                a.TipoBanio = this.ddlBano.SelectedValue == "privada";
                 a.CapacidadXPersona = Int32.Parse(this.txtBoxCantidadPersonas.Text);
                 a.Ciudad = this.txtboxCiudad.Text;
                 a.Barrio = this.txtboxBarrio.Text;
-                //CargarListaServicios();
-
-
-
-                 IRepositorioAlojamiento ro = FabricaRepositoriosBienvenidosUy.CrearRepositorioAlojamiento();
+                a.TipoDeServicios = CargarListaServicios();
+                IRepositorioAlojamiento ro = FabricaRepositoriosBienvenidosUy.CrearRepositorioAlojamiento();
                 if (ro.Add(a))
                     this.LblMensajes.Text = "Ingresado";
 
@@ -82,33 +79,22 @@ namespace BienvenidosUyInicial
             }
 
         }
-        protected bool ConvertirABoolTipoHabitacion(string value)
+
+        protected List<Servicio> CargarListaServicios()
         {
-            bool valor = false;
-            if (value == "privada")
-                valor = true;
-            return valor;
+            IRepositorioServicio ro = FabricaRepositoriosBienvenidosUy.CrearRepositorioServicio();
+            List<Servicio> serviciosSeleccionados = new List<Servicio>();
+            List<ListItem> lista = this.CheckBoxListServicios.Items.Cast<ListItem>().ToList();
+            foreach (ListItem item in lista)
+            {
+                if (item.Selected)
+                {
+                    Servicio servicio = ro.FindById(Int32.Parse(item.Value));
+                    serviciosSeleccionados.Add(servicio);
+                }
+            }
+            return serviciosSeleccionados;
         }
-        protected bool ConvertirABoolTipoBanio(string value)
-        {
-            bool valor = false;
-            if (value == "Privado")
-                valor = true;
-            return valor;
-        }
-        //protected List<Servicio> CargarListaServicios()
-        //{
-        //    List<Servicio> serviciosSeleccionados = new List<Servicio>();
-        //    List<ListItem> lista = this.CheckBoxListServicios.Items.Cast<ListItem>().ToList();
-        //    foreach (ListItem item in lista)
-        //    {
-        //        if (item.Selected)
-        //        {
-        //            serviciosSeleccionados.Add(item);
-        //        }
-        //    }
-        //    return serviciosSeleccionados;
-        //}
 
     }
 }
