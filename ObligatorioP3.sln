@@ -31,6 +31,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilidadesBD", "UtilidadesB
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BUYServices", "BUYServices\BUYServices.csproj", "{B96EE7FB-5790-4C21-8321-93AE0C909094}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCFCliente", "WCFCliente\WCFCliente.csproj", "{4A44A3E3-A92F-476B-8445-F315147D60A9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B96EE7FB-5790-4C21-8321-93AE0C909094} = {B96EE7FB-5790-4C21-8321-93AE0C909094}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +66,10 @@ Global
 		{B96EE7FB-5790-4C21-8321-93AE0C909094}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B96EE7FB-5790-4C21-8321-93AE0C909094}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B96EE7FB-5790-4C21-8321-93AE0C909094}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A44A3E3-A92F-476B-8445-F315147D60A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A44A3E3-A92F-476B-8445-F315147D60A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A44A3E3-A92F-476B-8445-F315147D60A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A44A3E3-A92F-476B-8445-F315147D60A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
