@@ -36,6 +36,15 @@ namespace Repositorios.RepoUsuario
             throw new NotImplementedException();
         }
 
+        public Usuario FindByPassword(string pasw)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Usuario FindByPassword(string email, string pasw)
+        {
+            throw new NotImplementedException();
+        }
 
         public bool Update(Usuario obj)
         {

@@ -146,7 +146,6 @@ C:\Users\Florencia\ObligatorioP3\BienvenidosUyInicial\bin\UtilidadesBD.pdb
 C:\Users\Florencia\ObligatorioP3\BienvenidosUyInicial\obj\Debug\BienvenidosUyInicial.csprojResolveAssemblyReference.cache
 C:\Users\Florencia\ObligatorioP3\BienvenidosUyInicial\obj\Debug\BienvenidosUyInicial.dll
 C:\Users\Florencia\ObligatorioP3\BienvenidosUyInicial\obj\Debug\BienvenidosUyInicial.pdb
-C:\Users\Owner\Desktop\Programacion_3\Obligatorio\ObligatorioP3\BienvenidosUyInicial\obj\Debug\BienvenidosUyInicial.csprojResolveAssemblyReference.cache
 C:\Users\Owner\Desktop\Programacion_3\Obligatorio\ObligatorioP3\BienvenidosUyInicial\bin\roslyn\csc.exe
 C:\Users\Owner\Desktop\Programacion_3\Obligatorio\ObligatorioP3\BienvenidosUyInicial\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
 C:\Users\Owner\Desktop\Programacion_3\Obligatorio\ObligatorioP3\BienvenidosUyInicial\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
@@ -218,5 +217,6 @@ C:\Users\Owner\Desktop\Programacion_3\Obligatorio\ObligatorioP3\BienvenidosUyIni
 C:\Users\Owner\Desktop\Programacion_3\Obligatorio\ObligatorioP3\BienvenidosUyInicial\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\Owner\Desktop\Programacion_3\Obligatorio\ObligatorioP3\BienvenidosUyInicial\bin\Microsoft.Owin.Security.OAuth.xml
 C:\Users\Owner\Desktop\Programacion_3\Obligatorio\ObligatorioP3\BienvenidosUyInicial\bin\UtilidadesBD.pdb
+C:\Users\Owner\Desktop\Programacion_3\Obligatorio\ObligatorioP3\BienvenidosUyInicial\obj\Debug\BienvenidosUyInicial.csprojResolveAssemblyReference.cache
 C:\Users\Owner\Desktop\Programacion_3\Obligatorio\ObligatorioP3\BienvenidosUyInicial\obj\Debug\BienvenidosUyInicial.dll
 C:\Users\Owner\Desktop\Programacion_3\Obligatorio\ObligatorioP3\BienvenidosUyInicial\obj\Debug\BienvenidosUyInicial.pdb

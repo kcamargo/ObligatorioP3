@@ -18,7 +18,7 @@ namespace BienvenidosUyInicial.Account
         {
             if (!Page.IsPostBack)
             {
-               
+
             }
             if (Session["AltaUsuarioActiva"] == null)
             {
@@ -38,18 +38,46 @@ namespace BienvenidosUyInicial.Account
                 u.ApellidoUsuario = this.Apellido.Text;
                 u.Direccion = this.Direccion.Text;
                 u.Telefono = this.Telefono.Text;
-                u.Foto = this.Foto.Text;
                 u.Descripcion = this.Descripcion.Text;
-          
-          IRepositorioUsuario user = FabricaRepositoriosBienvenidosUy.CrearRepositorioUsuario();
-                if (user.Add(u))
-                    this.mensaje.Text = "Usuario corretamente ingresado";
-
+                if (ddlTipoUusario.SelectedValue == "Anfitrion")
+                {
+                    u.Rol = Usuario.Roles.Anfitrion;
+                }
+                else if (ddlTipoUusario.SelectedValue == "Huesped")
+                {
+                    u.Rol = Usuario.Roles.Husped;
+                }
                 else
+                {
+                    u.Rol = Usuario.Roles.Chusma;
+                }
+
+
+                IRepositorioUsuario user = FabricaRepositoriosBienvenidosUy.CrearRepositorioUsuario();
+                if (user.Add(u))
+                {
+                    this.mensaje.Text = "Usuario corretamente ingresado";
+                    LimpiarCampos();
+                }
+                else
+                {
                     this.mensaje.Text = "Usuario rechazado";
-                Session["AltaUsuarioActiva"] = new Usuario();
+                    Session["AltaUsuarioActiva"] = new Usuario.Roles();
+                }
+
             }
-           
+
+        }
+
+        protected void LimpiarCampos()
+        {
+            //Email.Text;
+            //Password.Text;
+            //Nombre.Text;
+            //Apellido.Text;
+            //Text;
+            //.Telefono.Text;
+            //Descripcion.Text;
         }
     }
 }

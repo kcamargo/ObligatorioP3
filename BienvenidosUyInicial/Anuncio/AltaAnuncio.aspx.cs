@@ -100,7 +100,7 @@ namespace BienvenidosUyInicial
             }
 
             Anuncio a = new Anuncio();
-            a.IdAlojamiento =Int32.Parse(ddlTipoDeAlojamientoParaAnuncio.SelectedValue);
+            a.Alojamiento.Id =Int32.Parse(ddlTipoDeAlojamientoParaAnuncio.SelectedValue);
             a.NombreAnuncio = this.txtboxNombreAnuncio.Text;
             a.DescripcionAnuncio = this.txtBoxDescripcionAnuncio.Text;
             a.PrecioBase = Int32.Parse(this.txtBoxPrecioBaseAnuncio.Text);

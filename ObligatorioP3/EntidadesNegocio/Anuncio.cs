@@ -15,7 +15,7 @@ namespace BienvenidosUyBLL.EntidadesNegocio
         #region PROPERTIES
         public int Id { get; set; }
 
-        public int IdAlojamiento { get; set; }
+        public Alojamiento Alojamiento { get; set; }
 
         public string Direccion { get; set; }
 
@@ -68,7 +68,7 @@ namespace BienvenidosUyBLL.EntidadesNegocio
                 cmd.Parameters.Add(new SqlParameter("@descripcion", this.DescripcionAnuncio));
                 cmd.Parameters.Add(new SqlParameter("@precio_base", this.PrecioBase));
                 cmd.Parameters.Add(new SqlParameter("@direccion", this.Direccion));
-                cmd.Parameters.Add(new SqlParameter("@id_alojamiento", this.IdAlojamiento));
+                cmd.Parameters.Add(new SqlParameter("@id_alojamiento", this.Alojamiento));
 
                 BdSQL.AbrirConexion(cn);
                 trn = cn.BeginTransaction(System.Data.IsolationLevel.ReadCommitted);
@@ -237,7 +237,7 @@ namespace BienvenidosUyBLL.EntidadesNegocio
             //this.DescripcionAnuncio = dr["descripcion"] == DBNull.Value ? null : dr["descripcion"].ToString();
             this.PrecioBase = (int)dr["precio_base"];
             this.Direccion = dr["direccion"] == DBNull.Value ? null : dr["direccion"].ToString();
-            this.IdAlojamiento = (int)dr["id_alojamiento"];
+            //this.Alojamiento = (int)dr["id_alojamiento"];
             //AppDomain.CurrentDomain.BaseDirectory
             //Path.Combine
 

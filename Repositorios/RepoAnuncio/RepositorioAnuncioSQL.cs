@@ -78,7 +78,7 @@ namespace Repositorios.RepoAnuncio
                             DescripcionAnuncio = dr["descripcion"] == DBNull.Value ? null : dr["descripcion"].ToString(),
                             PrecioBase = (int)dr["precio_base"],
                             Direccion = dr["direccion"] == DBNull.Value ? null : dr["direccion"].ToString(),
-                            IdAlojamiento = (int)dr["id_alojamiento"],
+                            //a.Alojamiento.Id = (int)dr["id_alojamiento"],
 
                         };
 

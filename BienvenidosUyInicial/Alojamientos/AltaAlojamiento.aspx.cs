@@ -19,6 +19,11 @@ namespace BienvenidosUyInicial
             {
                 CargarServicios();
                 CargarTipoDeAlojamientos();
+                Usuario u = Session["usuarioActivo"] as Usuario;
+                if (u == null || !u.Rol.Equals(Usuario.Roles.Anfitrion))
+                {
+                    Response.Redirect("/inicio");
+                } 
             }
             if (Session["AltaAlojamientoActiva"] == null)
             {

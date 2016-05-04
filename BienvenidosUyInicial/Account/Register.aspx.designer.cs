@@ -85,15 +85,6 @@ namespace BienvenidosUyInicial.Account {
         protected global::System.Web.UI.WebControls.TextBox Telefono;
         
         /// <summary>
-        /// Control Foto.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Foto;
-        
-        /// <summary>
         /// Control Descripcion.
         /// </summary>
         /// <remarks>
@@ -101,6 +92,15 @@ namespace BienvenidosUyInicial.Account {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox Descripcion;
+        
+        /// <summary>
+        /// Control ddlTipoUusario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlTipoUusario;
         
         /// <summary>
         /// Control mensaje.
