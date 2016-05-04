@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BienvenidosUyBLL", "ObligatorioP3\BienvenidosUyBLL.csproj", "{EA383BA3-2114-418D-B6B4-46C7A505D54F}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repositorios", "Repositorio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilidadesBD", "UtilidadesBD\UtilidadesBD.csproj", "{96A1D38A-B36B-4340-AEA4-3E54BD740480}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BUYServices", "BUYServices\BUYServices.csproj", "{B96EE7FB-5790-4C21-8321-93AE0C909094}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,10 @@ Global
 		{96A1D38A-B36B-4340-AEA4-3E54BD740480}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{96A1D38A-B36B-4340-AEA4-3E54BD740480}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{96A1D38A-B36B-4340-AEA4-3E54BD740480}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B96EE7FB-5790-4C21-8321-93AE0C909094}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B96EE7FB-5790-4C21-8321-93AE0C909094}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B96EE7FB-5790-4C21-8321-93AE0C909094}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B96EE7FB-5790-4C21-8321-93AE0C909094}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
