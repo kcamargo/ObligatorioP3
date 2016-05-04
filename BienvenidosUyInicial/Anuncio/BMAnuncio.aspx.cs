@@ -95,6 +95,7 @@ namespace BienvenidosUyInicial
                 mensajes.Text = "Ha ocurrido un error";
             }
         }
+
         protected void LimpiarCampos()
         {
             txtBoxNombreAnuncioBM.Text = " ";

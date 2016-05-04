@@ -16,7 +16,7 @@ namespace WCFCliente
             Anuncio[] anuncios = cliente.GetAll();
             foreach (Anuncio a in anuncios)
             {
-                Console.WriteLine(a.Direccion);
+                Console.WriteLine(a.NombreAnuncio + ", " + a.DescripcionAnuncio + ", " + a.Direccion + ", " + a.Feriados  );
                 
             }
             cliente.Close();
