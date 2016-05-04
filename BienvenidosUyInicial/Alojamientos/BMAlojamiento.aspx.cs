@@ -21,6 +21,11 @@ namespace BienvenidosUyInicial
                 ListarAlojamientos();
                 CargarServiciosBM();
                 CargarTipoDeAlojamientosBM();
+                Usuario u = Session["usuarioActivo"] as Usuario;
+                if (u == null || !u.Rol.Equals(Usuario.Roles.Anfitrion))
+                {
+                    Response.Redirect("/inicio");
+                }
             }
         }
 

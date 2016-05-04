@@ -17,7 +17,11 @@ namespace BienvenidosUyInicial
             if (!Page.IsPostBack)
             {
                 CargarAnuncios();
-
+                Usuario u = Session["usuarioActivo"] as Usuario;
+                if (u == null || !u.Rol.Equals(Usuario.Roles.Anfitrion))
+                {
+                    Response.Redirect("/inicio");
+                }
 
             }
             if (Session["foto"] == null)
