@@ -59,8 +59,7 @@ namespace BienvenidosUyBLL.EntidadesNegocio
         #region Cadenas de comando para ACTIVE RECORD //falta terminar, hacerlo despues de crear las tablas en SQL
 
         private string cadenaInsertAlojamiento = @"INSERT INTO Alojamientos VALUES ( @nombre, @tipo_habitacion, @tipo_banio, @capacidad_personas, @ciudad, @barrio, @tipo_alojamiento)SELECT CAST(Scope_Identity() AS INT);";
-
-        private string cadenaUpdateAlojamiento = @"UPDATE  Alojamientos SET nombre=@nombre, tipoHabitacion=@tipo_habitacion, tipoBanio=@tipo_banio, capacidadPersonas=@capacidad_personas, ciudad=@ciudad, barrio=@barrio, , tipoAlojamiento=@tipo_alojamiento WHERE id=@id";
+        private string cadenaUpdateAlojamiento = @"UPDATE  Alojamientos SET nombre=@nombre, tipo_habitacion=@tipo_habitacion, tipo_banio=@tipo_banio, capacidad_personas=@capacidad_personas, ciudad=@ciudad, barrio=@barrio, tipo_alojamiento=@tipo_alojamiento WHERE id=@id";
         private string cadenaDeleteAlojamiento = @"DELETE  Alojamientos WHERE id=@id";
         private string cadenaInsertAlojamientoServicio = @"INSERT INTO alojamientoServicio values(@id_alojamiento, @id_servicio)";
         private string cadenaDeleteAlojamientoServicios = @"DELETE alojamientoServicio WHERE id_alojamiento=@id_alojamiento";

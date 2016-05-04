@@ -83,34 +83,7 @@
                     <asp:Button ID="btnEliminarFotoBManuncio" runat="server" Text="Borrar" CssClass="btn btn-default" OnClick="btnEliminarFotoBManuncio_Click" />
                 </div>
             </div>
-            <div class="form-group">
-                <div id="carousel-example-generic" class="carousel slide col-sm-2 hidden-xs" data-ride="carousel">
-                    <ol class="carousel-indicators">
-                        <asp:Repeater ID="repFotosLi" runat="server">
-                            <ItemTemplate>
-                                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                            </ItemTemplate>
-                        </asp:Repeater>
-                    </ol>
-                    <div class="carousel-inner" role="listbox">
-                        <asp:Repeater ID="repFotos" runat="server">
-                            <ItemTemplate>
-                                <div class="item active">
-                                    <img src="<%# Eval("Url") %>" class="img-responsive" />
-                                </div>
-                            </ItemTemplate>
-                        </asp:Repeater>
-                    </div>
-                    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </div>
-            </div>
+
             <% } %>
             <div class="form-group">
                 <asp:Label runat="server" ID="Foto" CssClass="col-sm-2 control-label">Foto</asp:Label>
@@ -179,7 +152,7 @@
                     <asp:Button ID="btnActualizarRangosBManuncios" runat="server" Text="Actualizar Rangos" CssClass="btn btn-default" OnClick="btnActualizarRangosBManuncios_Click" />
                 </div>
             </div>
-            
+
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
                     <asp:Button ID="btnActualizarAnuncioBM" runat="server" Text="Actualizar Anuncio" CssClass="btn btn-default" OnClick="btnActualizarAnuncioBM_Click" />

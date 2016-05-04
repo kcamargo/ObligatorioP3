@@ -16,6 +16,5 @@ C:\Users\Owner\Desktop\Programacion_3\Obligatorio\ObligatorioP3\ObligatorioP3\bi
 C:\Users\Owner\Desktop\Programacion_3\Obligatorio\ObligatorioP3\ObligatorioP3\bin\Debug\BienvenidosUyBLL.pdb
 C:\Users\Owner\Desktop\Programacion_3\Obligatorio\ObligatorioP3\ObligatorioP3\bin\Debug\UtilidadesBD.dll
 C:\Users\Owner\Desktop\Programacion_3\Obligatorio\ObligatorioP3\ObligatorioP3\bin\Debug\UtilidadesBD.pdb
-C:\Users\Owner\Desktop\Programacion_3\Obligatorio\ObligatorioP3\ObligatorioP3\obj\Debug\BienvenidosUyBLL.csprojResolveAssemblyReference.cache
 C:\Users\Owner\Desktop\Programacion_3\Obligatorio\ObligatorioP3\ObligatorioP3\obj\Debug\BienvenidosUyBLL.dll
 C:\Users\Owner\Desktop\Programacion_3\Obligatorio\ObligatorioP3\ObligatorioP3\obj\Debug\BienvenidosUyBLL.pdb

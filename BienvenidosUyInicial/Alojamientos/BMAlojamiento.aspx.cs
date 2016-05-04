@@ -152,6 +152,7 @@ namespace BienvenidosUyInicial
             {
                 if (ra.Delete(id))
                 {
+                    Session["modificacionAlojamientoActiva"] = null;
                     ListarAlojamientos();
                     mensajes.Text = "El Alojamiento " + id + " fue eliminado";
                 }

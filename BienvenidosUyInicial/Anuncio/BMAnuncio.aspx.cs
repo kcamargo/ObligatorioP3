@@ -88,7 +88,7 @@ namespace BienvenidosUyInicial
             if (ro.Add(a))
             {
                 mensajes.Text = "El anuncio fue creado correctamente";
-                //LimpiarCampos();
+                LimpiarCampos();
             }
             else
             {
@@ -98,10 +98,14 @@ namespace BienvenidosUyInicial
 
         protected void LimpiarCampos()
         {
+            CargarAnuncios();
             txtBoxNombreAnuncioBM.Text = " ";
             txtBoxDescripcionAnuncioBM.Text = " ";
             txtBoxPrecioBaseBM.Text = " ";
             txtBoxDireccionBM.Text = " ";
+            txtFechaInicioBManuncio.Text = " ";
+            txtFechaFinBManuncio.Text = " ";
+            txtImporteBManuncio.Text = " ";
 
         }
 

@@ -51,7 +51,7 @@
         <h2>Precios por temporada</h2>
 
         <div class="col-md-4">
-            <asp:Repeater ID="repTemporadas" runat="server">
+            <asp:Repeater ID="repTemporadas" runat="server" OnItemCommand="repTemporadas_ItemCommand">
                 <HeaderTemplate>
                     <table class="table table-striped table-bordered">
                         <tr>

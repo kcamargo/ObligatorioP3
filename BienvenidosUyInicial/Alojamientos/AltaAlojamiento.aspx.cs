@@ -46,6 +46,7 @@ namespace BienvenidosUyInicial
                 this.CheckBoxListServicios.DataBind();
             }
         }
+
         protected void CargarTipoDeAlojamientos()
         {
             IRepositorioTipoDeAlojamiento rta = FabricaRepositoriosBienvenidosUy.CrearRepositorioTipoDeAlojamiento();
@@ -60,6 +61,7 @@ namespace BienvenidosUyInicial
                 this.ddlTipoAlojamiento.DataBind();
             }
         }
+
         protected void bttonAgregar_Click(object sender, EventArgs e)
         {
             Alojamiento a = Session["AltaAlojamientoActiva"] as Alojamiento;
@@ -91,7 +93,6 @@ namespace BienvenidosUyInicial
 
         }
 
-
         protected List<Servicio> CargarListaServicios()
         {
             IRepositorioServicio ro = FabricaRepositoriosBienvenidosUy.CrearRepositorioServicio();
@@ -110,7 +111,8 @@ namespace BienvenidosUyInicial
 
         protected void LimpiarCampos()
         {
-
+            CargarServicios();
+            CargarTipoDeAlojamientos();
             this.txtBoxNombreAlojamiento.Text = " ";
             this.txtBoxCantidadPersonas.Text = " ";
             this.txtboxCiudad.Text = " ";

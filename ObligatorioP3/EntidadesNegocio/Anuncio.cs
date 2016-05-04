@@ -15,7 +15,7 @@ namespace BienvenidosUyBLL.EntidadesNegocio
         #region PROPERTIES
         public int Id { get; set; }
 
-        public Alojamiento Alojamiento { get; set; }
+        public int Id_Alojamiento { get; set; }
 
         public string Direccion { get; set; }
 
@@ -48,8 +48,8 @@ namespace BienvenidosUyBLL.EntidadesNegocio
         private string cadenaUpdateAnuncio = @"UPDATE  Anuncios SET nombre=@nombre, descripcion=@descripcion, precio_base=@precio_base, direccion=@direccion WHERE id=@id";
         private string cadenaDeleteAnuncio = @"DELETE  Anuncios WHERE id=@id";
         private string cadenaInsertTemporadas = @"INSERT INTO Temporadas VALUES (@fecha_inicio, @fecha_fin, @importe, @id_anuncio)SELECT CAST(Scope_Identity() AS INT);";
-        private string cadenaDeleteTemporadas = @"DELETE Temporadas WHERE id_anuncio=@id";
-        private string cadenaDeleteFotos = @"DELETE Fotos WHERE id_anuncio=@id";
+        private string cadenaDeleteTemporadas = @"DELETE Temporadas WHERE id_anuncio=@id_anuncio";
+        private string cadenaDeleteFotos = @"DELETE Fotos WHERE id_anuncio=@id_anuncio";
 
         #endregion
 
@@ -68,7 +68,7 @@ namespace BienvenidosUyBLL.EntidadesNegocio
                 cmd.Parameters.Add(new SqlParameter("@descripcion", this.DescripcionAnuncio));
                 cmd.Parameters.Add(new SqlParameter("@precio_base", this.PrecioBase));
                 cmd.Parameters.Add(new SqlParameter("@direccion", this.Direccion));
-                cmd.Parameters.Add(new SqlParameter("@id_alojamiento", this.Alojamiento));
+                cmd.Parameters.Add(new SqlParameter("@id_alojamiento", this.Id_Alojamiento));
 
                 BdSQL.AbrirConexion(cn);
                 trn = cn.BeginTransaction(System.Data.IsolationLevel.ReadCommitted);

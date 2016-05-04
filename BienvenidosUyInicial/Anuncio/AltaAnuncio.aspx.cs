@@ -105,7 +105,7 @@ namespace BienvenidosUyInicial
             }
 
             Anuncio a = new Anuncio();
-            a.Alojamiento.Id =Int32.Parse(ddlTipoDeAlojamientoParaAnuncio.SelectedValue);
+            a.Id_Alojamiento = Int32.Parse(ddlTipoDeAlojamientoParaAnuncio.SelectedValue);
             a.NombreAnuncio = this.txtboxNombreAnuncio.Text;
             a.DescripcionAnuncio = this.txtBoxDescripcionAnuncio.Text;
             a.PrecioBase = Int32.Parse(this.txtBoxPrecioBaseAnuncio.Text);
@@ -148,5 +148,13 @@ namespace BienvenidosUyInicial
             this.repTemporadas.DataSource = Session["temporadas"];
             this.repTemporadas.DataBind();
         }
+
+        protected void repTemporadas_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            
+
+        }
+
     }
 }
+
